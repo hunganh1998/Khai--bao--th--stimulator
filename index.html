@@ -413,9 +413,88 @@ a.lnk{display:block;text-align:center;text-decoration:none;padding:12px 16px;bor
 a.lnk:hover{border-color:var(--jd)}
 a.lnk:focus-visible{outline:3px solid var(--vt);outline-offset:2px}
 .stars{color:var(--gd);letter-spacing:2px}
+/* ===== CHỮ TIẾNG VIỆT: dễ đọc, không cắt dấu ===== */
+:root{--font:"Be Vietnam Pro","Segoe UI",Roboto,"Helvetica Neue",Arial,system-ui,sans-serif}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body,button,input,.opt{font-family:var(--font)}
+body{font-size:17px;line-height:1.65;letter-spacing:0;font-kerning:normal}
+h1,h2,h3,.hero-title,.pill,button,.stamp,.hud b,.hero-stat b,.timer,.lb-rk,.lb-xp{font-family:var(--font);letter-spacing:0}
+h1,.hero-title{font-size:34px;line-height:1.3;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+h2{font-size:21px;line-height:1.35;font-weight:700;text-wrap:balance}
+h3{font-size:19px;line-height:1.4;font-weight:700}
+p,li,.mu{text-wrap:pretty}
+.mu{font-size:15px;line-height:1.55}
+.hero-sub{font-size:16px;line-height:1.65}
+.hud small{font-size:12px;line-height:1.35}.hud b{line-height:1.4}
+.hero-badge,.hero-stat span,.quest-reward,.sec-title span,.mode > span,.bd span,.chip,.seg span,.user-chip,.auth-divider,.auth-skip,.auth-err,.pill{font-size:13.5px;line-height:1.4}
+.mode .mode-stat,.featured em,.mode em,.auth-note,.lb-n small,.tiles small,.law{font-size:12.5px;line-height:1.4}
+.featured span{font-size:15px;line-height:1.55}
+label.f,.auth-field label,details.card,details summary{font-size:15px;line-height:1.5}
+th{font-size:12.5px}table{font-size:14.5px;line-height:1.5}
+#toast div{font-size:15px;line-height:1.45}
+button{font-size:16px;line-height:1.35;font-weight:600}
+.opt{font-size:16px;line-height:1.55;font-weight:500}
+.n,td,.tiles b,input,.hero-stat b,.lb-xp,.timer{font-variant-numeric:tabular-nums}
+input[type=text],input[type=email],input[type=password]{font-size:17px}
+.res li,.note{line-height:1.6}
+.stamp{line-height:1.5;padding-top:2px}
+@media(max-width:560px){body{font-size:16.5px}h1,.hero-title{font-size:28px}h2{font-size:19px}}
+/* ===== TRANG GIỚI THIỆU ===== */
+#landing{position:fixed;inset:0;z-index:60;overflow:auto;background:var(--bg);padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+#landing.off{display:none}
+.lp{max-width:1040px;margin:0 auto;padding:0 20px}
+.lp-nav{display:flex;align-items:center;gap:10px;padding:18px 0;font-weight:800;font-size:20px}
+.lp-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;padding:28px 0 64px}
+.lp h1{font-size:clamp(34px,5.4vw,56px);line-height:1.22;margin:0 0 18px;font-weight:800;letter-spacing:-.02em}
+.lp-sub{font-size:18px;line-height:1.65;color:var(--mu);margin:0 0 28px;max-width:30em}
+.lp-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.lp-cta button{font-size:18px;padding:14px 30px;margin:0}
+a.lp-alt{color:var(--tx);font-weight:600;text-decoration:underline;text-underline-offset:4px;padding:10px 4px}
+.lp-form{position:relative;background:var(--pn);border:1.5px solid var(--ln);border-radius:16px;padding:22px 22px 74px;box-shadow:var(--shadow-lg);transform:rotate(1.6deg)}
+.lp-form h2{font-size:16px;margin:0 0 4px}.lp-form small{color:var(--mu);font-size:13px}
+.lp-row{display:grid;grid-template-columns:44px 1fr auto;gap:10px;padding:12px 0;border-top:1.5px dashed var(--ln);font-size:15px;font-variant-numeric:tabular-nums}
+.lp-row:first-of-type{margin-top:12px}.lp-row b:first-child{color:var(--vt)}.lp-row.t{font-weight:700}
+.lp-form .stamp{position:absolute;right:20px;bottom:18px;font-size:22px;background:var(--pn);animation-delay:.9s;animation-fill-mode:backwards}
+.lp-sec{padding:44px 0;border-top:1.5px solid var(--ln)}
+.lp-sec h2{font-size:clamp(24px,3.6vw,34px);line-height:1.3;margin:0 0 26px;font-weight:800}
+.lp-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.lp-steps li{counter-increment:s;padding-top:14px;border-top:3px solid var(--jd)}
+.lp-steps li::before{content:counter(s);display:block;font-weight:800;font-size:15px;color:var(--jd);margin-bottom:6px}
+.lp-steps b,.lp-fs b{display:block;font-size:19px;line-height:1.4;margin-bottom:4px}
+.lp-steps span,.lp-fs span{color:var(--mu);font-size:16px;line-height:1.6}
+.lp-fs{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+.lp-fs div{padding:18px 0;border-top:1.5px dashed var(--ln)}
+.lp-end{text-align:center;padding:56px 0}.lp-end h2{margin-bottom:20px}
+.lp-end button{font-size:18px;padding:14px 34px}
+.lp-foot{color:var(--mu);font-size:13.5px;text-align:center;padding:0 0 32px}
+@media(max-width:760px){.lp-hero,.lp-steps,.lp-fs{grid-template-columns:1fr}.lp-hero{gap:36px}.lp-form{transform:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 </style></head><body>
+<div id="landing" role="dialog" aria-label="Giới thiệu Tax Shield"><div class="lp">
+<div class="lp-nav"><svg width="30" height="34" viewBox="0 0 44 50" aria-hidden="true"><path d="M22 2 4 9v13c0 12 8 22 18 26 10-4 18-14 18-26V9z" fill="var(--jd)"/><path d="m14 25 6 6 11-13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg> Tax Shield</div>
+<section class="lp-hero"><div>
+<h1>Luyện nghề kế toán thuế như đi làm thật</h1>
+<p class="lp-sub">Lập tờ khai, tính thuế, xử lý thanh tra với số liệu khác nhau mỗi ván. Cập nhật theo luật thuế 2026.</p>
+<div class="lp-cta"><button id="lpgo" onclick="enterApp()">Bắt đầu chơi</button><a class="lp-alt" href="#lp-how" onclick="document.getElementById('lp-how').scrollIntoView({behavior:'smooth'});return false">Xem cách chơi</a></div>
+</div>
+<div class="lp-form" aria-hidden="true"><h2>Tờ khai thuế GTGT 01/GTGT</h2><small>Kỳ 09/2026 · Công ty CP Công nghệ Nam Việt</small>
+<div class="lp-row"><b>[35]</b><span>Thuế đầu ra</span><b>124.800.000</b></div>
+<div class="lp-row"><b>[25]</b><span>Thuế đầu vào được khấu trừ</span><b>98.350.000</b></div>
+<div class="lp-row t"><b>[40]</b><span>Thuế phải nộp</span><b>26.450.000</b></div>
+<span class="stamp">ĐÃ DUYỆT</span></div></section>
+<section class="lp-sec" id="lp-how"><h2>Một ngày làm kế toán thuế, chia làm ba bước</h2>
+<ol class="lp-steps"><li><b>Kiểm tra chứng từ</b><span>Hóa đơn nào được khấu trừ, khoản chi nào bị loại. Đối chiếu với dữ liệu trên cổng thuế.</span></li>
+<li><b>Lập tờ khai</b><span>Điền các chỉ tiêu GTGT, TNCN, TNDN và nhiều loại thuế khác, tính đến từng đồng.</span></li>
+<li><b>Giải trình với thanh tra</b><span>Thanh tra ập đến, bạn có vài chục giây để chọn cách xử lý đúng luật.</span></li></ol></section>
+<section class="lp-sec"><h2>Vì sao luyện ở đây hiệu quả</h2><div class="lp-fs">
+<div><b>Mỗi ván một hồ sơ mới</b><span>Số liệu ngẫu nhiên nên bạn phải hiểu cách tính, không thể học thuộc đáp án.</span></div>
+<div><b>Có căn cứ pháp lý</b><span>Đáp án đi kèm điều luật và giải thích từng bước sau mỗi màn.</span></div>
+<div><b>Sai thì bị xử lý (mô phỏng)</b><span>Từ khiến trách đến hoãn xuất cảnh, để bạn nhớ hậu quả của từng sai sót.</span></div>
+<div><b>Thi đua cùng bạn bè</b><span>Tích XP, giữ chuỗi thắng, sưu tầm huy hiệu và leo bảng xếp hạng.</span></div></div></section>
+<section class="lp-end lp-sec"><h2>Sẵn sàng nhận hồ sơ đầu tiên?</h2><button onclick="enterApp()">Bắt đầu chơi</button></section>
+<p class="lp-foot">Đề bài là mô phỏng phục vụ luyện tập. Mức phạt lấy trung bình khung, hãy đối chiếu văn bản hiện hành khi làm thật.</p>
+</div></div>
 <div class="hud"><div class="hi"><button id="home" title="Về sảnh" aria-label="Về sảnh" onclick="hub()">🏠</button>
 <button id="snd" title="Bật/tắt âm thanh" aria-label="Bật/tắt âm thanh" onclick="toggleSnd()">🔊</button>
 <button id="mus" title="Bật/tắt nhạc nền" aria-label="Bật/tắt nhạc nền" aria-pressed="true" onclick="toggleMus()">🎵</button>
@@ -500,6 +579,7 @@ function toggleMus(){MUS=!MUS;try{localStorage.setItem('ts_mus',MUS?'1':'0')}cat
 function musUI(){const b=$('#mus');b.classList.toggle('off',!MUS);b.setAttribute('aria-pressed',MUS)}
 ['pointerdown','keydown'].forEach(e=>addEventListener(e,startMusic,{passive:true}));
 document.addEventListener('visibilitychange',()=>{document.hidden?stopMusic():startMusic()});
+function enterApp(){document.querySelectorAll('.hud,main').forEach(e=>e.inert=false);$('#landing').classList.add('off');window.scrollTo(0,0);startMusic()}
 const LV=()=>Math.min(5,1+Math.floor(S.xp/250)),LT=['Thực tập sinh','Nhân viên thuế','Kế toán viên','Kế toán trưởng','Chuyên gia thuế'],CAP=1.6e9;
 const BADGES={first:['🎯','Bước đầu tiên'],s5:['🔥','Chuỗi 5 thắng'],lv3:['📈','Lên cấp 3'],pit:['👤','Bậc thầy TNCN'],cit:['🏢','Bậc thầy TNDN'],ins:['🕵️','Vượt thanh tra'],vat:['🧾','Tờ khai hoàn hảo'],frm:['🧠','Tờ khai đa thuế']};
 function toast(m){const d=document.createElement('div');d.textContent=m;$('#toast').append(d);setTimeout(()=>d.remove(),3200)}
@@ -707,5 +787,6 @@ function endShift(){const r=SH.res,n=TASKS.length,ok=r.filter(x=>x>=1).length,rk
 QB.push(["Mỗi hóa đơn đầu vào cần được đối chiếu với những chứng từ nào?","Hợp đồng, biên bản nghiệm thu, chứng từ thanh toán",["Chỉ hóa đơn là đủ","Chỉ chứng từ thanh toán","Chỉ hợp đồng"],"Đối chiếu đủ bộ chứng từ mới xác định được tính hợp lệ của hóa đơn."],["Tờ khai lập trên HTKK được nộp cho cơ quan thuế bằng cách nào?","Kết xuất file XML và nộp qua cổng thuế điện tử",["Gửi email cho chi cục thuế","In ra và gửi bưu điện","Nộp qua Zalo"],"HTKK kết xuất XML rồi nộp qua cổng thuế điện tử."],["Hạn nộp hồ sơ khai thuế và hạn nộp tiền thuế có giống nhau không?","Là hai khái niệm khác nhau, cần phân biệt",["Luôn giống nhau","Nộp hồ sơ xong là hết nghĩa vụ","Chỉ cần nộp tiền, không cần hồ sơ"],"Nộp đúng hạn hồ sơ không có nghĩa đã nộp tiền thuế đúng hạn."],["Hóa đơn đầu vào trên bảng kê không có trên dữ liệu cổng thuế thì kế toán nên?","Làm rõ với nhà cung cấp trước khi khấu trừ",["Khấu trừ luôn cho kịp hạn","Xóa hóa đơn khỏi sổ","Nhờ NCC lập lại hóa đơn cũ"],"Cần xác nhận dữ liệu hóa đơn với NCC, tránh khấu trừ sai."]);
 /* ---------- Boot ---------- */
 $('#snd').textContent=SND?'🔊':'🔇';musUI();
+document.querySelectorAll('.hud,main').forEach(e=>e.inert=true);$('#lpgo').textContent=USER?'Tiếp tục chơi':'Bắt đầu chơi';
 if(USER)hub();else showAuth();
 </script></body></html>
