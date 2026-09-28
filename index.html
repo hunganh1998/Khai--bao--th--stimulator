@@ -2398,6 +2398,63 @@ function shiftNext(){if(SH.i>=TASKS.length-1)return endShift();SH.i++;runTask()}
 function endShift(){const r=SH.res,n=TASKS.length,ok=r.filter(x=>x>=1).length,rk=ok>=n?'Kế toán thuế xuất sắc':ok>=n*.7?'Hoàn thành tốt':ok>=n*.4?'Cần rà soát lại':'Sếp gọi lên phòng';S.xp+=ok*10;S.coin+=ok*5;
  $('#tm').innerHTML='';$('#bn').textContent='🌇 17:30 · Hết ca';$('#app').innerHTML=`<div class="res ${ok>=n*.7?'':ok>=n*.4?'wn':'bad'}"><span class="stamp">HẾT CA</span><h2>Báo cáo cuối ngày: ${rk}</h2><p>Hoàn thành đúng ${ok}/${n} đầu việc. Thưởng +${ok*10} XP, +${ok*5} 🪙</p><ul>${TASKS.map((t,i)=>`<li>${t[0]} ${t[1]}: ${r[i]>=1?'✅ đúng':r[i]>0?'⚠️ có lưu ý':'❌ sai hoặc bỏ lỡ'}</li>`).join('')}</ul></div><div class="card"><button onclick="startShift()">Ca làm mới ▶</button><button class="s" onclick="hub()">Về sảnh</button></div>`;SH=null;hud()}
 QB.push(["Mỗi hóa đơn đầu vào cần được đối chiếu với những chứng từ nào?","Hợp đồng, biên bản nghiệm thu, chứng từ thanh toán",["Chỉ hóa đơn là đủ","Chỉ chứng từ thanh toán","Chỉ hợp đồng"],"Đối chiếu đủ bộ chứng từ mới xác định được tính hợp lệ của hóa đơn."],["Tờ khai lập trên HTKK được nộp cho cơ quan thuế bằng cách nào?","Kết xuất file XML và nộp qua cổng thuế điện tử",["Gửi email cho chi cục thuế","In ra và gửi bưu điện","Nộp qua Zalo"],"HTKK kết xuất XML rồi nộp qua cổng thuế điện tử."],["Hạn nộp hồ sơ khai thuế và hạn nộp tiền thuế có giống nhau không?","Là hai khái niệm khác nhau, cần phân biệt",["Luôn giống nhau","Nộp hồ sơ xong là hết nghĩa vụ","Chỉ cần nộp tiền, không cần hồ sơ"],"Nộp đúng hạn hồ sơ không có nghĩa đã nộp tiền thuế đúng hạn."],["Hóa đơn đầu vào trên bảng kê không có trên dữ liệu cổng thuế thì kế toán nên?","Làm rõ với nhà cung cấp trước khi khấu trừ",["Khấu trừ luôn cho kịp hạn","Xóa hóa đơn khỏi sổ","Nhờ NCC lập lại hóa đơn cũ"],"Cần xác nhận dữ liệu hóa đơn với NCC, tránh khấu trừ sai."]);
+/* ---------- Giải trình với cơ quan thuế ---------- */
+BADGES.exp=['🏛️','Giải trình xuất sắc'];
+const EXC=[
+{t:'Hóa đơn đầu vào của nhà cung cấp "bỏ trốn"',lv:2,a:()=>R(80,500)*1e6,T:A=>A,p:0,
+ n:A=>`Cơ quan thuế gửi Thông báo yêu cầu giải trình: hóa đơn đầu vào của một nhà cung cấp bị xác định bỏ địa chỉ kinh doanh (thuế GTGT ${f(A)} đ) đã được công ty khấu trừ kỳ trước.`,
+ k:(A,T)=>`Thuế GTGT bị loại khấu trừ: <b>${f(T)} đ</b>. Bạn tự khắc phục trước khi bị lập biên bản nên không bị phạt thêm.`,
+ docs:[['Hợp đồng, biên bản nghiệm thu, giao nhận hàng',1],['Chứng từ thanh toán qua ngân hàng',1],['Hồ sơ NCC: đăng ký kinh doanh, tình trạng MST lúc mua',1],['Bảng lương và chấm công tháng 8',0],['Hóa đơn "lập lại" ghi lùi ngày',-1]],
+ qs:[['Cán bộ hỏi: công ty có căn cứ gì chứng minh giao dịch có thật?','Trình hợp đồng, nghiệm thu, chứng từ thanh toán và hồ sơ NCC lúc giao dịch',['Nói do giám đốc chỉ định, kế toán không biết','Nói hóa đơn có trên cổng thuế là đủ'],'Khấu trừ cần đủ bộ chứng từ chứng minh giao dịch có thật, không chỉ hóa đơn.'],
+ ['Phần nào không chứng minh được, công ty xử lý thế nào?','Khai bổ sung giảm khấu trừ, nộp thuế thiếu và tiền chậm nộp',['Xin cán bộ bỏ qua vì đã lỡ khấu trừ','Nhờ NCC lập hóa đơn khác thay thế'],'Tự khắc phục thể hiện thiện chí; hợp thức hóa chứng từ là gian dối.']],
+ law:'Luật GTGT 48/2024; Luật QLT 108/2025 (giải trình, khai bổ sung).'},
+{t:'Doanh thu tờ khai TNDN lệch với tờ khai GTGT',lv:2,a:()=>R(60,400)*1e6,T:A=>A,p:.2,
+ n:A=>`Dữ liệu đối chiếu cho thấy doanh thu trên tờ khai TNDN cao hơn tờ khai GTGT, phần chênh tương ứng thuế GTGT đầu ra ${f(A)} đ.`,
+ k:(A,T)=>`Thuế GTGT đầu ra khai thiếu: <b>${f(T)} đ</b>. Cơ quan thuế tự phát hiện nên bị phạt 20% số thuế thiếu.`,
+ docs:[['Sổ chi tiết doanh thu (TK 511) và bảng đối chiếu GTGT–TNDN',1],['Hóa đơn đầu ra, hợp đồng của các khoản chênh lệch',1],['Biên bản đối chiếu công nợ với khách hàng',1],['Báo cáo tài chính năm trước',0],['Hóa đơn xuất bổ sung ghi lùi ngày',-1]],
+ qs:[['Cán bộ hỏi: vì sao doanh thu TNDN lớn hơn doanh thu GTGT?','Lập bảng đối chiếu, chỉ rõ từng khoản chênh và chứng từ kèm theo',['Nói phần mềm kế toán bị lỗi','Nói hai tờ khai không cần khớp nhau'],'Chênh lệch chỉ chấp nhận khi giải thích được từng khoản (doanh thu tài chính, tỷ giá, hàng chưa kê khai).'],
+ ['Phần chênh là doanh thu bán hàng chưa xuất hóa đơn thì sao?','Thừa nhận, lập hóa đơn, khai bổ sung thuế đầu ra',['Xin tính cho phần nhỏ thôi','Không xuất vì khách không cần hóa đơn'],'Doanh thu phát sinh phải lập hóa đơn và kê khai đầy đủ.']],
+ law:'Luật GTGT 48/2024; NĐ 125/2020 sđ NĐ 310/2025 (phạt 20% thuế khai thiếu).'},
+{t:'Chi phí thanh toán tiền mặt bị loại khi quyết toán TNDN',lv:3,a:()=>R(300,1500)*1e6,T:A=>Math.round(A*.2),p:.2,
+ n:A=>`Cơ quan thuế yêu cầu giải trình các khoản chi tổng ${f(A)} đ có hóa đơn từ 5 triệu trở lên nhưng thanh toán tiền mặt, thiếu chứng từ thanh toán không dùng tiền mặt.`,
+ k:A=>`Chi phí bị loại: <b>${f(A)} đ</b>, thuế suất TNDN 20%. Tự tính thuế thiếu rồi cộng phạt 20% và tiền chậm nộp.`,
+ docs:[['Chứng từ chuyển khoản bổ sung (nếu đã trả qua ngân hàng)',1],['Quy chế chi tiêu nội bộ, quyết định phê duyệt chi',1],['Hóa đơn, hợp đồng, nghiệm thu từng khoản',1],['Bảng kê nhân sự phòng kế toán',0],['Ủy nhiệm chi làm sau, ghi lùi ngày',-1]],
+ qs:[['Khoản 12 triệu trả tiền mặt cho NCC. Có được khấu trừ GTGT không?','Không, hóa đơn từ 5 triệu trở lên phải thanh toán không dùng tiền mặt',['Được, vì hóa đơn hợp lệ','Được, nếu chia nhỏ thành nhiều lần dưới 5 triệu'],'Chia nhỏ để né ngưỡng thanh toán là hành vi gian dối.'],
+ ['Khoản chi nào vẫn giữ được là chi phí được trừ?','Khoản thực tế, phục vụ kinh doanh, đủ hóa đơn và chứng từ thanh toán hợp lệ',['Chi cá nhân của giám đốc có hóa đơn công ty','Khoản chi không chứng từ nhưng có xác nhận miệng'],'Chi phí được trừ phải thực tế, đúng mục đích, đủ chứng từ.']],
+ law:'Luật GTGT 48/2024 (thanh toán không dùng tiền mặt); NĐ 125/2020 sđ NĐ 310/2025.'},
+{t:'Hộ kinh doanh bán hàng trên sàn thương mại điện tử',lv:3,a:()=>R(700,1800)*1e6,T:A=>Math.round((A-5e8)*.015),p:.2,
+ n:A=>`Dữ liệu sàn TMĐT báo cáo hộ kinh doanh có doanh thu ${f(A)} đ/năm, nhưng tờ khai chỉ khai doanh thu dưới ngưỡng miễn thuế.`,
+ k:A=>`Doanh thu sàn: <b>${f(A)} đ</b>. Ngưỡng miễn thuế 500 triệu/năm; bán lẻ hàng hóa 1,5% (GTGT 1% + TNCN 0,5%) trên phần vượt ngưỡng (mô phỏng). Tự tính thuế thiếu rồi cộng phạt 20% và tiền chậm nộp.`,
+ docs:[['Sao kê doanh thu và đối soát của sàn TMĐT',1],['Hóa đơn nhập hàng, nguồn gốc hàng hóa',1],['Sổ doanh thu ghi nhận theo ngày',1],['Ảnh chụp gian hàng để chứng minh uy tín',0],['Sổ doanh thu lập lại, chia sang tên người thân',-1]],
+ qs:[['Doanh thu trên sàn khác tờ khai, giải thích thế nào?','Đối chiếu sao kê sàn, tách đơn hoàn/hủy và thừa nhận phần đã bán',['Nói doanh thu sàn là của người khác','Nói tiền còn trong ví sàn thì chưa là doanh thu'],'Doanh thu tính theo đơn bán thành công, không theo thời điểm rút tiền.'],
+ ['Doanh thu vượt ngưỡng 500 triệu, cách xử lý đúng là?','Kê khai, nộp thuế phần vượt ngưỡng theo quy định',['Chia doanh thu sang tài khoản người thân','Ngừng bán trên sàn để tránh bị theo dõi'],'Chia tách doanh thu để né ngưỡng bị coi là trốn thuế.']],
+ law:'NQ 198/2025 (ngưỡng 500 triệu); Luật QLT 108/2025; NĐ 125/2020 sđ NĐ 310/2025.'}];
+const xLate=g=>Math.round(g.T*.0003*g.d),xTot=g=>g.T+xLate(g)+Math.round(g.T*g.c.p);
+function rExp(){const c=P(EXC.filter(x=>x.lv<=LV()+1)),A=c.a();G={k:'exp',c,A,T:c.T(A),d:R(20,120),tr:3,pick:{},qi:0,done:0,docs:sh([0,1,2,3,4])};
+ $('#app').innerHTML='<div id="ex"></div><div id="res"></div>';
+ $('#ex').innerHTML=`<div class="card"><span class="pill">🏛️ Thông báo giải trình · ${c.lv>2?'Khó':'Trung bình'}</span><h3>${c.t}</h3><p>${c.n(A)}</p><p class="mu">Hạn giải trình: <b>10 ngày làm việc</b> kể từ ngày nhận. Không đến, cơ quan thuế sẽ ấn định thuế và xử phạt.</p><button onclick="xDocs()">🏛️ Đi giải trình</button><button class="s" onclick="xSkip()">Để đó, lúc nào rảnh tính</button></div>`}
+function xEndUI(){G.done=1;clearInterval(TI);$('#tm').innerHTML=''}
+function xSkip(){const g=G;xEndUI();fin({sc:0,title:'🚨 Không đến giải trình: bị ấn định thuế',lines:['Quá hạn không giải trình, cơ quan thuế ấn định thuế theo dữ liệu họ có.','Bị phạt 20% thuế thiếu và tính tiền chậm nộp kéo dài thêm 30 ngày.'],why:'Bỏ qua thông báo yêu cầu giải trình.',cost:Math.round(g.T*1.2+g.T*.0003*(g.d+30)),extra:`<div class="card"><b>Bài học:</b> ${g.c.law}</div>`})}
+function xDocs(){const g=G;$('#ex').innerHTML=`<div class="card"><span class="pill">📁 Chuẩn bị hồ sơ</span><p>Túi chỉ mang được <b>4 tài liệu</b>. Chọn đúng thứ cán bộ sẽ hỏi, đừng mang chứng từ không có thật.</p>${g.docs.map(i=>`<button class="opt" id="d${i}" onclick="xTog(${i})">${g.c.docs[i][0]}</button>`).join('')}<button onclick="xGo()">Vào phòng làm việc ▶</button></div>`;timer(45,xGo)}
+function xTog(i){const g=G,on=g.pick[i];if(!on&&Object.values(g.pick).filter(Boolean).length>=4){toast('⚠️ Túi chỉ chứa 4 tài liệu');return}g.pick[i]=!on;$('#d'+i).classList.toggle('c',!on)}
+function xGo(){const g=G,c=g.c;if(g.go)return;g.go=1;clearInterval(TI);
+ if(c.docs.some((d,i)=>d[1]<0&&g.pick[i])){xEndUI();return fin({sc:0,title:'🚨 Nộp chứng từ không có thật',lines:['Cán bộ đối chiếu dữ liệu hóa đơn điện tử và phát hiện chứng từ hợp thức hóa.','Đây là dấu hiệu gian dối, có thể chuyển thanh tra hoặc xử lý hình sự nếu đủ yếu tố.'],why:'Nộp chứng từ giả khi giải trình.',cost:g.T*2,extra:`<div class="card"><b>Căn cứ:</b> ${c.law}</div>`})}
+ g.miss=c.docs.filter((d,i)=>d[1]>0&&!g.pick[i]).length;g.tr-=Math.min(2,g.miss);xQ()}
+function xQ(){const g=G,q=g.c.qs[g.qi];g.ans=0;g.o=sh([[q[1],1],...q[2].map(w=>[w,0])]);
+ $('#ex').innerHTML=`<div class="card"><span class="pill">🧑‍💼 Cán bộ hỏi · câu ${g.qi+1}/2 · Thiện chí ${'🟢'.repeat(Math.max(g.tr,0))}</span>${g.qi===0&&g.miss?`<p class="mu">⚠️ Hồ sơ thiếu ${g.miss} tài liệu quan trọng, cán bộ nhắc yêu cầu bổ sung và mất thiện chí.</p>`:''}<h3>${q[0]}</h3>${g.o.map((o,i)=>`<button class="opt" onclick="xA(${i})">${o[0]}</button>`).join('')}</div>`;timer(Math.max(12,26-LV()*2),()=>xA(-1))}
+function xA(i){const g=G;if(g.ans)return;g.ans=1;clearInterval(TI);const q=g.c.qs[g.qi],ok=i>=0&&g.o[i][1];if(!ok)g.tr--;
+ document.querySelectorAll('.opt').forEach((b,k)=>{b.disabled=true;if(g.o[k][1])b.classList.add('c');else if(k===i)b.classList.add('w')});
+ $('#ex').insertAdjacentHTML('beforeend',`<div class="note ${ok?'g':'r'}"><div class="ic">${ok?'✅':'❌'}</div><div><b>${ok?'Cán bộ ghi nhận giải trình':i<0?'Hết giờ, im lặng làm cán bộ nghi ngờ':'Trả lời chưa thuyết phục'}</b><br>${q[3]}</div></div><button onclick="xNx()">Tiếp ▶</button>`)}
+function xNx(){const g=G;g.qi++;g.qi<g.c.qs.length?xQ():g.tr<=0?xEnd(0):xCalc()}
+function xCalc(){const g=G,c=g.c,tot=xTot(g),hard=c.lv>2,w=[g.T+Math.round(g.T*c.p),c.p?tot-Math.round(g.T*c.p):tot+Math.round(g.T*.2)];
+ $('#ex').innerHTML=`<div class="card"><span class="pill">🧮 Kết luận buổi làm việc</span><p>${c.k(g.A,g.T)}</p><p>Chậm nộp <b>${g.d} ngày</b>, tiền chậm nộp = thuế thiếu × 0,03% × số ngày. Tổng số tiền phải nộp là bao nhiêu?</p>${hard?'<input id="xt" type="text" inputmode="numeric" placeholder="Tổng số tiền (đ)"><button onclick="xEnd(Math.abs(num(\'#xt\')-'+tot+')<=1000)">Chốt số liệu</button>':sh([tot,...w]).map(v=>`<button class="opt" onclick="xEnd(${v===tot})">${f(v)} đ</button>`).join('')}</div>`;timer(hard?120:60,()=>xEnd(0))}
+function xEnd(ok){const g=G,c=g.c;if(g.done)return;if(!ok&&isNaN(ok))return;xEndUI();const tot=xTot(g),pass=g.tr>=2,
+ ex=`<div class="card"><b>Đáp án:</b> ${f(tot)} đ = thuế thiếu ${f(g.T)} + chậm nộp ${f(xLate(g))} + phạt ${f(Math.round(g.T*c.p))}.<br><span class="mu">Căn cứ: ${c.law} Mức phạt là mô phỏng, hãy đối chiếu văn bản hiện hành.</span></div>`;
+ if(pass&&ok)fin({sc:1,pts:c.lv>2?130:80,title:'✅ Giải trình thành công, cơ quan thuế chấp nhận',lines:['Hồ sơ đủ, trả lời có căn cứ và tính đúng số phải nộp.','Thiện chí còn '+g.tr+'/3.'],extra:ex,bd:'exp'});
+ else if(pass)fin({sc:.5,pts:30,title:'⚠️ Giải trình được nhưng tính sai số phải nộp',lines:['Cơ quan thuế chấp nhận giải trình, nhưng số liệu của bạn phải làm lại.'],extra:ex});
+ else fin({sc:0,title:'❌ Giải trình không thuyết phục: bị ấn định thuế và phạt',lines:['Thiếu hồ sơ hoặc trả lời thiếu căn cứ, cơ quan thuế ra quyết định xử lý.'],why:'Giải trình thiếu căn cứ nên bị ấn định thuế.',cost:tot+(c.p?0:Math.round(g.T*.2)),extra:ex})}
+MODES.push(['🏛️','Giải trình với cơ quan thuế','Chuẩn bị hồ sơ, trả lời cán bộ, tính tiền phải nộp. Không đi thì bị phạt.',()=>rExp(),'MỚI']);
+
 /* ---------- Boot ---------- */
 $('#snd').textContent=SND?'🔊':'🔇';musUI();
 document.querySelectorAll('.hud,main').forEach(e=>e.inert=true);$('#lpgo').textContent=USER?'Tiếp tục chơi':'Bắt đầu chơi';
