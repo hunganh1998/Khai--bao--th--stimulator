@@ -2033,6 +2033,10 @@ button.dk:hover{border-color:var(--gd)}.dk svg{width:16px;height:16px;fill:none;
 #cpn .ckeys button{height:30px!important;min-height:0!important;padding:0!important;margin:0!important;font-size:14px!important;border-radius:8px!important;border-width:1px!important;line-height:1!important}
 .cact{gap:5px;margin-top:5px}
 #cpn .cact button{margin:0!important;min-height:0!important;height:28px!important;padding:0 4px!important;font-size:11.5px!important;border-radius:8px!important;line-height:1.2!important}
+#cpn .ckeys{grid-template-columns:repeat(5,1fr)}
+#cpn .ckeys .mm{font-size:11px!important;font-weight:700;color:var(--vt)!important}
+#cmem{margin-left:auto;margin-right:6px;font-size:10.5px;font-weight:700;color:var(--vt);white-space:nowrap}
+#cex{min-height:16px;overflow:hidden;white-space:nowrap}
 </style>
 </head>
 
@@ -2104,6 +2108,18 @@ button.dk:hover{border-color:var(--gd)}.dk svg{width:16px;height:16px;fill:none;
                 <li><b>Chuỗi thắng</b> nhân điểm thưởng (tối đa +60%). Xu kiếm được đổi lấy gợi ý ở các thử thách.</li>
                 <li><b>Một ngày làm kế toán thuế</b> mô phỏng chu trình thật: kiểm tra chứng từ → đối chiếu cổng thuế → lập tờ khai (HTKK) → nộp hồ sơ, nộp tiền → giải trình. Lưu ý: từ 01/07/2026, Thông tư 89/2026/TT-BTC thay đổi kỳ khai và biểu mẫu GTGT,
                     TNCN; hạn nộp hồ sơ khác hạn nộp tiền thuế.</li>
+                <li><b>Máy tính thuế 🧮</b> (nút tròn tím góc dưới bên phải, hiện ở các màn có ô nhập số):
+                    <ul>
+                        <li><b>Mở, đóng, di chuyển:</b> bấm 🧮 để mở/đóng (hoặc bấm ✕). Giữ và kéo thanh tiêu đề để đặt máy tính sang chỗ không che đề bài.</li>
+                        <li><b>Tính liên tiếp:</b> gõ cả chuỗi như 2 × 3 + 4 × 5 (nhân chia trước, cộng trừ sau), kết quả hiện ngay ở dòng lớn. Sau khi bấm <b>=</b>, bấm + − × ÷ để tính tiếp từ kết quả, hoặc gõ số để bắt đầu phép mới.</li>
+                        <li><b>Phím %</b> tính theo kiểu thuế: 1.000 + 10% = 1.100; 1.000 − 10% = 900; 1.000.000 × 8% = 80.000.</li>
+                        <li><b>Hàng thuế suất</b> (×8%, ×10%, ÷1,08...): áp dụng lên kết quả đang có và bấm nối tiếp được. ÷1,08 và ÷1,1 dùng để tách giá chưa thuế từ giá đã gồm thuế 8% hoặc 10%; ×0,03% là tiền chậm nộp của một ngày (nhân thêm số ngày chậm). Vuốt ngang để xem hết các nút.</li>
+                        <li><b>Cộng dồn bằng bộ nhớ:</b> <b>M+</b> cộng kết quả hiện tại vào bộ nhớ, <b>M−</b> trừ đi, <b>MR</b> gọi lại, <b>MC</b> xóa. Số dư hiện ở góc tiêu đề (ví dụ M 350), tiện để cộng thuế của nhiều hóa đơn rồi lấy tổng.</li>
+                        <li><b>Số âm:</b> phím <b>±</b> đổi dấu số vừa gõ (dùng cho chỉ tiêu [40] khi còn được khấu trừ). Mỗi ô nhập số trong bài cũng có nút ± bên cạnh để gõ số âm trên điện thoại.</li>
+                        <li><b>📥 Điền vào ô:</b> đưa kết quả (làm tròn đến đồng) vào ô đang chọn, hoặc ô trống đầu tiên, rồi chuyển sang ô kế tiếp. <b>Sao chép</b> để chép kết quả đi nơi khác.</li>
+                        <li><b>Bàn phím máy tính:</b> khi đang chọn máy tính, gõ số, + − * /, dấu phẩy, %, Enter (=), Backspace (xóa một ký tự), Delete (xóa hết), Esc (đóng).</li>
+                    </ul>
+                </li>
                 <li>Căn cứ: Luật GTGT 48/2024, NĐ 181/2025, NQ 204/2025 (giảm 2% đến 31/12/2026), Luật QLT 108/2025, NĐ 252/2026, NĐ 125/2020 sđ NĐ 310/2025; Luật TNCN 109/2025 (giảm trừ 15,5 tr/6,2 tr, biểu 5 bậc từ 01/01/2026); Luật TNDN 67/2025 (thuế suất
                     15%/17%/20% theo doanh thu); NQ 198/2025 (hộ kinh doanh ngưỡng miễn thuế 500 tr/năm). Đề bài là mô phỏng, mức phạt lấy trung bình khung – cần đối chiếu văn bản hiện hành.</li>
             </ul>
@@ -3008,26 +3024,63 @@ hub();
 /* ===== Máy tính thuế nổi ===== */
 (()=>{const fab=document.createElement('button'),pn=document.createElement('div');fab.id='cfab';fab.type='button';fab.setAttribute('aria-label','Mở máy tính');fab.textContent='🧮';
 pn.id='cpn';pn.hidden=true;pn.setAttribute('role','dialog');pn.setAttribute('aria-label','Máy tính thuế');
-const K=['C','⌫','%','÷','7','8','9','×','4','5','6','−','1','2','3','+','0',',','000','='],
-CH=[['×5%','*0.05'],['×8%','*0.08'],['×10%','*0.1'],['×15%','*0.15'],['×17%','*0.17'],['×20%','*0.2'],['÷1,08','/1.08'],['÷1,1','/1.1']],
+const K=['MC','MR','M+','M−','C','7','8','9','÷','⌫','4','5','6','×','%','1','2','3','−','±','0','000',',','+','='],
+CH=[['×2%','*0.02'],['×5%','*0.05'],['×8%','*0.08'],['×10%','*0.1'],['×15%','*0.15'],['×20%','*0.2'],['×25%','*0.25'],['×30%','*0.3'],['×35%','*0.35'],['×65%','*0.65'],['÷1,08','/1.08'],['÷1,1','/1.1'],['×0,03%','*0.0003']],
 OP={'×':'*','÷':'/','−':'-','+':'+'};
-pn.innerHTML=`<div class="chd"><b>🧮 Máy tính thuế</b><button type="button" id="cx" aria-label="Đóng">✕</button></div><div id="cex">0</div><div id="crs">0</div><div class="cchips">${CH.map(c=>`<button type="button" data-a="${c[1]}">${c[0]}</button>`).join('')}</div><div class="ckeys">${K.map(k=>`<button type="button" data-k="${k}" class="${OP[k]||k==='='?'op':k==='C'||k==='⌫'?'fn':''}">${k}</button>`).join('')}</div><div class="cact"><button type="button" id="cfill">📥 Điền vào ô</button><button type="button" id="ccp" class="s">Sao chép</button></div>`;
+pn.innerHTML=`<div class="chd"><b>🧮 Máy tính thuế</b><span id="cmem"></span><button type="button" id="cx" aria-label="Đóng">✕</button></div><div id="cex">0</div><div id="crs">0</div><div class="cchips">${CH.map(c=>`<button type="button" data-a="${c[1]}">${c[0]}</button>`).join('')}</div><div class="ckeys">${K.map(k=>`<button type="button" data-k="${k}" class="${OP[k]||k==='='?'op':k==='C'||k==='⌫'?'fn':/^M/.test(k)?'mm':''}">${k}</button>`).join('')}</div><div class="cact"><button type="button" id="cfill">📥 Điền vào ô</button><button type="button" id="ccp" class="s">Sao chép</button></div>`;
 document.body.append(fab,pn);
-let ex='',last=null,lastIn=null;
-const fm=v=>v.toLocaleString('vi-VN',{maximumFractionDigits:2}),isD=c=>/\d/.test(c||'');
-function ev(){let e=ex.replace(/(\d+(?:\.\d+)?)%/g,'($1/100)');if(/[+\-*/.]$/.test(e))e=e.slice(0,-1);if(!e||!/^[\d+\-*/().]*$/.test(e))return null;try{const v=Function('"use strict";return('+e+')')();return isFinite(v)?v:null}catch(x){return null}}
-function draw(){$('#cex').textContent=ex.replace(/\*/g,'×').replace(/\//g,'÷').replace(/-/g,'−').replace(/\./g,',')||'0';const v=ev();$('#crs').textContent=v==null?(last!=null?fm(last):'0'):fm(v)}
-function key(k){const c=ex.slice(-1);
- if(k==='C')ex='';else if(k==='⌫')ex=ex.slice(0,-1);
- else if(k==='%'){if(isD(c))ex+='%'}
- else if(k===','){const seg=ex.split(/[+\-*/]/).pop();if(!seg.includes('.'))ex+=isD(c)?'.':'0.'}
- else if(k==='000'){if(isD(c))ex+='000'}
- else if(k==='='){const v=ev();if(v!=null){last=v;ex=String(+v.toFixed(2))}}
- else if(OP[k]){if(ex===''&&last!=null)ex=String(Math.round(last*100)/100);if(ex===''&&OP[k]!=='-'){draw();return}if(/[+\-*/]$/.test(ex))ex=ex.slice(0,-1);ex+=OP[k]}
- else ex+=k;draw()}
+let ex='',last=null,lastIn=null,done=0,hist='',mem=0;
+const fm=v=>(Math.round(v*100)/100).toLocaleString('vi-VN',{maximumFractionDigits:2}),isD=c=>/\d/.test(c||''),R6=v=>String(Math.round(v*1e6)/1e6);
+const disp=e=>e.replace(/\d+(\.\d*)?|\.\d+/g,m=>{const p=m.split('.'),g=(p[0]||'0').replace(/\B(?=(\d{3})+(?!\d))/g,'.');return m.indexOf('.')>=0?g+','+(p[1]||''):g}).replace(/\*/g,'×').replace(/\//g,'÷').replace(/-/g,'−').replace(/([\d%,])([×÷+−])/g,'$1 $2 ');
+/* Tính theo kiểu thuế: A + B% = A×(1+B%), A − B% = A×(1−B%), A × B% = A×B/100 */
+function ev(){let e=ex;if(/[+\-*/.]$/.test(e))e=e.slice(0,-1);if(!e)return null;
+ const re=/(\d+\.?\d*|\.\d+)(%?)|([+\-*/])/g,t=[];let m,n=0;
+ while((m=re.exec(e))){n+=m[0].length;t.push(m[3]?{o:m[3]}:{v:parseFloat(m[1]),p:!!m[2]})}
+ if(n!==e.length||!t.length)return null;
+ const q=[];for(let i=0;i<t.length;i++){const x=t[i],pv=q[q.length-1];
+  if(x.o&&(x.o==='-'||x.o==='+')&&(!pv||pv.o)&&t[i+1]&&t[i+1].v!==undefined){if(x.o==='-')t[i+1].v=-t[i+1].v;continue}
+  q.push(x)}
+ let i=0,sum=0,sg=1,first=1;
+ while(i<q.length){const x=q[i];if(x.v===undefined)return null;
+  const nx=q[i+1],mul=nx&&(nx.o==='*'||nx.o==='/');let val=x.v;
+  if(x.p)val=(!first&&!mul)?sum*val/100:val/100;
+  i++;
+  while(i<q.length&&(q[i].o==='*'||q[i].o==='/')){const op=q[i].o,y=q[i+1];if(!y||y.v===undefined)return null;const r=y.p?y.v/100:y.v;if(op==='/'){if(r===0)return null;val/=r}else val*=r;i+=2}
+  sum+=sg*val;first=0;
+  if(i<q.length){const o=q[i].o;if(o==='+')sg=1;else if(o==='-')sg=-1;else return null;i++;if(i>=q.length)return null}}
+ return isFinite(sum)?sum:null}
+function draw(){let tx=(done&&hist)?hist:(disp(ex)||'0');if(tx.length>28)tx='…'+tx.slice(-27);$('#cex').textContent=tx;const v=ev();$('#crs').textContent=(v==null?(last!=null?fm(last):'0'):fm(v)).replace('-','−');const mm=$('#cmem');if(mm)mm.textContent=mem?'M '+fm(mem):''}
+const rst=()=>{ex='';done=0;hist=''};
+function key(k){
+ const val=()=>{const v=ev();return v!=null?v:last};
+ if(k==='C'){rst();last=null}
+ else if(k==='⌫'){if(done)rst();else ex=ex.slice(0,-1)}
+ else if(k==='MC'){mem=0}
+ else if(k==='MR'){if(done)rst();ex=ex.replace(/(\d+\.?\d*|\.\d+)%?$/,'')+R6(mem)}
+ else if(k==='M+'||k==='M−'){const v=val();if(v==null){toast('⚠️ Hãy tính ra một số trước');return}
+  mem=Math.round((mem+(k==='M+'?v:-v))*1e6)/1e6;last=v;rst();toast((k==='M+'?'➕ ':'➖ ')+fm(v)+' → bộ nhớ: '+fm(mem))}
+ else if(k==='%'){if(isD(ex.slice(-1)))ex+='%'}
+ else if(k==='±'){const m=ex.match(/(\d+\.?\d*|\.\d+)%?$/);
+  if(m){const pre=ex.slice(0,ex.length-m[0].length);ex=/(^|[+\-*/])-$/.test(pre)?pre.slice(0,-1)+m[0]:pre+'-'+m[0];done=0;hist=''}
+  else if(ex===''&&last!=null){ex=R6(-last)}else return}
+ else if(k===','){if(done)rst();const seg=ex.split(/[+\-*/]/).pop();if(seg.indexOf('.')>=0||/%$/.test(seg))return;ex+=isD(ex.slice(-1))?'.':'0.'}
+ else if(k==='000'){if(done)return;const seg=ex.split(/[+\-*/]/).pop();if(isD(ex.slice(-1))&&seg!=='0'&&seg.replace('.','').length<=12)ex+='000'}
+ else if(k==='='){if(done)return;const v=ev();if(v!=null){hist=disp(ex)+' =';last=v;ex=R6(v);done=1}}
+ else if(OP[k]){if(ex===''&&last!=null)ex=R6(last);
+  if(ex===''&&OP[k]!=='-'){draw();return}
+  if(ex==='-')return;
+  done=0;hist='';
+  if(/\.$/.test(ex))ex=ex.slice(0,-1);
+  if(/[+\-*/]$/.test(ex))ex=ex.slice(0,-1);
+  ex+=OP[k]}
+ else{if(done)rst();if(ex.slice(-1)==='%')return;const seg=ex.split(/[+\-*/]/).pop();
+  if(seg==='0'){if(k==='0')return;ex=ex.slice(0,-1)}
+  else if(seg.replace('.','').length>=15)return;
+  ex+=k}
+ draw()}
 pn.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
  if(b.dataset.k)key(b.dataset.k);
- else if(b.dataset.a){if(ex===''&&last!=null)ex=String(Math.round(last*100)/100);if(/[+\-*/]$/.test(ex))ex=ex.slice(0,-1);if(/[\d)%]$/.test(ex)){ex+=b.dataset.a;draw()}}
+ else if(b.dataset.a){const v=ev(),base=v!=null?v:last;if(base==null)return;ex=R6(base)+b.dataset.a;done=0;hist='';draw()}
  else if(b.id==='cx')pn.hidden=true;
  else if(b.id==='cfill'){const v=ev()??last;if(v==null){toast('⚠️ Hãy tính ra một số trước');return}
   let el=lastIn&&document.contains(lastIn)?lastIn:[...document.querySelectorAll('#app input[inputmode="numeric"]')].find(i=>!i.value);
@@ -3036,7 +3089,7 @@ pn.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
   const n=[...document.querySelectorAll('#app input[inputmode="numeric"]')],i=n.indexOf(el);lastIn=n[i+1]||el}
  else if(b.id==='ccp'){const v=ev()??last;if(v==null)return;try{navigator.clipboard.writeText(String(Math.round(v)));toast('📋 Đã sao chép '+f(v))}catch(x){}}});
 pn.addEventListener('keydown',e=>{const k=e.key;let m=null;
- if(/^\d$/.test(k))m=k;else if('+-*/'.includes(k))m={'+':'+','-':'−','*':'×','/':'÷'}[k];else if(k===','||k==='.')m=',';else if(k==='%')m='%';else if(k==='Enter'||k==='=')m='=';else if(k==='Backspace')m='⌫';else if(k==='Escape'){pn.hidden=true;fab.focus();return}
+ if(/^\d$/.test(k))m=k;else if('+-*/'.includes(k))m={'+':'+','-':'−','*':'×','/':'÷'}[k];else if(k===','||k==='.')m=',';else if(k==='%')m='%';else if(k==='Enter'||k==='=')m='=';else if(k==='Backspace')m='⌫';else if(k==='Delete')m='C';else if(k==='Escape'){pn.hidden=true;fab.focus();return}
  if(m){e.preventDefault();key(m)}});
 fab.onclick=()=>{pn.hidden=!pn.hidden;if(!pn.hidden){draw();pn.querySelector('[data-k="7"]').focus({preventScroll:true})}};
 document.addEventListener('focusin',e=>{if(e.target.matches&&e.target.matches('#app input[inputmode="numeric"]'))lastIn=e.target});
