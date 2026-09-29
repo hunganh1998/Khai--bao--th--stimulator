@@ -2157,44 +2157,7 @@ button.dk:hover{border-color:var(--gd)}.dk svg{width:16px;height:16px;fill:none;
 </head>
 
 <body>
-    <div id="landing" role="dialog" aria-label="Giới thiệu Tax Shield">
-        <div class="lp">
-            <div class="lp-nav"><svg width="30" height="34" viewBox="0 0 44 50" aria-hidden="true"><path d="M22 2 4 9v13c0 12 8 22 18 26 10-4 18-14 18-26V9z" fill="var(--jd)"/><path d="m14 25 6 6 11-13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>                Tax Shield</div>
-            <section class="lp-hero">
-                <div>
-                    <h1>Luyện nghề kế toán thuế - Đi làm như đi chơi</h1>
-                    <p class="lp-sub">Lập tờ khai, tính thuế, xử lý thanh tra với nhiều thử thách khác. Cập nhật theo luật thuế 2026.</p>
-                    <div class="lp-cta"><button id="lpgo" onclick="enterApp()">Bắt đầu chơi</button><a class="lp-alt" href="#lp-how" onclick="document.getElementById('lp-how').scrollIntoView({behavior:'smooth'});return false">Xem cách chơi</a></div>
-                </div>
-                <div class="lp-form" aria-hidden="true">
-                    <h2>Tờ khai thuế GTGT 01/GTGT</h2><small>Kỳ 09/2026 · Công ty CP Công nghệ Nam Việt</small>
-                    <div class="lp-row"><b>[35]</b><span>Thuế đầu ra</span><b>124.800.000</b></div>
-                    <div class="lp-row"><b>[25]</b><span>Thuế đầu vào được khấu trừ</span><b>98.350.000</b></div>
-                    <div class="lp-row t"><b>[40]</b><span>Thuế phải nộp</span><b>26.450.000</b></div>
-                    <span class="stamp">ĐÃ DUYỆT</span></div>
-            </section>
-            <section class="lp-sec" id="lp-how">
-                <h2>Một ngày làm kế toán thuế, chia làm ba bước</h2>
-                <ol class="lp-steps">
-                    <li><b>Kiểm tra chứng từ</b><span>Hóa đơn nào được khấu trừ, khoản chi nào bị loại. Đối chiếu với dữ liệu trên cổng thuế.</span></li>
-                    <li><b>Lập tờ khai</b><span>Điền các chỉ tiêu GTGT, TNCN, TNDN và nhiều loại thuế khác, tính đến từng đồng.</span></li>
-                    <li><b>Giải trình với thanh tra</b><span>Thanh tra ập đến, bạn có vài chục giây để chọn cách xử lý đúng luật.</span></li>
-                </ol>
-            </section>
-            <section class="lp-sec">
-                <h2>Vì sao luyện ở đây hiệu quả</h2>
-                <div class="lp-fs">
-                    <div><b>Mỗi ván một hồ sơ mới</b><span>Số liệu ngẫu nhiên nên bạn phải hiểu cách tính, không thể học thuộc đáp án.</span></div>
-                    <div><b>Có căn cứ pháp lý</b><span>Đáp án đi kèm điều luật và giải thích từng bước sau mỗi màn.</span></div>
-                    <div><b>Sai thì bị xử lý (mô phỏng)</b><span>Từ khiến trách đến hoãn xuất cảnh, để bạn nhớ hậu quả của từng sai sót.</span></div>
-                    <div><b>Thi đua cùng bạn bè</b><span>Tích XP, giữ chuỗi thắng, sưu tầm huy hiệu và leo bảng xếp hạng.</span></div>
-                </div>
-            </section>
-            <section class="lp-end lp-sec">
-                <h2>Sẵn sàng nhận hồ sơ đầu tiên?</h2><button onclick="enterApp()">Bắt đầu chơi</button></section>
-            <p class="lp-foot">Đề bài là mô phỏng phục vụ luyện tập. Mức phạt lấy trung bình khung, hãy đối chiếu văn bản hiện hành khi làm thật.</p>
-        </div>
-    </div>
+    <div id="landing" role="dialog" aria-label="Giới thiệu Tax Shield"><button id="lpgo" hidden>Bắt đầu chơi</button></div>
     <div class="hud">
         <div class="hi"><button id="home" title="Về sảnh" aria-label="Về sảnh" onclick="hub()">🏠</button>
             <button id="snd" title="Bật/tắt âm thanh" aria-label="Bật/tắt âm thanh" onclick="toggleSnd()">🔊</button>
@@ -3621,6 +3584,148 @@ const _hub=hub;hub=function(){_hub();const a=$('#app');if(!a||a.querySelector('.
 })();
 </script>
 
+<style id="ux2">
+:root{--a1:#2ee6a6;--a2:#9b8cff;--a3:#ffc531}
+body{background:radial-gradient(1200px 600px at 10% -10%,color-mix(in srgb,var(--a2) 22%,transparent),transparent),radial-gradient(900px 500px at 100% 0,color-mix(in srgb,var(--a1) 20%,transparent),transparent),var(--bg)!important;background-attachment:fixed}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+#fx i{position:absolute;bottom:-40px;font-style:normal;opacity:.18;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-115vh) rotate(360deg)}}
+.hud,main{position:relative;z-index:1}
+.hud{background:color-mix(in srgb,var(--pn) 70%,transparent)!important;backdrop-filter:blur(18px) saturate(1.4)}
+.card,.mode,.hero,.opt{backdrop-filter:blur(8px);background:color-mix(in srgb,var(--pn) 82%,transparent)!important;border-color:color-mix(in srgb,var(--a2) 25%,var(--ln))!important;transition:transform .25s,box-shadow .25s}
+.mode:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 14px 34px color-mix(in srgb,var(--a2) 35%,transparent)}
+.hero-title{background:linear-gradient(90deg,var(--a1),var(--a2),var(--a3),var(--a1));background-size:250%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:250%}}
+button:not(#home):not(#snd):not(#mus):active{transform:scale(.94)}
+.xb i{box-shadow:0 0 12px var(--a1)}
+.badge{animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px transparent,0 0 22px var(--a2)}}
+#mas{position:fixed;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:flex-end;gap:6px;pointer-events:none}
+#mas svg{width:74px;height:82px;animation:bob 2.6s ease-in-out infinite;filter:drop-shadow(0 6px 8px #0005);pointer-events:auto;cursor:pointer}
+#mas.happy svg{animation:jump .5s 3}#mas.sad svg{animation:shake .4s 3}
+@keyframes bob{50%{transform:translateY(-6px)}}@keyframes jump{50%{transform:translateY(-22px) scale(1.1)}}@keyframes shake{25%{transform:translateX(-6px) rotate(-6deg)}75%{transform:translateX(6px) rotate(6deg)}}
+.blink{animation:bl 4s infinite;transform-origin:center;transform-box:fill-box}@keyframes bl{94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+#mb{max-width:210px;background:var(--pn);color:var(--tx);border:1.5px solid var(--a2);border-radius:14px 14px 14px 2px;padding:8px 11px;font-size:13px;line-height:1.4;box-shadow:var(--shadow);opacity:0;transform:scale(.8);transform-origin:left bottom;transition:.3s;margin-bottom:34px}
+#mb.on{opacity:1;transform:none}
+@media(max-width:560px){#mas svg{width:56px;height:62px}#mb{max-width:150px;font-size:12px}}
+#vn{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 50% 30%,#2a2160,#070d16);display:flex;flex-direction:column;justify-content:flex-end;color:#fff;padding:16px;animation:fi .5s}
+@keyframes fi{from{opacity:0}}
+#vn .st{flex:1;display:flex;align-items:center;justify-content:center;gap:5vw;position:relative}
+#vn .st svg{width:min(34vw,190px);transition:.5s}#vn .dim{opacity:.35;filter:grayscale(.6) blur(1px);transform:scale(.9)}#vn .lit{transform:scale(1.08);filter:drop-shadow(0 0 22px var(--a2))}
+#vn .bx{max-width:720px;width:100%;margin:0 auto;background:#0009;border:1.5px solid #ffffff44;border-radius:18px;padding:16px 18px;backdrop-filter:blur(10px);min-height:120px}
+#vn .bx b{color:var(--a3);font-size:17px}#vn .bx p{margin:6px 0 10px;font-size:16px;line-height:1.55;min-height:50px}
+#vn .bx div{display:flex;justify-content:space-between;align-items:center;font-size:12px;opacity:.85}
+#vn button{background:linear-gradient(135deg,var(--a1),var(--a2));color:#06121a;border:0;border-radius:12px;padding:8px 18px;font-weight:800;cursor:pointer}
+#vn .sk{background:none;color:#fff;opacity:.6;padding:8px}
+#ch{position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;border-radius:18px;padding:14px 16px;margin-bottom:14px;background:linear-gradient(120deg,color-mix(in srgb,var(--a2) 28%,var(--pn)),color-mix(in srgb,var(--a1) 18%,var(--pn)));border:1.5px solid var(--a2);animation:slide .5s}
+#ch svg{width:64px;flex:none;animation:bob 3s infinite}#ch small{color:var(--mu);font-weight:700;letter-spacing:.08em;text-transform:uppercase}#ch b{display:block;font-size:17px}#ch p{margin:2px 0 0;font-size:13.5px;color:var(--mu)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<div id="fx" aria-hidden="true"></div>
+<div id="mas" aria-live="polite"><div id="mb"></div></div>
+<script id="ux2-js">
+(()=>{'use strict';
+const $=s=>document.querySelector(s),G$=n=>{try{return eval(n)}catch(e){return undefined}};
+const SH_='<svg viewBox="0 0 100 110"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee6a6"/><stop offset="1" stop-color="#5b4ee0"/></linearGradient></defs><path d="M50 4 8 20v30c0 28 18 46 42 56 24-10 42-28 42-56V20z" fill="url(#sg)" stroke="#fff" stroke-width="4"/>';
+const face=(m)=>`<g class="blink"><ellipse cx="36" cy="46" rx="6" ry="8" fill="#fff"/><ellipse cx="64" cy="46" rx="6" ry="8" fill="#fff"/><circle cx="37" cy="47" r="3.4" fill="#111"/><circle cx="65" cy="47" r="3.4" fill="#111"/></g>`+({happy:'<path d="M34 64Q50 84 66 64Z" fill="#7a1f3d"/>',sad:'<path d="M36 74Q50 60 64 74" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M28 34l14 6M72 34l-14 6" stroke="#111" stroke-width="3"/>',n:'<path d="M38 66Q50 76 62 66" stroke="#111" stroke-width="4" fill="none" stroke-linecap="round"/>'}[m]||'')+'<ellipse cx="26" cy="62" rx="5" ry="3" fill="#ff7a8a" opacity=".5"/><ellipse cx="74" cy="62" rx="5" ry="3" fill="#ff7a8a" opacity=".5"/>';
+const mascot=m=>SH_+face(m)+'</svg>';
+const villain='<svg viewBox="0 0 100 120"><ellipse cx="50" cy="60" rx="34" ry="44" fill="#2b2140"/><path d="M12 32h76l-8-22H20z" fill="#111"/><rect x="10" y="30" width="80" height="7" rx="3" fill="#e03a4e"/><g class="blink"><ellipse cx="36" cy="58" rx="7" ry="5" fill="#ffe14d"/><ellipse cx="64" cy="58" rx="7" ry="5" fill="#ffe14d"/></g><path d="M26 46l18 6M74 46l-18 6" stroke="#e03a4e" stroke-width="4"/><path d="M34 84Q50 74 66 84" stroke="#e03a4e" stroke-width="4" fill="none"/><circle cx="82" cy="86" r="12" fill="none" stroke="#ffc531" stroke-width="4"/><path d="M90 95l8 10" stroke="#ffc531" stroke-width="5"/></svg>';
+const boss='<svg viewBox="0 0 100 120"><ellipse cx="50" cy="62" rx="32" ry="40" fill="#f2c9a5"/><path d="M18 50C16 12 84 12 82 50C72 34 28 34 18 50z" fill="#444"/><g class="blink"><circle cx="38" cy="60" r="4" fill="#111"/><circle cx="62" cy="60" r="4" fill="#111"/></g><path d="M40 82h20" stroke="#8a3f35" stroke-width="4"/><path d="M34 100l16 14 16-14v20H34z" fill="#1b2a4a"/></svg>';
+/* particles */
+const fx=$('#fx');['🪙','🛡️','🧾','✨','📊'].forEach((e,k)=>{for(let j=0;j<4;j++){const i=document.createElement('i');i.textContent=e;i.style.cssText=`left:${(k*4+j)*5+Math.random()*4}%;font-size:${16+Math.random()*20}px;animation-duration:${14+Math.random()*16}s;animation-delay:-${Math.random()*20}s`;fx.append(i)}});
+/* mascot */
+const mas=$('#mas'),mb=$('#mb');let tm;mas.insertAdjacentHTML('afterbegin',mascot('n'));
+const svg=()=>mas.querySelector('svg');
+function say(t,m='n',ms=5200){mb.textContent=t;mb.classList.add('on');svg().outerHTML=mascot(m);mas.className=m==='n'?'':m;svg().onclick=()=>say(pick(TIPS));clearTimeout(tm);tm=setTimeout(()=>{mb.classList.remove('on');mas.className=''},ms)}
+const pick=a=>a[Math.random()*a.length|0];
+const TIPS=['Nhớ: hạn nộp hồ sơ khác hạn nộp tiền thuế nha!','Bấm 🧮 để mở máy tính thuế, kéo được đó.','Đúng liên tiếp 3 lần là hồi 1 ❤️ uy tín.','Chuỗi thắng càng dài, XP thưởng càng nhiều 🔥','Hóa đơn sai thông tin thì đừng vội khấu trừ.'];
+const WIN=['Chuẩn luôn! Thanh tra Bóng sắp phải lùi rồi 😎','Đỉnh! Hồ sơ sạch bong!','Tuyệt, cứ đà này lên cấp sớm!'],LOSE=['Ối! Uy tín bị trừ rồi... bình tĩnh đọc lại luật nhé.','Sai một li, phạt một dặm. Thử lại nào!'];
+let last={hp:G$('S.hp'),st:G$('S.streak')};
+setInterval(()=>{const hp=G$('S.hp'),st=G$('S.streak');if(hp===undefined)return;
+ if(hp<last.hp)say(pick(LOSE),'sad');else if(st>last.st&&st>0)say(st>=3?`Chuỗi ${st} liên tiếp! 🔥 `+pick(WIN):pick(WIN),'happy');
+ last={hp,st}},500);
+/* chapter card on hub */
+const CH=[['Thực tập sinh bỡ ngỡ','Ngày đầu đi làm, sếp giao ngay xấp hóa đơn. Bóng Thuế đang dòm ngó từ xa...'],['Kế toán tập sự','Bạn đã biết lập tờ khai. Bóng Thuế bắt đầu gửi thư mời làm việc.'],['Chuyên viên thuế','Hồ sơ phức tạp hơn, thanh tra soi kỹ hơn. Giữ vững uy tín!'],['Trưởng nhóm thuế','Cả phòng tin vào bạn. Bóng Thuế quyết định ra tay thật.'],['Giám đốc thuế','Trận cuối: bảo vệ công ty trước Bóng Thuế!']];
+new MutationObserver(()=>{const a=$('#app');if(!a||!a.querySelector('.hero')||$('#ch'))return;const l=Math.min(Math.max(+G$('LV()')||1,1),5),c=CH[l-1];
+ a.querySelector('.hero').insertAdjacentHTML('beforebegin',`<div id="ch">${l>3?villain:mascot('happy')}<div><small>Chương ${l}</small><b>${c[0]}</b><p>${c[1]}</p></div></div>`);
+ if(Math.random()<.6)say(pick(TIPS))}).observe($('#app'),{childList:true});
+/* story intro */
+const SC=[['m','Khiên Khiên','Chào bạn! Mình là Khiên Khiên, lá chắn bảo vệ doanh nghiệp khỏi rủi ro thuế.'],['b','Sếp Hùng','Công ty Nam Việt vừa nhận thư báo thanh tra. Cần một kế toán thuế giỏi, và đó là em!'],['v','Thanh tra Bóng Thuế','Hehe... Một sai số thôi cũng đủ để ta phạt cả công ty. Đừng để ta bắt được nhé!'],['m','Khiên Khiên','Đừng sợ! Cùng nhau lập tờ khai chuẩn, lấy XP, sưu tầm huy hiệu và đánh bại Bóng Thuế nào! 🛡️']];
+function intro(){if(localStorage.getItem('ts_story2'))return;let i=0,ty;const v=document.createElement('div');v.id='vn';
+ v.innerHTML=`<div class="st"><div id="c_m">${mascot('happy')}</div><div id="c_b">${boss}</div><div id="c_v">${villain}</div></div><div class="bx"><b></b><p></p><div><button class="sk">Bỏ qua</button><button class="nx">Tiếp ▶</button></div></div>`;document.body.append(v);
+ const show=()=>{const s=SC[i];['m','b','v'].forEach(k=>v.querySelector('#c_'+k).className=k===s[0]?'lit':'dim');v.querySelector('b').textContent=s[1];const p=v.querySelector('p');let n=0;clearInterval(ty);ty=setInterval(()=>{p.textContent=s[2].slice(0,++n);if(n>=s[2].length)clearInterval(ty)},22);v.querySelector('.nx').textContent=i==SC.length-1?'Bắt đầu! 🚀':'Tiếp ▶'};
+ const end=()=>{clearInterval(ty);localStorage.setItem('ts_story2','1');v.remove();say('Sẵn sàng rồi! Chọn một thử thách nhé.','happy')};
+ v.querySelector('.nx').onclick=()=>{const p=v.querySelector('p');if(p.textContent.length<SC[i][2].length){clearInterval(ty);p.textContent=SC[i][2];return}++i>=SC.length?end():show()};v.querySelector('.sk').onclick=end;show()}
+const oe=window.enterApp;if(oe)window.enterApp=function(){const r=oe.apply(this,arguments);try{setTimeout(intro,250)}catch(e){}return r};
+})();
+</script>
+<style id="mail-css">
+#mbtn{position:fixed;right:14px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:41;width:52px;height:52px;border-radius:50%;border:0;font-size:24px;background:linear-gradient(135deg,#2ee6a6,#5b4ee0);box-shadow:0 6px 18px #0005;cursor:pointer}
+#mbtn.new{animation:ring 1s 4}@keyframes ring{20%{transform:rotate(-14deg)}40%{transform:rotate(14deg)}60%{transform:rotate(-8deg)}}
+#mbtn u{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:10px;background:#e03a4e;color:#fff;font:700 12px/20px sans-serif;text-align:center;text-decoration:none}
+#mbox{position:fixed;inset:0;z-index:95;background:#0009;display:flex;align-items:center;justify-content:center;padding:10px}
+#mbox .mw{background:var(--pn);color:var(--tx);border-radius:18px;width:min(900px,100%);height:min(620px,92vh);display:grid;grid-template-columns:270px 1fr;overflow:hidden;border:1.5px solid var(--a2)}
+#mbox .ml{border-right:1px solid var(--ln);overflow:auto}#mbox .ml h3{margin:0;padding:12px 14px;position:sticky;top:0;background:var(--pn);display:flex;justify-content:space-between}
+#mbox .mi{padding:10px 14px;border-bottom:1px solid var(--ln);cursor:pointer;font-size:13px}#mbox .mi.act{background:color-mix(in srgb,var(--a2) 20%,transparent)}#mbox .mi b{display:block}#mbox .mi span{color:var(--mu)}
+#mbox .mi.un b:before{content:"● ";color:#e03a4e}#mbox .mi.dn{opacity:.6}
+#mbox .mr{overflow:auto;padding:16px;position:relative}
+#mbox .mr h2{margin:0 0 4px;font-size:20px}#mbox .fr{color:var(--mu);font-size:13px;margin-bottom:10px}
+#mbox .bd{background:var(--bg);border-radius:12px;padding:12px 14px;white-space:pre-line;font-size:14.5px;line-height:1.55}
+#mbox .tk{height:6px;background:var(--ln);border-radius:6px;margin:10px 0;overflow:hidden}#mbox .tk i{display:block;height:100%;background:linear-gradient(90deg,#2ee6a6,#e6a000,#e03a4e);transition:width 1s linear}
+#mbox .rp{display:block;width:100%;text-align:left;margin:8px 0;padding:11px 13px;border-radius:12px;border:1.5px solid var(--ln);background:var(--pn);color:var(--tx);font:14px/1.5 inherit;cursor:pointer;white-space:pre-line}
+#mbox .rp:hover{border-color:var(--a2);transform:translateX(4px)}
+#mbox .fb{margin-top:10px;padding:12px;border-radius:12px;font-size:14px}.fb.g{background:#2ee6a622}.fb.o{background:#ffc53122}.fb.b{background:#e03a4e22}
+#mbox .x{background:none;border:0;color:var(--tx);font-size:20px;cursor:pointer}
+@media(max-width:640px){#mbox .mw{grid-template-columns:1fr;grid-template-rows:150px 1fr}#mbox .ml{border-right:0;border-bottom:1px solid var(--ln)}}
+</style>
+<script id="mail-js">
+(()=>{'use strict';
+const $=s=>document.querySelector(s),R=a=>a[Math.random()*a.length|0],sh=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
+/* [từ, chức vụ, tiêu đề, nội dung, [[thư trả lời, điểm 2|1|0, giải thích]...]] */
+const E=[
+['Chị Lan','Kế toán trưởng','Hóa đơn NCC ghi sai MST','Em ơi, hóa đơn 85 triệu của NCC Hòa Phát Mới ghi sai mã số thuế công ty mình. Kế toán bên kia bảo cứ hạch toán, sửa sau. Em xử lý sao?',[['Chị ơi, em chưa khấu trừ ạ. Em sẽ gửi NCC đề nghị lập hóa đơn điều chỉnh/thay thế đúng MST, có văn bản giải trình, rồi mới hạch toán khấu trừ.',2,'Đúng: hóa đơn sai thông tin người mua thì chưa đủ điều kiện khấu trừ, cần điều chỉnh/thay thế trước.'],['Em hạch toán trước, tháng sau NCC sửa thì em điều chỉnh lại.',0,'Rủi ro: khấu trừ hóa đơn chưa hợp lệ có thể bị loại và truy thu, phạt.'],['Em nhờ NCC sửa, tạm hạch toán chi phí, chưa khấu trừ thuế.',1,'Gần đúng, nhưng nên có văn bản đề nghị điều chỉnh và lưu hồ sơ làm căn cứ.']]],
+['Sếp Hùng','Giám đốc','Chi phí tiếp khách 30 triệu','Cuối tuần vừa rồi anh tiếp khách hết 30 triệu, chỉ có bill quán và ảnh chụp. Em ghi nhận vào chi phí hợp lý cho anh nhé.',[['Dạ anh, khoản này em cần hóa đơn hợp lệ, chứng từ thanh toán không dùng tiền mặt (từ 5 triệu) và lý do liên quan hoạt động kinh doanh. Anh gửi em bổ sung, em sẽ ghi nhận đúng luật ạ.',2,'Đúng: từ tư vấn đúng luật mà vẫn giữ quan hệ, nêu rõ điều kiện bổ sung.'],['Dạ vâng anh, em ghi nhận luôn ạ.',0,'Sai: bill không phải hóa đơn hợp lệ, có thể bị loại chi phí khi quyết toán.'],['Anh ơi khoản này không hợp lệ, em không ghi được.',1,'Đúng nội dung nhưng thiếu hướng giải quyết, nên đề xuất cách bổ sung chứng từ.']]],
+['Thanh tra thuế','Cục Thuế','Thông báo làm việc','Cơ quan thuế đề nghị công ty cung cấp hồ sơ khai thuế GTGT 12 tháng và giải trình biến động thuế đầu vào. Vui lòng phản hồi trong 2 ngày làm việc.',[['Kính gửi Quý cơ quan, công ty đã nhận thông báo và sẽ cung cấp hồ sơ đúng phạm vi yêu cầu, kèm bản giải trình, đúng hạn. Đề nghị cho biết đầu mối và địa điểm làm việc. Trân trọng.',2,'Đúng: hợp tác, đúng phạm vi, văn bản, đúng hạn.'],['Dạ bọn em gửi hết mọi sổ sách cho các anh xem luôn ạ.',0,'Sai: nên cung cấp đúng phạm vi yêu cầu, có kiểm soát và có biên bản bàn giao.'],['Kính gửi Quý cơ quan, công ty xin xác nhận đã nhận thông báo, sẽ phản hồi sau.',1,'Chưa đủ: cần cam kết thời hạn và đầu mối cụ thể.']]],
+['Bạn Minh','Nhân viên kinh doanh','Xin hóa đơn khách cũ','Chị ơi, khách xin xuất hóa đơn cho đơn hàng từ tháng trước, nhưng tháng đó đã kê khai xong. Xuất bây giờ có được không?',[['Được em nhé, hóa đơn lập theo thời điểm phát sinh nghĩa vụ. Em gửi chị thông tin, chị xuất và điều chỉnh kê khai kỳ liên quan nếu cần, chị sẽ rà lại trước khi phát hành.',2,'Hợp lý: kiểm tra thời điểm lập hóa đơn, xử lý kê khai bổ sung nếu cần.'],['Không được đâu, qua tháng rồi.',0,'Sai: từ chối cứng nhắc, doanh nghiệp vẫn phải xử lý đúng nghĩa vụ.'],['Xuất ngày hôm nay là được, khỏi khai bổ sung.',0,'Nguy hiểm: lập sai thời điểm có thể bị phạt.']]],
+['Chị Hoa','Kế toán lương','Người phụ thuộc mới','Anh Tùng vừa có con nhỏ, xin đăng ký giảm trừ người phụ thuộc ngay tháng này. Anh mới nộp giấy khai sinh.',[['Chị Hoa ơi, anh Tùng cần đăng ký người phụ thuộc kèm giấy tờ và mã số thuế cho con. Chị làm bộ hồ sơ, tính giảm trừ theo quy định từ tháng đủ điều kiện.',2,'Đúng: cần hồ sơ chứng minh và đăng ký MST người phụ thuộc.'],['Chị cứ trừ luôn cho anh Tùng, giấy tờ tính sau.',0,'Rủi ro: giảm trừ khi chưa đủ hồ sơ có thể bị truy thu TNCN.'],['Chờ đến cuối năm quyết toán rồi tính hết một thể.',1,'Có thể làm, nhưng không tối ưu cho quyền lợi nhân viên.']]],
+['Sếp Hùng','Giám đốc','Nộp trễ tờ khai','Anh quên báo em, tờ khai GTGT tháng này quá hạn 3 ngày rồi. Em nộp gấp giúp anh. Có bị phạt không?',[['Anh ơi, em nộp ngay hôm nay. Nộp chậm có thể bị phạt hành chính, và nếu có thuế phải nộp thì tính thêm tiền chậm nộp. Em tính sơ bộ và báo anh trong hôm nay ạ.',2,'Đúng: nộp ngay, nói rõ hậu quả, đề xuất tính toán.'],['Không sao anh, chậm 3 ngày chưa bị phạt đâu.',0,'Sai: chậm nộp hồ sơ có thể bị xử phạt.'],['Em nộp nhưng em sẽ ghi ngày cũ cho khỏi bị phạt.',0,'Vi phạm nghiêm trọng: không được sửa ngày nộp.']]],
+['NCC Á Châu','Nhà cung cấp','Thanh toán tiền mặt','Bên em muốn nhận 120 triệu tiền mặt cho lô hàng này, sẽ giảm giá 2% nếu trả liền. Anh chị đồng ý nhé?',[['Cảm ơn bên anh. Theo quy định, hóa đơn từ 5 triệu cần thanh toán không dùng tiền mặt để được khấu trừ, nên công ty xin chuyển khoản. Mong bên anh thông cảm.',2,'Đúng: giữ điều kiện khấu trừ, lịch sự.'],['Đồng ý anh, mình trả tiền mặt cho nhanh.',0,'Sai: mất điều kiện khấu trừ đầu vào.'],['Để bên em hỏi sếp rồi trả lời sau nhé.',1,'Không sai, nhưng nên nêu rõ quy định để tránh tranh luận.']]],
+['Chị Lan','Kế toán trưởng','Nhắc hạn quyết toán','Em nhớ hạn quyết toán TNDN năm nay để lên lịch nhé. Cả hạn nộp tiền nữa. Em báo chị.',[['Chị ơi, hồ sơ quyết toán TNDN chậm nhất ngày thứ 90 kể từ ngày kết thúc năm tài chính, và tiền thuế nộp cùng thời hạn. Em đã đặt lịch nhắc trước 2 tuần và sẽ báo chị tiến độ hằng tuần.',2,'Đúng và chủ động.'],['Em nhớ là cuối tháng 3 chị ạ, hình như vậy.',1,'Đúng với năm dương lịch, nhưng nên xác nhận chính xác và nói rõ cách kiểm soát.'],['Chưa thấy nhắc gì nên chắc còn lâu ạ.',0,'Sai: không nên chờ nhắc, hãy chủ động lên lịch.']]],
+['Bạn Nam','Nhân viên mua hàng','Hóa đơn mất','Chị ơi, em làm mất hóa đơn đầu vào 40 triệu của NCC rồi, giờ làm sao?',[['Em bình tĩnh nhé. Em liên hệ NCC xin bản sao hóa đơn, hai bên lập biên bản ghi rõ nguyên nhân, chị sẽ hướng dẫn hồ sơ khấu trừ, lần sau em scan ngay khi nhận nhé.',2,'Đúng: có biên bản, có hướng xử lý.'],['Không sao, cứ ghi chi phí bằng chứng từ nội bộ.',0,'Sai: không thay thế hóa đơn hợp lệ.'],['Thế thì xong rồi em, mất khoản này.',1,'Chưa hỗ trợ đồng nghiệp, có cách xử lý bằng hồ sơ thay thế.']]],
+['Đối tác nước ngoài','Nhà thầu Singapore','Thuế nhà thầu','Chúng tôi chỉ nhận đủ số tiền theo hợp đồng, phía Việt Nam không được khấu trừ thêm gì.',[['Dear Partner, theo quy định Việt Nam, công ty có nghĩa vụ khấu trừ và nộp thay thuế nhà thầu. Chúng tôi sẽ cung cấp chứng từ nộp thuế. Đề nghị xem điều khoản gross/net trong hợp đồng.',2,'Đúng: nêu nghĩa vụ luật định và hướng giải quyết.'],['Dear Partner, chúng tôi sẽ chuyển đủ tiền, không khấu trừ.',0,'Sai: có nguy cơ bị truy thu thuế nhà thầu.'],['Dear Partner, chúng tôi sẽ kiểm tra và phản hồi sau.',1,'An toàn nhưng chưa nêu quan điểm.']]]
+];
+const M={box:[],used:[],sel:-1,tk:null};
+try{M.box=JSON.parse(localStorage.getItem('ts_mail')||'[]')}catch(e){}
+const sv=()=>{try{localStorage.setItem('ts_mail',JSON.stringify(M.box.slice(-30)))}catch(e){}};
+const btn=document.createElement('button');btn.id='mbtn';btn.title='Hộp thư';btn.innerHTML='📧<u></u>';btn.onclick=open;document.body.append(btn);
+const cnt=()=>{const n=M.box.filter(m=>!m.done).length,u=btn.querySelector('u');u.textContent=n;u.style.display=n?'block':'none'};cnt();
+const LIM=150;
+function spawn(){const L=document.getElementById('landing');if(L&&!L.classList.contains('off'))return;
+ if(M.used.length>=E.length)M.used=[];let k;do k=Math.random()*E.length|0;while(M.used.includes(k));M.used.push(k);
+ M.box.push({k,t:Date.now(),done:0,pick:null});sv();cnt();btn.classList.remove('new');void btn.offsetWidth;btn.classList.add('new');
+ try{toast('📧 Email mới từ '+E[k][0]+': '+E[k][2])}catch(e){}try{tone([[880,0,.1],[1175,.12,.2]])}catch(e){}
+ if(M.open)list()}
+function open(){M.open=1;btn.classList.remove('new');const d=document.createElement('div');d.id='mbox';d.innerHTML='<div class="mw"><div class="ml"></div><div class="mr"></div></div>';d.onclick=e=>{if(e.target===d)close()};document.body.append(d);M.sel=-1;list();const u=M.box.findIndex(m=>!m.done);read(u<0?M.box.length-1:u)}
+function close(){M.open=0;clearInterval(M.tk);const d=$('#mbox');d&&d.remove()}
+function list(){const l=$('#mbox .ml');if(!l)return;l.innerHTML='<h3>📥 Hộp thư <button class="x">✕</button></h3>'+(M.box.length?M.box.map((m,i)=>[i,m]).reverse().map(([i,m])=>`<div class="mi ${m.done?'dn':'un'} ${i===M.sel?'act':''}" data-i="${i}"><b>${E[m.k][0]}</b><span>${E[m.k][2]}${m.done?' ✓':''}</span></div>`).join(''):'<p style="padding:14px;color:var(--mu)">Chưa có email. Cứ khoảng 3 phút sẽ có thư mới gửi đến, đừng để sếp chờ nhé!</p>');
+ l.querySelector('.x').onclick=close;l.querySelectorAll('.mi').forEach(e=>e.onclick=()=>read(+e.dataset.i))}
+function read(i){const r=$('#mbox .mr');clearInterval(M.tk);if(!r)return;if(i<0||!M.box[i]){r.innerHTML='<p style="color:var(--mu)">Chọn một email để đọc.</p>';return}
+ M.sel=i;list();const m=M.box[i],e=E[m.k];m.o=m.o||sh(e[4].map((x,j)=>j));
+ r.innerHTML=`<h2>${e[2]}</h2><div class="fr">Từ: <b>${e[0]}</b> · ${e[1]} · ${new Date(m.t).toTimeString().slice(0,5)}</div><div class="bd">${e[3]}</div>`;
+ if(m.done){r.insertAdjacentHTML('beforeend',fb(m,e));return}
+ r.insertAdjacentHTML('beforeend','<div class="tk"><i style="width:100%"></i></div><b>✍️ Chọn thư trả lời phù hợp nhất:</b>'+m.o.map((j,n)=>`<button class="rp" data-n="${n}">${e[4][j][0]}</button>`).join(''));
+ const bar=r.querySelector('.tk i');M.tk=setInterval(()=>{const left=LIM-(Date.now()-(m.s||(m.s=Date.now())))/1e3;bar.style.width=Math.max(0,left/LIM*100)+'%';if(left<=0){clearInterval(M.tk);answer(i,-1)}},1000);
+ r.querySelectorAll('.rp').forEach(b=>b.onclick=()=>answer(i,+b.dataset.n))}
+const fb=(m,e)=>m.pick<0?'<div class="fb b">⏰ Bạn để quá lâu chưa trả lời. Sếp đã nhắc: email công việc cần phản hồi kịp thời (−5 XP).</div>':(s=>`<div class="fb ${s==2?'g':s?'o':'b'}"><b>${s==2?'✅ Rất hợp lý!':s?'🟡 Tạm ổn':'❌ Chưa ổn'}</b><br>${e[4][m.o[m.pick]][2]}</div>`)(e[4][m.o[m.pick]][1]);
+function answer(i,n){const m=M.box[i];if(m.done)return;clearInterval(M.tk);m.done=1;m.pick=n;const e=E[m.k];let s=n<0?-1:e[4][m.o[n]][1],lv=1;try{lv=LV()}catch(x){}
+ const x=Math.max(10,lv*5+10);try{if(s==2){S.xp+=x;S.coin+=8;S.mail=(S.mail||0)+1;}else if(s==1){S.xp+=Math.round(x/2);S.coin+=3}else if(s==0){S.hp=Math.max(1,S.hp-1);S.streak=0}else S.xp=Math.max(0,S.xp-5);hud()}catch(x){}
+ sv();cnt();read(i);const r=$('#mbox .mr');if(r&&s>=0)r.insertAdjacentHTML('beforeend',`<p style="margin-top:8px;color:var(--mu)">${s==2?'+'+x+' XP · +8 🪙':s==1?'+'+Math.round(x/2)+' XP · +3 🪙':'−1 ❤️ uy tín'}</p>`)}
+/* lịch: thư đầu sau 25 giây, sau đó ~3 phút (170-190s) */
+const sched=d=>setTimeout(()=>{spawn();sched((170+Math.random()*20)*1e3)},d);sched(25e3);
+window.__mail={spawn};
+})();
+</script>
+<script id="time-fix">window.CALC_TIME_X=2;(()=>{const o=window.timer;if(typeof o!=="function")return;window.timer=function(sec,end){return o.call(this,sec>=60?Math.round(sec*window.CALC_TIME_X):sec,end)}})();</script>
 </body>
 
 </html>
