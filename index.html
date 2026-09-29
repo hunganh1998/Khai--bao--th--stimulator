@@ -1997,6 +1997,26 @@ button.dk:hover{border-color:var(--gd)}.dk svg{width:16px;height:16px;fill:none;
 .cact{display:flex;gap:8px;margin-top:8px}.cact button{flex:1;margin:0}
 #cx{padding:2px 8px;background:transparent;color:var(--mu);border:0;box-shadow:none}
 </style>
+<style id="fixui">
+/* khung thoại nhân vật gọn hơn */
+.bub{padding:6px 10px;border-radius:13px;border-width:1px}
+.bub b{font-size:12px}.bub small{font-size:10px;margin-left:5px}
+.bub p{margin:2px 0 0;font-size:12.5px;line-height:1.4}
+.bub:before{top:16px;width:10px;height:10px;left:-6px}
+.sb:before{left:50%;top:-6px}
+.sb .chips{margin-top:5px;gap:5px}.sb .chip{font-size:11px;padding:2px 8px}
+.stage{padding:12px 12px 10px;border-radius:22px;margin-bottom:12px}
+.cast{margin-bottom:8px}
+.npc{gap:8px;margin-bottom:8px}
+.npc .chw{width:54px!important}.npc .ch{width:54px;height:auto}
+.npc.fl{width:min(430px,calc(100% - 20px));padding:5px 10px 5px 6px;border-radius:15px;border-width:1px}
+.npc.fl .chw,.npc.fl .ch{width:42px!important;height:auto}
+.npc.fl .bub{padding:1px 2px}
+.npc.fl .bub p{font-size:12px;line-height:1.35}
+.npc.fl.mini .chw,.npc.fl.mini .ch{width:38px!important}
+.npc.fl.rem{animation:remind .6s ease}
+@keyframes remind{0%{transform:translateY(-14px);opacity:0}60%{transform:translateY(3px);opacity:1}100%{transform:none}}
+</style>
 </head>
 
 <body>
@@ -2349,7 +2369,7 @@ function fin(o){if(SH)SH.res[SH.i]=o.sc;S.played++;S.dq++;const ok=o.sc>=1,part=
 /* ---------- đồng hồ ---------- */
 function timer(sec,end){clearInterval(TI);G.sec=G.left=sec;draw();TI=setInterval(()=>{if(G.done){clearInterval(TI);return}G.left--;draw();if(G.left<=0){clearInterval(TI);end()}},1000)}
 function draw(){const p=Math.max(0,G.left/G.sec*100);$('#tm').innerHTML=`<div class="timer ${p<30?'z':''}">⏱ ${Math.floor(G.left/60)}:${String(G.left%60).padStart(2,'0')}<i style="width:${p}%"></i></div>`}
-const num=s=>{const v=$(s).value.replace(/[^\d-]/g,'');return v===''||v==='-'?NaN:parseInt(v,10)};
+const num=s=>{const raw=String($(s).value||'').trim();const neg=/[-\u2212\u2013\u2014\u2012\uFE63\uFF0D]/.test(raw)||/^\(.*\)$/.test(raw);const d=raw.replace(/[^\d]/g,'');if(d==='')return NaN;const n=parseInt(d,10);return neg&&n!==0?-n:n};
 const MODES=[['🧾','Tờ khai GTGT','Phân loại hóa đơn, tính chỉ tiêu [35] [25] [40].',()=>rVat()],['👤','Thuế TNCN','Tính thuế lương theo biểu 5 bậc mới.',()=>rPit(),'MỚI'],['🏢','Quyết toán TNDN','Loại chi phí không hợp lệ, tính thuế theo doanh thu.',()=>rCit(),'MỚI'],['🍺','Tờ khai TTĐB','Bia, rượu, ô tô: tính giá tính thuế, TTĐB và GTGT.',()=>rExc(),'MỚI'],['🌏','Thuế nhà thầu','Khấu trừ và nộp thay thuế cho nhà thầu nước ngoài.',()=>rFct(),'MỚI'],['🏪','Hộ kinh doanh','Kê khai theo doanh thu, ngưỡng miễn thuế 500 triệu.',()=>rHkd(),'MỚI'],['⚡','Chớp nhoáng','5 câu hỏi nhanh, 15 giây mỗi câu.',()=>rQuick()],['🚢','Thuế xuất nhập khẩu','CIF, thuế NK, TTĐB và GTGT hàng nhập.',()=>rImp(),'MỚI'],['📑','Lệ phí trước bạ','Nhà đất, xe máy, ô tô.',()=>rReg(),'MỚI'],['🏠','TNCN đặc thù','BĐS, chứng khoán, vốn góp, thừa kế, tặng cho.',()=>rCgt(),'MỚI'],['🕵️','Thanh tra ập đến','Chọn cách xử lý khi cơ quan thuế làm việc.',()=>rInsp()]];
 function hub(){clearInterval(TI);G={done:1};$('#tm').innerHTML='';$('#bn').textContent='';SH=null;const q=Math.min(S.dq,3);const l=LV();
  $('#app').innerHTML=`
@@ -2765,28 +2785,46 @@ TASKS.push(['08:30','Rà soát chứng từ lô 1',()=>rChk()],['09:30','Rà so�
 <script>
 /* ===== UI/UX v3: nhân vật, thoại, hiệu ứng, giữ chân ===== */
 (()=>{
-const CHR={sep:{n:'Sếp Long',r:'Giám đốc',skin:'#f2c9a5',hair:'#98a0ae',suit:'#1f2a44',tie:'#c0392b',acc:'glass'},
+const CHR={sep:{n:'Sếp Long',r:'Giám đốc',skin:'#f2c9a5',hair:'#98a0ae',suit:'#1f2a44',tie:'#c0392b',eye:'#4a3a2e',acc:'glass'},
 tp:{n:'Chị Lan',r:'Trưởng phòng',skin:'#f0c4a0',hair:'#3a2420',suit:'#5b4ee0',tie:'#ffc531',acc:'long'},
 nv:{n:'Minh',r:'Đồng nghiệp',skin:'#e8b58d',hair:'#1c1c24',suit:'#0d9b6e',tie:'',acc:'head'},
 cb:{n:'Cán bộ Thuế',r:'Cơ quan thuế',skin:'#efc19b',hair:'#22262e',suit:'#2f6b3f',tie:'#e6a000',acc:'cap'}};
 let CID=0;
-const ch=(t,m='ok',z=96)=>{const c=CHR[t],i='g'+(++CID),bad=m==='bad',mo=m==='ok'?'M47 80Q60 92 73 80':bad?'M48 86Q60 75 72 86':'M50 83h20',
-br=bad?'M40 52l12 4M80 52l-12 4':'M40 55q6-4 12 0M68 55q6-4 12 0',
-ov=`<radialGradient id="${i}" cx=".32" cy=".28" r=".85"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></radialGradient>`,
-hairP=c.acc==='long'?`<path d="M22 70Q18 20 60 20Q102 20 98 70Q96 96 88 104L86 60Q70 44 34 60L32 104Q24 96 22 70Z" fill="${c.hair}"/>`:`<path d="M26 58Q26 22 60 22Q94 22 94 58Q84 40 60 40Q36 40 26 58Z" fill="${c.hair}"/>`,
-acc=c.acc==='glass'?'<g fill="#fff" fill-opacity=".18" stroke="#2a2a2a" stroke-width="2.4"><circle cx="46" cy="64" r="11"/><circle cx="74" cy="64" r="11"/><path d="M57 64h6" fill="none"/></g>':
-c.acc==='cap'?`<path d="M23 48Q24 12 60 12Q96 12 97 48Z" fill="${c.suit}"/><rect x="21" y="44" width="78" height="9" rx="4" fill="#1d4a2a"/><circle cx="60" cy="29" r="7" fill="#ffc531"/><path d="M60 24l2 4 4 .5-3 3 1 4-4-2-4 2 1-4-3-3 4-.5z" fill="#c0392b"/>`:
-c.acc==='head'?'<path d="M28 62Q28 26 60 26Q92 26 92 62" fill="none" stroke="#252530" stroke-width="4"/><rect x="22" y="56" width="9" height="16" rx="4" fill="#252530"/><rect x="89" y="56" width="9" height="16" rx="4" fill="#252530"/><path d="M26 72Q30 90 52 90" fill="none" stroke="#252530" stroke-width="3"/><circle cx="53" cy="90" r="3.5" fill="#e03a4e"/>':'';
-return`<span class="chw" style="width:${z}px"><svg class="ch" width="${z}" height="${z*1.17}" viewBox="0 0 120 140" aria-hidden="true"><defs>${ov}</defs>
-<ellipse cx="60" cy="136" rx="46" ry="6" fill="#000" opacity=".18"/>
-<path d="M12 140Q14 102 60 98Q106 102 108 140Z" fill="${c.suit}"/><path d="M12 140Q14 102 60 98Q106 102 108 140Z" fill="url(#${i})"/>
-<path d="M47 100L60 128L73 100Z" fill="#fff"/>${c.tie?`<path d="M56 106h8l3 22-7 8-7-8z" fill="${c.tie}"/>`:''}${c.acc==='cap'?'<rect x="22" y="112" width="14" height="9" rx="2" fill="#ffc531"/>':''}
-<rect x="50" y="84" width="20" height="18" rx="6" fill="${c.skin}"/>${c.acc==='long'?hairP:''}
-<circle cx="26" cy="64" r="6" fill="${c.skin}"/><circle cx="94" cy="64" r="6" fill="${c.skin}"/>
-<circle cx="60" cy="62" r="34" fill="${c.skin}"/><circle cx="60" cy="62" r="34" fill="url(#${i})"/>${c.acc==='long'?'':hairP}
-<g class="eye"><ellipse cx="46" cy="64" rx="6" ry="7" fill="#fff"/><ellipse cx="74" cy="64" rx="6" ry="7" fill="#fff"/><circle cx="47" cy="65" r="3.6" fill="#1b1b22"/><circle cx="75" cy="65" r="3.6" fill="#1b1b22"/><circle cx="48.2" cy="63.6" r="1.2" fill="#fff"/><circle cx="76.2" cy="63.6" r="1.2" fill="#fff"/></g>
-<path d="${br}" stroke="${c.hair}" stroke-width="2.6" stroke-linecap="round" fill="none"/><circle cx="36" cy="76" r="5" fill="#ff7a8a" opacity=".3"/><circle cx="84" cy="76" r="5" fill="#ff7a8a" opacity=".3"/>
-<path d="${mo}" stroke="#7a3b2e" stroke-width="3" stroke-linecap="round" fill="none"/>${acc}</svg></span>`};
+const ch=(t,m='ok',z=96)=>{const c=CHR[t],i='g'+(++CID),bad=m==='bad',think=m==='think',
+sk=c.skin,skD='rgba(140,70,40,.28)',
+mo=m==='ok'?'M49 81Q60 91 71 81':bad?'M50 87Q60 78 70 87':'M52 84Q60 86 68 83',
+teeth=m==='ok'?'<path d="M52 83Q60 89 68 83Q60 86 52 83Z" fill="#fff" opacity=".9"/>':'',
+brL=bad?'M38 52L54 57':'M38 55Q46 50 54 54',
+brR=bad?'M82 52L66 57':think?'M66 50Q74 44 82 50':'M66 54Q74 50 82 55',
+defs=`<radialGradient id="${i}" cx=".32" cy=".26" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".26"/></radialGradient><linearGradient id="${i}s" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#000" stop-opacity=".3"/></linearGradient><linearGradient id="${i}h" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient>`,
+face='M30 60C30 37 43 25 60 25C77 25 90 37 90 60C90 80 79 95 60 95C41 95 30 80 30 60Z',
+/* thân áo */
+body=`<path d="M6 140C8 112 30 101 60 101C90 101 112 112 114 140Z" fill="${c.suit}"/><path d="M6 140C8 112 30 101 60 101C90 101 112 112 114 140Z" fill="url(#${i}s)"/>`,
+lapel=c.acc==='cap'?`<path d="M44 101L60 126L76 101L70 99L60 110L50 99Z" fill="#fff"/><path d="M44 101L38 138L54 120Z" fill="#000" opacity=".16"/><path d="M76 101L82 138L66 120Z" fill="#000" opacity=".16"/><rect x="14" y="108" width="20" height="8" rx="3" fill="#ffc531" transform="rotate(-18 24 112)"/><rect x="86" y="108" width="20" height="8" rx="3" fill="#ffc531" transform="rotate(18 96 112)"/><circle cx="84" cy="128" r="4" fill="#ffc531"/><circle cx="36" cy="128" r="3" fill="#ffc531" opacity=".8"/>`:
+c.acc==='head'?`<path d="M46 101Q60 112 74 101L70 99Q60 106 50 99Z" fill="#fff" opacity=".92"/><path d="M6 140C8 112 30 101 46 101L54 140Z" fill="#000" opacity=".08"/>`:
+`<path d="M46 100L60 128L74 100L69 98L60 108L51 98Z" fill="#fff"/><path d="M46 100L34 138L52 122Z" fill="#000" opacity=".22"/><path d="M74 100L86 138L68 122Z" fill="#000" opacity=".22"/><path d="M46 100L50 122L34 138Z" fill="#fff" opacity=".07"/>`,
+tie=c.tie&&c.acc!=='cap'?`<path d="M56 106h8l4 26-8 6-8-6z" fill="${c.tie}"/><path d="M56 106h8l-2 6h-4z" fill="#000" opacity=".2"/><path d="M56 106h4l-3 28-5-4z" fill="#fff" opacity=".18"/>`:'',
+scarf=c.acc==='long'?`<path d="M50 100Q60 108 70 100L72 106Q60 116 48 106Z" fill="${c.tie}"/><circle cx="60" cy="112" r="2.6" fill="#fff" opacity=".8"/>`:'',
+neck=`<path d="M51 86h18v16Q60 110 51 102Z" fill="${sk}"/><path d="M51 86h18v9Q60 101 51 95Z" fill="#000" opacity=".16"/>`,
+ears=`<ellipse cx="30" cy="66" rx="5" ry="7.5" fill="${sk}"/><ellipse cx="90" cy="66" rx="5" ry="7.5" fill="${sk}"/><ellipse cx="30.5" cy="67" rx="2" ry="4" fill="${skD}"/><ellipse cx="89.5" cy="67" rx="2" ry="4" fill="${skD}"/>`,
+earr=c.acc==='long'?'<circle cx="30" cy="76" r="2.6" fill="#ffc531"/><circle cx="90" cy="76" r="2.6" fill="#ffc531"/>':'',
+/* tóc */
+hairBack=c.acc==='long'?`<path d="M25 64C20 28 40 14 62 14C86 14 100 30 95 64C94 88 101 106 94 122Q88 126 84 116L36 116Q32 126 26 122C19 106 26 88 25 64Z" fill="${c.hair}"/>`:'',
+hairFront=c.acc==='long'?`<path d="M29 58C30 34 44 24 62 24C80 24 91 35 91 58C82 46 70 41 58 42C46 44 36 50 29 58Z" fill="${c.hair}"/><path d="M34 50C42 38 58 32 74 36" stroke="#fff" stroke-opacity=".28" stroke-width="3" fill="none" stroke-linecap="round"/>`:
+c.acc==='glass'?`<path d="M28 60C25 32 42 19 62 19C82 19 95 32 92 58C89 46 82 38 68 35C56 33 42 38 36 48C32 52 30 56 28 60Z" fill="${c.hair}"/><path d="M36 40C48 28 70 26 84 36" stroke="#fff" stroke-opacity=".4" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M28 60C26 52 30 46 34 46L33 62Z" fill="${c.hair}"/><path d="M92 58C94 50 90 44 86 44L87 60Z" fill="${c.hair}"/>`:
+c.acc==='head'?`<path d="M28 60C25 31 42 18 60 18C80 18 95 31 92 58C90 47 84 42 76 41C72 47 62 45 58 39C52 45 42 45 38 41C34 46 30 52 28 60Z" fill="${c.hair}"/><path d="M40 30C50 22 68 22 80 30" stroke="#fff" stroke-opacity=".22" stroke-width="3" fill="none" stroke-linecap="round"/>`:
+`<path d="M28 60C28 52 31 48 34 46L34 62Z" fill="${c.hair}"/><path d="M92 60C92 52 89 48 86 46L86 62Z" fill="${c.hair}"/>`,
+acc=c.acc==='glass'?'<g fill="#fff" fill-opacity=".14" stroke="#23262e" stroke-width="2.4"><rect x="35" y="55" width="21" height="16" rx="6"/><rect x="64" y="55" width="21" height="16" rx="6"/></g><path d="M56 62h8" stroke="#23262e" stroke-width="2.4" fill="none"/><path d="M35 60L30 58M85 60L90 58" stroke="#23262e" stroke-width="2.2"/><path d="M38 58l6-1M67 58l6-1" stroke="#fff" stroke-opacity=".7" stroke-width="1.6" stroke-linecap="round"/>':
+c.acc==='cap'?`<path d="M27 48C26 22 42 12 60 12C78 12 94 22 93 48Z" fill="${c.suit}"/><path d="M27 48C26 22 42 12 60 12C78 12 94 22 93 48Z" fill="url(#${i}h)"/><path d="M22 47Q60 38 98 47L98 53Q60 44 22 53Z" fill="#153d22"/><rect x="26" y="41" width="68" height="7" rx="3" fill="#1d4a2a"/><circle cx="60" cy="27" r="7.5" fill="#ffc531"/><circle cx="60" cy="27" r="5.4" fill="#c0392b"/><path d="M60 22.4l1.5 3.1 3.4.5-2.5 2.4.6 3.4-3-1.6-3 1.6.6-3.4-2.5-2.4 3.4-.5z" fill="#ffd95e"/>`:
+c.acc==='head'?'<path d="M29 62C27 32 44 20 62 20C82 20 94 34 91 62" fill="none" stroke="#2a2d38" stroke-width="4.2" stroke-linecap="round"/><rect x="22" y="58" width="10" height="17" rx="5" fill="#2a2d38"/><rect x="88" y="58" width="10" height="17" rx="5" fill="#2a2d38"/><rect x="24" y="61" width="4" height="11" rx="2" fill="#0d9b6e"/><path d="M25 74Q28 90 50 90" fill="none" stroke="#2a2d38" stroke-width="2.6" stroke-linecap="round"/><rect x="48" y="87.5" width="8" height="5.5" rx="2.6" fill="#e03a4e"/>':'',
+eye=(x)=>`<g class="eye"><ellipse cx="${x}" cy="63" rx="6.4" ry="7.2" fill="#fff"/><circle cx="${x+.6}" cy="64" r="4.6" fill="${c.eye||'#3b2a22'}"/><circle cx="${x+.6}" cy="64" r="2.4" fill="#0c0c10"/><circle cx="${x+2.2}" cy="61.6" r="1.7" fill="#fff"/><circle cx="${x-1.4}" cy="66" r=".8" fill="#fff" opacity=".8"/></g><path d="M${x-7} 61Q${x} 54.5 ${x+7} 61" stroke="#15151a" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+return`<span class="chw" style="width:${z}px"><svg class="ch" width="${z}" height="${z*1.17}" viewBox="0 0 120 140" aria-hidden="true"><defs>${defs}</defs>
+<ellipse cx="60" cy="137" rx="44" ry="5" fill="#000" opacity=".2"/>${hairBack}${body}${lapel}${neck}${scarf}${tie}${ears}${earr}
+<path d="${face}" fill="${sk}"/><path d="${face}" fill="url(#${i})"/>${hairFront}
+<path d="M45 92Q60 100 75 92" stroke="#000" stroke-opacity=".08" stroke-width="3" fill="none"/>
+${eye(47)}${eye(73)}<path d="${brL}" stroke="${c.acc==='glass'?'#7b8394':c.hair}" stroke-width="2.8" stroke-linecap="round" fill="none"/><path d="${brR}" stroke="${c.acc==='glass'?'#7b8394':c.hair}" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+<path d="M60 66Q56.5 74 60.5 75.4" stroke="${skD}" stroke-width="2" stroke-linecap="round" fill="none"/><ellipse cx="37" cy="77" rx="6" ry="4" fill="#ff7a8a" opacity=".28"/><ellipse cx="83" cy="77" rx="6" ry="4" fill="#ff7a8a" opacity=".28"/>
+${teeth}<path d="${mo}" stroke="#8a3f35" stroke-width="2.6" stroke-linecap="round" fill="none"/>${acc}</svg></span>`};
 const bub=(t,txt)=>`<div class="bub"><b>${CHR[t].n}</b><small>${CHR[t].r}</small><p>${txt}</p></div>`;
 const npcH=(t,m,txt)=>`<div class="npc" data-t="${t}">${ch(t,m)}${bub(t,txt)}</div>`;
 const NL={chk:[['tp','Lô chứng từ này em xem kỹ giúp chị. Cuối tháng cơ quan thuế hay soi đúng mấy khoản thế này.'],['nv','Anh ơi, NCC vừa gửi bộ này. Em thấy có gì đó lấn cấn...']],
@@ -2864,13 +2902,13 @@ window.fin=function(o){const fail=o.sc<=0,st0=S.streak,sh=fail&&S.inv.shield>0,k
 /* ---- sảnh mới ---- */
 const _hub=hub;
 window.hub=function(){_hub();try{up()}catch(e){console.error(e)}};
-function up(){paint();const h=$('.hero');if(!h)return;const l=LV(),pct=l>=5?100:S.xp%250/2.5,C=2*Math.PI*33,w=Math.min(100,S.wk.xp/GOAL*100);
+function up(){paint();const h=$('.hero');if(!h)return;document.querySelectorAll('#app button.focus,#app button[data-shopbtn]').forEach(e=>e.remove());const l=LV(),pct=l>=5?100:S.xp%250/2.5,C=2*Math.PI*33,w=Math.min(100,S.wk.xp/GOAL*100);
  h.innerHTML=`<div class="hx"><div><div class="rk">${LT[l-1]}${l<5?' · còn '+(250-S.xp%250)+' XP lên cấp':''}</div><h1 class="hero-title">Tax Shield</h1><p class="hero-sub">Mỗi ván một hồ sơ mới. Tính đúng, giữ uy tín, leo hạng.</p></div>
  <svg class="ring" viewBox="0 0 80 80" role="img" aria-label="Cấp ${l}"><circle cx="40" cy="40" r="33" fill="none" stroke="var(--ln)" stroke-width="7"/><circle cx="40" cy="40" r="33" fill="none" stroke="var(--jd)" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C*pct/100} ${C}" transform="rotate(-90 40 40)"/><text x="40" y="48" text-anchor="middle">${l}</text></svg></div>
  <div class="hs"><div class="hero-stat"><b>${S.lg.n} ngày</b><span>Chuyên cần liên tục</span></div>
  <div class="hero-stat"><b>${S.wk.xp}/${GOAL} XP</b><span>Mục tiêu tuần này</span><div class="xb"><i style="width:${w}%"></i></div></div>
  <div class="hero-stat"><b>${S.streak} / ${CH.find(c=>c>S.streak)||S.streak+5}</b><span>Chuỗi thắng tới rương kế tiếp</span></div></div>`;
- const lb=$('button.s[onclick="showLB()"]');if(lb)lb.insertAdjacentHTML('beforebegin','<button class="s" style="width:100%;margin:0 0 10px" onclick="shop()">Quầy vật tư · '+f(S.coin)+' xu</button>');const q=$('.quest-icon');if(q)q.innerHTML='<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-3-5 0M12 8c2-4 6-3 5 0" fill="none"/></svg>';
+ const lb=$('button.s[onclick="showLB()"]');if(lb)lb.insertAdjacentHTML('beforebegin','<button class="s" data-shopbtn="1" style="width:100%;margin:0 0 10px" onclick="shop()">Quầy vật tư · '+f(S.coin)+' xu</button>');const q=$('.quest-icon');if(q)q.innerHTML='<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-3-5 0M12 8c2-4 6-3 5 0" fill="none"/></svg>';
  const rows=Object.entries(S.ms).filter(([,v])=>v.p>=2).sort((a,b)=>a[1].w/a[1].p-b[1].w/b[1].p),ft=$('.featured');if(!ft)return;
  let i,t,d;if(rows.length&&rows[0][1].w/rows[0][1].p<.7){i=+rows[0][0];const v=rows[0][1];t='Ôn điểm yếu: '+MODES[i][1];d='Bạn đúng '+v.w+'/'+v.p+' ván. Luyện thêm để nâng tỉ lệ.'}else{i=MODES.findIndex((m,k)=>!S.st[k]);if(i<0)return;t='Thử chế độ mới: '+MODES[i][1];d=MODES[i][2]}
  ft.insertAdjacentHTML('afterend',`<button class="focus" onclick="go(${i})">${med(i)}<div><b>${t}</b><span>${d}</span></div></button>`)}
@@ -2988,6 +3026,55 @@ document.addEventListener('focusin',e=>{if(e.target.matches&&e.target.matches('#
 const chk=()=>{const on=!!document.querySelector('#app input[inputmode="numeric"]');fab.style.display=on?'grid':'none';if(!on){pn.hidden=true;lastIn=null}};
 new MutationObserver(chk).observe($('#app'),{childList:true,subtree:true});chk()})();
 
+
+
+
+/* ---------- Nhân vật nhắc nhở liên tục trong ca 'Một ngày làm kế toán thuế' ---------- */
+(function(){
+ const RM={
+  tp:['Em nhớ đối chiếu số liệu trước khi bấm nộp nhé.','Dấu âm ở chỉ tiêu [40] rất hay bị quên đó em.','Chậm nộp là bị phạt và tính tiền chậm nộp, em canh giờ giúp chị.','Đừng vội, nhưng cũng đừng để sát giờ quá nhé.'],
+  sep:['Tôi đang chờ kết quả. Đừng để tôi hỏi lại lần thứ hai.','Mỗi sai sót đều tốn tiền của công ty.','Hết ca tôi sẽ xem báo cáo. Làm cho cẩn thận.'],
+  nv:['Anh ơi, kiểm tra lại số liệu đi, em thấy vẫn còn lấn cấn!','Em canh giờ giúp anh nè, đừng bỏ sót hóa đơn nào nhé.','Cố lên anh, làm xong việc này là qua việc kế tiếp rồi!'],
+  cb:['Đề nghị đơn vị trả lời đầy đủ, có căn cứ.','Hồ sơ cần chính xác và đúng thời hạn.','Chúng tôi vẫn đang chờ phản hồi của đơn vị.']
+ };
+ let last='',hide=0;
+ const mmss=n=>Math.floor(n/60)+':'+String(n%60).padStart(2,'0');
+ function pick(a){let x;do{x=a[Math.floor(Math.random()*a.length)]}while(a.length>1&&x===last);return last=x}
+ setInterval(()=>{
+  try{
+   if(typeof SH==='undefined'||!SH||typeof G==='undefined'||!G||G.done)return;
+   const n=document.querySelector('#app>.npc'),p=n&&n.querySelector('.bub p');
+   if(!n||!p)return;
+   const pool=RM[n.dataset.t]||RM.tp,tail=typeof G.left==='number'&&G.left>0?' ⏱ Còn '+mmss(G.left):'';
+   p.textContent=pick(pool)+tail;
+   n.classList.remove('mini','rem');void n.offsetWidth;n.classList.add('rem');
+   clearTimeout(hide);hide=setTimeout(()=>{if(!G.done)n.classList.add('mini')},7000);
+  }catch(e){}
+ },20000);
+})();
+/* ---------- FIX: nhập số âm ---------- */
+(function(){
+ const st=document.createElement('style');
+ st.textContent='.negb{display:inline-block;margin-left:6px;min-width:44px;min-height:38px;padding:0 10px;font-size:18px;font-weight:700;line-height:1;border-radius:8px;cursor:pointer;vertical-align:middle}';
+ document.head.appendChild(st);
+ function addNeg(){
+  document.querySelectorAll('#app input[inputmode="numeric"]:not([data-neg])').forEach(inp=>{
+   inp.dataset.neg='1';
+   const b=document.createElement('button');
+   b.type='button';b.className='negb s';b.textContent='±';
+   b.title='Đổi dấu âm/dương';b.setAttribute('aria-label','Đổi dấu âm dương');
+   b.addEventListener('click',e=>{
+    e.preventDefault();e.stopPropagation();
+    const v=inp.value.trim().replace(/^[\u2212\u2013\u2014]/,'-');
+    inp.value=v.startsWith('-')?v.slice(1):'-'+v;
+    inp.focus();inp.dispatchEvent(new Event('input',{bubbles:true}));
+   });
+   inp.after(b);
+  });
+ }
+ const app=document.getElementById('app');
+ if(app){new MutationObserver(addNeg).observe(app,{childList:true,subtree:true});addNeg();}
+})();
 </script></body>
 
 </html>
