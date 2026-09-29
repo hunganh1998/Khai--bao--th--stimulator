@@ -2038,6 +2038,121 @@ button.dk:hover{border-color:var(--gd)}.dk svg{width:16px;height:16px;fill:none;
 #cmem{margin-left:auto;margin-right:6px;font-size:10.5px;font-weight:700;color:var(--vt);white-space:nowrap}
 #cex{min-height:16px;overflow:hidden;white-space:nowrap}
 </style>
+<style>
+.qhead{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:var(--pn);border:1px solid var(--ln);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);margin-bottom:10px}
+.qhead small{display:block;font-size:11px;color:var(--mu)}.qhead b{font-size:16px}
+.qbar{position:relative;height:22px;background:var(--ln);border-radius:99px;overflow:hidden}.qbar i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--jd),var(--gd));border-radius:99px;transition:width .6s}
+.qbar span{position:absolute;inset:0;display:grid;place-items:center;font-size:11px;font-weight:700;color:#0c1f1a}
+.qme{width:100%;margin-bottom:10px;padding:10px;border-radius:12px;border:1px dashed var(--jd);background:transparent;color:var(--jd);font-weight:700;cursor:pointer}
+.qmap{position:relative;width:100%;max-width:560px;margin:0 auto 18px;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);border:3px solid var(--pn);background:linear-gradient(180deg,#bfe8ff 0%,#d4f3c9 20%,#f5edb8 44%,#b9dcf5 66%,#57427f 90%,#2d2350 100%)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .qmap{filter:brightness(.72) saturate(.9)}}
+:root[data-theme=dark] .qmap{filter:brightness(.72) saturate(.9)}
+.qmap svg{position:absolute;inset:0;width:100%;height:100%}
+.qp0{fill:none;stroke:rgba(70,50,20,.45);stroke-width:9;stroke-linecap:round;stroke-dasharray:2 14;vector-effect:non-scaling-stroke}
+.qp1{fill:none;stroke:#ffc531;stroke-width:9;stroke-linecap:round;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 6px #ffc531);transition:stroke-dasharray 1s}
+.qd{position:absolute;opacity:.85;pointer-events:none}
+.qc{position:absolute;left:-15%;font-size:38px;opacity:.75;animation:qcl 40s linear infinite;pointer-events:none}
+@keyframes qcl{to{transform:translateX(560px)}}
+.qflag{position:absolute;transform:translate(-50%,-50%);background:#fff;color:#0c1f1a;border-radius:99px;padding:3px 12px;font-size:12px;font-weight:800;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.qn{all:unset;position:absolute;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 30% 25%,var(--a),var(--b));border:4px solid #fff;box-shadow:0 6px 14px rgba(0,0,0,.35);display:grid;place-items:center;cursor:pointer;transition:transform .2s;z-index:2}
+.qn:hover,.qn:focus-visible{transform:translate(-50%,-50%) scale(1.14);z-index:5}.qn:focus-visible{outline:3px solid var(--gd)}
+.qn i{font-style:normal;font-size:30px;line-height:1}
+.qn s{position:absolute;bottom:-9px;text-decoration:none;font-size:11px;letter-spacing:1px;color:#ffc531;background:#1c1533;border-radius:99px;padding:0 6px;white-space:nowrap}
+.qn b{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%);background:rgba(255,255,255,.95);color:#0c1f1a;font:700 11px/1.2 "Be Vietnam Pro",sans-serif;padding:3px 9px;border-radius:8px;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.qn.ok{box-shadow:0 0 0 4px #ffc531,0 6px 14px rgba(0,0,0,.35)}
+.qn.far{filter:saturate(.45) brightness(.95)}
+.qn.boss{width:76px;height:76px}.qn.boss i{font-size:36px}
+.qn.cur{animation:qpl 1.8s infinite}
+@keyframes qpl{0%{box-shadow:0 0 0 0 rgba(255,255,255,.9),0 6px 14px rgba(0,0,0,.35)}100%{box-shadow:0 0 0 22px rgba(255,255,255,0),0 6px 14px rgba(0,0,0,.35)}}
+.qn u{position:absolute;top:-34px;left:50%;transform:translateX(-50%);text-decoration:none;background:var(--rd);color:#fff;font-size:11px;font-weight:800;padding:2px 10px;border-radius:99px;white-space:nowrap;animation:qbn 1s ease-in-out infinite alternate}
+.qn u:after{content:"";position:absolute;left:50%;bottom:-5px;margin-left:-5px;border:5px solid transparent;border-top-color:var(--rd);border-bottom:0}
+@keyframes qbn{to{transform:translate(-50%,-6px)}}
+#qsh{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-end;justify-content:center}
+.qbk{position:absolute;inset:0;background:rgba(5,12,10,.55);opacity:0;transition:opacity .2s}
+.qsh{position:relative;width:100%;max-width:520px;background:var(--pn);color:var(--tx);border-radius:24px 24px 0 0;padding:26px 22px calc(22px + env(safe-area-inset-bottom,0px));transform:translateY(100%);transition:transform .22s;text-align:center;border-top:6px solid var(--a)}
+#qsh.on .qbk{opacity:1}#qsh.on .qsh{transform:none}
+.qe{font-style:normal;display:grid;place-items:center;width:76px;height:76px;margin:-64px auto 8px;border-radius:50%;font-size:38px;background:radial-gradient(circle at 30% 25%,var(--a),var(--b));border:5px solid var(--pn);box-shadow:var(--shadow-lg)}
+.qsh h3{margin:0;font-size:22px}.qsh em{font-style:normal;color:var(--mu);font-size:13px}.qsh p{margin:8px 0}
+.qm{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0}.qm span{background:var(--bg);border:1px solid var(--ln);border-radius:99px;padding:3px 10px;font-size:12px}
+.qst{font-size:12px;color:var(--mu);margin-bottom:12px}
+.qgo{width:100%;padding:14px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--a),var(--b));color:#fff;font-size:17px;font-weight:800;cursor:pointer}
+.qx{width:100%;margin-top:6px;padding:10px;background:transparent;border:0;color:var(--mu);cursor:pointer}
+@media(prefers-reduced-motion:reduce){.qc,.qn.cur,.qn u{animation:none}}
+</style>
+<style>
+.gwrap{container-type:inline-size;max-width:1180px;margin:0 auto 18px}
+.gmap{position:relative;width:100%;border-radius:calc(var(--u)*30);overflow:hidden;background:#faf7ef;border:1px solid #e8e1cc;box-shadow:var(--shadow-lg)}
+.gmap svg{position:absolute;inset:0;width:100%;height:100%}
+.gc{all:unset;box-sizing:border-box;position:absolute;transform:translate(-50%,-50%);display:flex;gap:calc(var(--u)*14);align-items:center;padding:calc(var(--u)*12) calc(var(--u)*16);background:rgba(255,255,255,.93);border:calc(var(--u)*2) solid rgba(0,0,0,.07);border-radius:calc(var(--u)*20);box-shadow:0 calc(var(--u)*6) calc(var(--u)*22) rgba(60,50,20,.18);cursor:pointer;color:#12251f;transition:transform .2s;z-index:2}
+.gc:hover,.gc:focus-visible{transform:translate(-50%,-50%) scale(1.05);z-index:4}.gc:focus-visible{outline:3px solid var(--gd)}
+.gc.cur{border-color:#2fb384;background:#fff;box-shadow:0 0 0 calc(var(--u)*5) rgba(47,179,132,.28),0 calc(var(--u)*8) calc(var(--u)*24) rgba(60,50,20,.2)}
+.gc.lk .gt{filter:grayscale(.85)}.gc.lk{opacity:.9}
+.gt{font-style:normal;flex:none;width:calc(var(--u)*64);height:calc(var(--u)*64);display:grid;place-items:center;font-size:calc(var(--u)*32);border-radius:calc(var(--u)*18);background:radial-gradient(circle at 35% 30%,#eaf7d9,#b9dc9b);box-shadow:inset 0 calc(var(--u)*-5) 0 rgba(0,0,0,.08)}
+.gc h4{margin:0;font:800 calc(var(--u)*17)/1.2 "Be Vietnam Pro",sans-serif;display:flex;align-items:center;gap:calc(var(--u)*8)}
+.gc h4 em{font-style:normal;background:#0b6b4b;color:#fff;border-radius:99px;padding:0 calc(var(--u)*8);font-size:calc(var(--u)*13)}
+.gc h4 span{margin-left:auto;font-size:calc(var(--u)*13)}
+.gc p{margin:calc(var(--u)*3) 0 calc(var(--u)*6);font-size:calc(var(--u)*12);color:#5a6a63;line-height:1.35}
+.gc s{text-decoration:none;font-size:calc(var(--u)*12);background:#eef1ea;border-radius:99px;padding:calc(var(--u)*2) calc(var(--u)*10);color:#456}.gc s b{color:#0d9b6e}
+.gc u{position:absolute;left:calc(var(--u)*22);top:calc(var(--u)*-36);text-decoration:none;background:#0b6b4b;color:#fff;font-weight:800;font-size:calc(var(--u)*13);padding:calc(var(--u)*4) calc(var(--u)*12);border-radius:99px;white-space:nowrap;animation:qbn2 1s ease-in-out infinite alternate}
+@keyframes qbn2{to{transform:translateY(calc(var(--u)*-6))}}
+.gsg{position:absolute;transform:translate(-50%,-50%);background:#0b6b4b;color:#fff;font-weight:800;letter-spacing:.06em;font-size:calc(var(--u)*15);padding:calc(var(--u)*5) calc(var(--u)*14);border-radius:calc(var(--u)*6)}
+.gfl{position:absolute;transform:translate(-50%,-50%);width:calc(var(--u)*30);height:calc(var(--u)*24);background:repeating-conic-gradient(#222 0 25%,#fff 0 50%) 0 0/calc(var(--u)*12) calc(var(--u)*12)}
+.gr{display:flex;align-items:center;gap:12px;text-align:left;padding:10px 4px;border-top:1px solid var(--ln)}.gr>i{font-style:normal;font-size:26px}.gr>div{flex:1}.gr b{display:block}.gr small{display:block;color:var(--mu);font-size:12px}
+.gr button{padding:8px 16px;border:0;border-radius:99px;background:var(--jd);color:#fff;font-weight:800;cursor:pointer}
+@media(prefers-reduced-motion:reduce){.gc u{animation:none}}
+</style>
+<style>
+.tw{margin:10px 0}.tw>b{font-size:14px}.ts{overflow-x:auto;margin-top:6px;border:1.5px solid var(--ln);border-radius:12px}.ts table{border-collapse:collapse;width:100%;font-size:13px}.ts th,.ts td{padding:7px 10px;border-bottom:1px solid var(--ln);text-align:left;white-space:nowrap}.ts td:last-child{white-space:normal;min-width:150px}.ts th{color:var(--mu);background:var(--bg);font-weight:700}.ts tr:last-child td{border-bottom:0}
+#landing{background:radial-gradient(700px 420px at 88% 8%,color-mix(in srgb,var(--vt) 18%,transparent),transparent),radial-gradient(620px 420px at 0% 95%,color-mix(in srgb,var(--jd) 20%,transparent),transparent),radial-gradient(var(--ln) 1px,transparent 1.5px) 0 0/24px 24px,var(--bg)!important;color:var(--tx);overflow:auto}
+.ld{min-height:100%;max-width:1040px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:18px 40px;align-content:center;padding:20px 20px calc(20px + env(safe-area-inset-bottom,0px))}
+.ld .lt{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.ld .brand{display:flex;align-items:center;gap:8px;font:800 21px var(--fd,"Baloo 2"),sans-serif}
+.ld .pl{padding:6px 14px;border-radius:99px;background:var(--pn);border:1.5px solid var(--ln);font-size:13px;font-weight:700;color:var(--vt)}
+.ld .lc{text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
+.ld h1{margin:0;font:800 clamp(34px,8.5vw,54px)/1.1 var(--fd,"Baloo 2"),sans-serif;color:var(--tx)}
+.ld h1 span{background:linear-gradient(90deg,var(--jd),var(--vt));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ld .lc p{margin:0;color:var(--mu);font-size:17px;max-width:420px;line-height:1.55}
+.ld .go{display:inline-flex;align-items:center;gap:10px;padding:16px 34px;font-size:18px;font-weight:800;border:0;border-radius:16px;color:#fff;background:linear-gradient(135deg,var(--jd),var(--jd2));box-shadow:0 12px 26px color-mix(in srgb,var(--jd) 38%,transparent);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.ld .go i{font-style:normal;transition:transform .15s}.ld .go:hover{transform:translateY(-3px)}.ld .go:hover i{transform:translateX(4px)}
+.ldst{display:flex;gap:10px}.ldst span{background:var(--pn);border:1.5px solid var(--ln);border-radius:14px;padding:8px 16px;font-size:12px;color:var(--mu);box-shadow:var(--shadow)}.ldst b{display:block;font:800 20px var(--fd,"Baloo 2"),sans-serif;color:var(--tx)}
+.ldp{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.ldp span{font-size:13px;font-weight:600;padding:5px 12px;border-radius:99px;background:color-mix(in srgb,var(--jd) 12%,transparent);color:var(--jd2)}
+.stg{position:relative;width:100%;max-width:460px;aspect-ratio:1/1.04;margin:0 auto;border-radius:30px;background:linear-gradient(160deg,color-mix(in srgb,var(--vt) 12%,var(--pn)),color-mix(in srgb,var(--jd) 14%,var(--pn)));border:1.5px solid var(--ln);box-shadow:var(--shadow-lg);overflow:hidden}
+.stg:after{content:"";position:absolute;left:0;right:0;bottom:0;height:20%;background:color-mix(in srgb,var(--jd) 16%,transparent);border-radius:50% 50% 0 0/100% 100% 0 0}
+.fc{position:absolute;background:var(--pn);border:1.5px solid var(--ln);border-radius:14px;box-shadow:var(--shadow-lg);padding:10px 12px;font-size:11px;color:var(--tx);animation:flt 5s ease-in-out infinite}
+.fc b{font-size:12px}.fc small{display:block;color:var(--mu);font-size:10px;margin-bottom:6px}.fc .rw{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-top:1px dashed var(--ln)}.fc .rw.t b{color:var(--jd)}
+.fc.doc{top:4%;left:4%;width:55%}.fc.doc em{position:absolute;right:8px;bottom:-10px;transform:rotate(-8deg);border:2px solid var(--rd);color:var(--rd);font:800 11px var(--fd,"Baloo 2"),sans-serif;padding:1px 8px;border-radius:6px;background:var(--pn);font-style:normal}
+.fc.cal{top:4%;right:5%;width:22%;padding:0;background:none;border:0;box-shadow:none;animation-delay:-1.5s}.fc.cal svg{width:100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.22))}
+.fc.bil{top:41%;right:4%;width:40%;animation-delay:-2.5s}.fc.bil svg{position:absolute;right:-8px;top:-8px}.fc.bil .lb{height:6px;border-radius:4px;background:var(--ln);margin:5px 0}.fc.bil .lb.s{width:60%}
+.fc.shd{top:47%;left:6%;width:15%;padding:0;background:none;border:0;box-shadow:none;animation-delay:-3s}.fc.shd svg{width:100%;filter:drop-shadow(0 8px 10px rgba(0,0,0,.2))}
+.fc.coin{top:48%;left:24%;width:17%;padding:0;background:none;border:0;box-shadow:none;animation-delay:-4s}.fc.coin svg{width:100%;filter:drop-shadow(0 8px 10px rgba(0,0,0,.2))}
+.stg .cast{position:absolute;left:0;right:0;bottom:1%;margin:0;z-index:2}.stg .cast:after{display:none}
+.ldf{grid-column:1/-1;text-align:center;color:var(--mu);font-size:12px}
+@keyframes flt{50%{transform:translateY(-7px)}}
+@media(min-width:860px){.ld{grid-template-columns:1.05fr .95fr}.ld .lc{text-align:left;align-items:flex-start}.ldp{justify-content:flex-start}}
+@media(max-width:430px){.stg .cast{transform:scale(.82);transform-origin:bottom center}.ldst span{padding:8px 12px}}
+.ld .nm{width:min(360px,100%);display:flex;flex-direction:column;gap:6px}
+.ld .nm input{width:100%;padding:14px 16px;font-size:16px;font-family:inherit;color:var(--tx);background:var(--pn);border:1.5px solid var(--ln);border-radius:14px;box-shadow:var(--shadow);outline:0;transition:border-color .15s,box-shadow .15s}
+.ld .nm input:focus{border-color:var(--jd);box-shadow:0 0 0 4px color-mix(in srgb,var(--jd) 22%,transparent)}
+.ld .nm small{min-height:16px;color:var(--rd);font-size:12px}
+.ld .go:disabled{opacity:.45;filter:grayscale(.35);cursor:not-allowed;box-shadow:none;transform:none}
+</style>
+<style>
+.att{background:var(--pn);border:1.5px solid var(--ln);border-radius:18px;padding:14px 16px;margin:14px 0;box-shadow:var(--shadow)}
+.att h3{margin:0;font-size:16px}.att .ah{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}.att .ah b{font-size:13px;color:var(--jd)}
+.ag{display:grid;grid-template-columns:repeat(14,1fr);gap:4px;margin:10px 0}.ag i{aspect-ratio:1;border-radius:6px;background:var(--ln);display:block}
+.ag i.d{background:var(--jd)}.ag i.m{background:color-mix(in srgb,var(--rd) 55%,transparent)}.ag i.t{outline:2px solid var(--gd);outline-offset:1px}
+.att p{margin:0;font-size:13px;color:var(--mu)}.att p.w{color:var(--rd);font-weight:600}
+.st>div small{white-space:nowrap}
+.st b{white-space:nowrap}.st{flex-wrap:wrap;row-gap:6px}#userSlot{max-width:100%}
+.att .pn{width:100%;margin:2px 0 8px;padding:12px;border-radius:14px;font-weight:800;border:0;background:var(--ln);color:var(--mu);cursor:default}.att .pn.go{background:linear-gradient(135deg,var(--jd),var(--jd2));color:#fff;cursor:pointer;animation:pls 2.4s ease-in-out infinite}
+.ld h1 .k1{display:inline-block;padding:0 10px;margin-right:2px;border-radius:10px;background:color-mix(in srgb,var(--jd) 16%,transparent);color:var(--jd2);-webkit-text-fill-color:currentColor}
+.ld h1 .k2{display:inline-block;margin-top:2px}.ld h1 .w{position:relative;display:inline-block}
+.ld h1 .w svg{position:absolute;left:0;bottom:-6px;width:100%;height:10px;overflow:visible;-webkit-text-fill-color:initial}
+.ld h1 .w svg path{stroke-dasharray:160;stroke-dashoffset:160;animation:dr 1.2s .4s ease forwards}
+.stk{display:inline-block;transform:rotate(-2deg);padding:6px 14px;border-radius:12px;background:color-mix(in srgb,var(--gd) 20%,var(--pn));border:1.5px dashed var(--gd);font-size:13px;font-weight:700;color:var(--tx)}
+@keyframes dr{to{stroke-dashoffset:0}}
+.ld h1{font-size:clamp(27px,7.2vw,52px)!important}.ld h1 .l1{white-space:nowrap}
+</style>
 </head>
 
 <body>
@@ -2121,7 +2236,7 @@ button.dk:hover{border-color:var(--gd)}.dk svg{width:16px;height:16px;fill:none;
                     </ul>
                 </li>
                 <li>Căn cứ: Luật GTGT 48/2024, NĐ 181/2025, NQ 204/2025 (giảm 2% đến 31/12/2026), Luật QLT 108/2025, NĐ 252/2026, NĐ 125/2020 sđ NĐ 310/2025; Luật TNCN 109/2025 (giảm trừ 15,5 tr/6,2 tr, biểu 5 bậc từ 01/01/2026); Luật TNDN 67/2025 (thuế suất
-                    15%/17%/20% theo doanh thu); NQ 198/2025 (hộ kinh doanh ngưỡng miễn thuế 500 tr/năm). Đề bài là mô phỏng, mức phạt lấy trung bình khung – cần đối chiếu văn bản hiện hành.</li>
+                    15%/17%/20% theo doanh thu); NĐ 68/2026 sđ NĐ 141/2026 (hộ kinh doanh ngưỡng miễn thuế 1 tỷ/năm); NĐ 253/2026 (TNCN: ăn trưa miễn đến 1,2 tr/tháng, tăng ca/làm đêm miễn thuế từ 1/7/2026). Đề bài là mô phỏng, mức phạt lấy trung bình khung – cần đối chiếu văn bản hiện hành.</li>
             </ul>
         </details>
     </main>
@@ -2381,11 +2496,11 @@ function musUI(){const b=$('#mus');b.classList.toggle('off',!MUS);b.setAttribute
 ['pointerdown','keydown'].forEach(e=>addEventListener(e,startMusic,{passive:true}));
 document.addEventListener('visibilitychange',()=>{document.hidden?stopMusic():startMusic()});
 function enterApp(){document.querySelectorAll('.hud,main').forEach(e=>e.inert=false);$('#landing').classList.add('off');window.scrollTo(0,0);startMusic()}
-const LV=()=>Math.min(5,1+Math.floor(S.xp/250)),LT=['Thực tập sinh','Nhân viên thuế','Kế toán viên','Kế toán trưởng','Chuyên gia thuế'],CAP=1.6e9;
+const LVX=[0,350,800,1350,2000],LV=()=>LVX.filter(t=>S.xp>=t).length,LP=()=>{const l=LV();return l>=5?100:(S.xp-LVX[l-1])/(LVX[l]-LVX[l-1])*100},LN=()=>{const l=LV();return l>=5?0:LVX[l]-S.xp},LT=['Thực tập sinh','Nhân viên thuế','Kế toán viên','Kế toán trưởng','Chuyên gia thuế'],CAP=1.6e9;
 const BADGES={first:['🎯','Bước đầu tiên'],s5:['🔥','Chuỗi 5 thắng'],lv3:['📈','Lên cấp 3'],pit:['👤','Bậc thầy TNCN'],cit:['🏢','Bậc thầy TNDN'],ins:['🕵️','Vượt thanh tra'],vat:['🧾','Tờ khai hoàn hảo'],frm:['🧠','Tờ khai đa thuế']};
 function toast(m){const d=document.createElement('div');d.textContent=m;$('#toast').append(d);setTimeout(()=>d.remove(),3200)}
 function badge(id){if(S.bad[id])return;S.bad[id]=1;toast(BADGES[id][0]+' Huy hiệu mới: '+BADGES[id][1])}
-function hud(){const l=LV();$('#lv').textContent=l;$('#lt').textContent=LT[l-1];$('#xp').textContent=S.xp;$('#xb').style.width=(l>=5?100:S.xp%250/2.5)+'%';$('#hp').textContent='❤️'.repeat(S.hp)+'🖤'.repeat(5-S.hp);$('#co').textContent=S.coin;$('#stk').textContent=S.streak;renderUserSlot();save();sync()}
+function hud(){const l=LV();$('#lv').textContent=l;$('#lt').textContent=LT[l-1];$('#xp').textContent=S.xp;$('#xb').style.width=LP()+'%';$('#hp').textContent='❤️'.repeat(S.hp)+'🖤'.repeat(5-S.hp);$('#co').textContent=S.coin;$('#stk').textContent=S.streak;renderUserSlot();save();sync()}
 /* ---------- hình phạt ---------- */
 const LAD=[["📝","Khiến trách bằng văn bản","Cơ quan thuế lập biên bản nhắc nhở, ghi vào hồ sơ tuân thủ.",2e6],["💸","Phạt tiền tăng nặng","Tái phạm bị áp dụng tình tiết tăng nặng, công khai thông tin người nộp thuế.",8e6],["🚫","Đưa vào diện rủi ro cao","Hóa đơn điện tử bị rà soát trước khi sử dụng, bị kiểm tra thường xuyên.",20e6],["🛂","Tạm hoãn xuất cảnh người đại diện","Áp dụng khi còn nợ thuế và bị cưỡng chế, tới khi nộp đủ.",50e6],["⛓️","Khởi tố – GAME OVER (mô phỏng)","Thực tế chỉ khi cấu thành tội trốn thuế (Điều 200 BLHS), không phải vì chậm nộp thông thường.",250e6]];
 /* ---------- kết quả chung ---------- */
@@ -2403,7 +2518,7 @@ function fin(o){if(SH)SH.res[SH.i]=o.sc;S.played++;S.dq++;const ok=o.sc>=1,part=
 function timer(sec,end){clearInterval(TI);G.sec=G.left=sec;draw();TI=setInterval(()=>{if(G.done){clearInterval(TI);return}G.left--;draw();if(G.left<=0){clearInterval(TI);end()}},1000)}
 function draw(){const p=Math.max(0,G.left/G.sec*100);$('#tm').innerHTML=`<div class="timer ${p<30?'z':''}">⏱ ${Math.floor(G.left/60)}:${String(G.left%60).padStart(2,'0')}<i style="width:${p}%"></i></div>`}
 const num=s=>{const raw=String($(s).value||'').trim();const neg=/[-\u2212\u2013\u2014\u2012\uFE63\uFF0D]/.test(raw)||/^\(.*\)$/.test(raw);const d=raw.replace(/[^\d]/g,'');if(d==='')return NaN;const n=parseInt(d,10);return neg&&n!==0?-n:n};
-const MODES=[['🧾','Tờ khai GTGT','Phân loại hóa đơn, tính chỉ tiêu [35] [25] [40].',()=>rVat()],['👤','Thuế TNCN','Tính thuế lương theo biểu 5 bậc mới.',()=>rPit(),'MỚI'],['🏢','Quyết toán TNDN','Loại chi phí không hợp lệ, tính thuế theo doanh thu.',()=>rCit(),'MỚI'],['🍺','Tờ khai TTĐB','Bia, rượu, ô tô: tính giá tính thuế, TTĐB và GTGT.',()=>rExc(),'MỚI'],['🌏','Thuế nhà thầu','Khấu trừ và nộp thay thuế cho nhà thầu nước ngoài.',()=>rFct(),'MỚI'],['🏪','Hộ kinh doanh','Kê khai theo doanh thu, ngưỡng miễn thuế 500 triệu.',()=>rHkd(),'MỚI'],['⚡','Chớp nhoáng','5 câu hỏi nhanh, 15 giây mỗi câu.',()=>rQuick()],['🚢','Thuế xuất nhập khẩu','CIF, thuế NK, TTĐB và GTGT hàng nhập.',()=>rImp(),'MỚI'],['📑','Lệ phí trước bạ','Nhà đất, xe máy, ô tô.',()=>rReg(),'MỚI'],['🏠','TNCN đặc thù','BĐS, chứng khoán, vốn góp, thừa kế, tặng cho.',()=>rCgt(),'MỚI'],['🕵️','Thanh tra ập đến','Chọn cách xử lý khi cơ quan thuế làm việc.',()=>rInsp()]];
+const MODES=[['🧾','Tờ khai GTGT','Phân loại hóa đơn, tính chỉ tiêu [35] [25] [40].',()=>rVat()],['👤','Thuế TNCN','Tính thuế lương theo biểu 5 bậc mới.',()=>rPit(),'MỚI'],['🏢','Quyết toán TNDN','Loại chi phí không hợp lệ, tính thuế theo doanh thu.',()=>rCit(),'MỚI'],['🍺','Tờ khai TTĐB','Bia, rượu, ô tô: tính giá tính thuế, TTĐB và GTGT.',()=>rExc(),'MỚI'],['🌏','Thuế nhà thầu','Khấu trừ và nộp thay thuế cho nhà thầu nước ngoài.',()=>rFct(),'MỚI'],['🏪','Hộ kinh doanh','Kê khai theo doanh thu, ngưỡng miễn thuế 1 tỷ.',()=>rHkd(),'MỚI'],['⚡','Chớp nhoáng','5 câu hỏi nhanh, 15 giây mỗi câu.',()=>rQuick()],['🚢','Thuế xuất nhập khẩu','CIF, thuế NK, TTĐB và GTGT hàng nhập.',()=>rImp(),'MỚI'],['📑','Lệ phí trước bạ','Nhà đất, xe máy, ô tô.',()=>rReg(),'MỚI'],['🏠','TNCN đặc thù','BĐS, chứng khoán, vốn góp, thừa kế, tặng cho.',()=>rCgt(),'MỚI'],['🕵️','Thanh tra ập đến','Chọn cách xử lý khi cơ quan thuế làm việc.',()=>rInsp()]];
 function hub(){clearInterval(TI);G={done:1};$('#tm').innerHTML='';$('#bn').textContent='';SH=null;const q=Math.min(S.dq,3);const l=LV();
  $('#app').innerHTML=`
  <div class="hero">
@@ -2494,7 +2609,7 @@ function subVat(){const g=G;if(g.done)return;const o=num('#o'),i=num('#i'),p=num
 /* ---------- 2. TNCN ---------- */
 const BR=[[10,.05],[30,.10],[60,.20],[100,.30],[1e6,.35]];
 function pit(ti){let t=0,pv=0,rows=[];for(const[c,r]of BR){if(ti>pv*1e6){const a=Math.min(ti,c*1e6)-pv*1e6;t+=a*r;rows.push([pv,c,r,a,a*r])}pv=c}return{t:Math.round(t),rows}}
-function rPit(){const lv=LV(),sal=R(16,30+lv*30)*1e6,ins=Math.round(Math.min(sal,46.8e6)*.105),dep=R(0,lv>2?3:2),ti=Math.max(0,sal-ins-15.5e6-dep*6.2e6);G={k:'pit',sal,ins,dep,ti,ans:pit(ti),done:0,peek:0};
+function rPit(){const lv=LV(),sal=R(16,30+lv*30)*1e6,ins=Math.round(Math.min(sal,50.6e6)*.105),dep=R(0,lv>2?3:2),ti=Math.max(0,sal-ins-15.5e6-dep*6.2e6);G={k:'pit',sal,ins,dep,ti,ans:pit(ti),done:0,peek:0};
  $('#app').innerHTML=`<div class="card"><span class="pill">Thuế TNCN</span><h3>Tính thuế lương tháng cho nhân viên</h3><p>Lương gộp (chịu thuế): <b>${f(sal)} đ</b><br>Bảo hiểm bắt buộc người lao động đóng: <b>${f(ins)} đ</b><br>Người phụ thuộc đã đăng ký: <b>${dep}</b></p>
  <div class="chips"><span class="chip">Giảm trừ bản thân 15.500.000 đ</span><span class="chip">Mỗi người phụ thuộc 6.200.000 đ</span></div>
  <label class="f">Thuế TNCN phải khấu trừ trong tháng (đồng)<input type="text" id="p" inputmode="numeric"></label>
@@ -2522,7 +2637,7 @@ function subCit(){const g=G;if(g.done)return;const p=num('#p');if(isNaN(p)||g.it
  else if(d<0)fin({sc:.4,pts:30,title:'⚠️ Nộp thừa thuế',lines:[`Nộp dư ${f(-d)} đ. Lập tờ khai bổ sung để bù trừ hoặc hoàn.`],tiles:tl,extra:cRev()});
  else fin({sc:0,title:'❌ Khai thiếu thuế TNDN',lines:[`Thiếu ${f(d)} đ → truy thu; phạt khai sai 20% = ${f(d*.2)} đ; chậm nộp 0,03%/ngày (tạm tính 180 ngày) ${f(d*.0003*180)} đ. <span class="law">LQLT 108/2025</span>`],why:'Khai thiếu thuế TNDN.',cost:d*1.2+d*.0003*180,tiles:tl,extra:cRev()})}
 /* ---------- 4. Chớp nhoáng ---------- */
-const QB=[["Thuế suất TNDN phổ thông từ 2025–2026 là?","20%",["15%","17%","22%"],"Thuế suất phổ thông 20%; doanh nghiệp nhỏ 15% hoặc 17% theo doanh thu."],["Doanh nghiệp có doanh thu năm không quá 3 tỷ đồng chịu thuế suất TNDN?","15%",["17%","20%","10%"],"Doanh thu ≤ 3 tỷ: 15% (Luật TNDN 67/2025)."],["Doanh nghiệp doanh thu 3–50 tỷ đồng chịu thuế suất TNDN?","17%",["15%","20%","8%"],"Doanh thu trên 3 đến 50 tỷ: 17%."],["Mức giảm trừ gia cảnh cho bản thân người nộp thuế TNCN từ 2026?","15,5 triệu/tháng",["11 triệu/tháng","13 triệu/tháng","9 triệu/tháng"],"NQ 110/2025: 15,5 triệu; người phụ thuộc 6,2 triệu/tháng."],["Số bậc của biểu thuế lũy tiến từng phần TNCN từ 2026?","5 bậc",["7 bậc","3 bậc","10 bậc"],"Biểu 5 bậc từ 5% đến 35%."],["Hộ kinh doanh có doanh thu năm từ mức nào phải nộp thuế (từ 2026)?","Trên 500 triệu đồng",["Trên 100 triệu đồng","Trên 200 triệu đồng","Trên 1 tỷ đồng"],"NQ 198/2025: ngưỡng doanh thu không chịu thuế nâng lên 500 triệu/năm."],["Hóa đơn hàng hóa hợp lệ 6 triệu đồng (đã gồm thuế) trả tiền mặt. Khấu trừ GTGT đầu vào?","Không được",["Được toàn bộ","Được một nửa","Chỉ khi có xác nhận"],"Từ 5 triệu phải thanh toán không dùng tiền mặt."],["Khai theo tháng: hạn nộp tờ khai GTGT là ngày nào của tháng sau?","Ngày 20",["Ngày 10","Ngày 25","Ngày cuối tháng"],"Khai tháng: chậm nhất ngày 20 tháng sau."],["Tiền chậm nộp thuế tính theo mức nào?","0,03%/ngày",["0,05%/ngày","0,1%/ngày","0,3%/ngày"],"0,03% trên số tiền chậm nộp mỗi ngày."],["Phạt khai sai làm thiếu thuế (không phải trốn thuế) là?","20% số thuế thiếu",["10% số thuế thiếu","50% số thuế thiếu","1 lần số thuế thiếu"],"Điều 16 NĐ 125/2020."],["Ô tô ≤9 chỗ (không kinh doanh vận tải) được khấu trừ GTGT tối đa trên giá chưa thuế?","1,6 tỷ đồng",["1 tỷ đồng","2 tỷ đồng","Không giới hạn"],"NĐ 181/2025: trần giá chưa thuế 1,6 tỷ."],["Thuế suất GTGT hàng hóa xuất khẩu đủ điều kiện?","0%",["5%","8%","10%"],"Xuất khẩu đủ điều kiện → 0%."],["Hàng hóa thông thường được giảm GTGT xuống bao nhiêu đến hết 2026?","8%",["5%","7%","9%"],"NQ 204/2025: giảm 2% từ 10% xuống 8%."],["Cá nhân tự quyết toán thuế TNCN năm dương lịch, hạn nộp hồ sơ là?","30/4 năm sau",["31/1 năm sau","31/3 năm sau","30/6 năm sau"],"Cá nhân trực tiếp quyết toán: chậm nhất ngày cuối tháng thứ 4 kể từ khi kết thúc năm."]];
+const QB=[["Thuế suất TNDN phổ thông từ 2025–2026 là?","20%",["15%","17%","22%"],"Thuế suất phổ thông 20%; doanh nghiệp nhỏ 15% hoặc 17% theo doanh thu."],["Doanh nghiệp có doanh thu năm không quá 3 tỷ đồng chịu thuế suất TNDN?","15%",["17%","20%","10%"],"Doanh thu ≤ 3 tỷ: 15% (Luật TNDN 67/2025)."],["Doanh nghiệp doanh thu 3–50 tỷ đồng chịu thuế suất TNDN?","17%",["15%","20%","8%"],"Doanh thu trên 3 đến 50 tỷ: 17%."],["Mức giảm trừ gia cảnh cho bản thân người nộp thuế TNCN từ 2026?","15,5 triệu/tháng",["11 triệu/tháng","13 triệu/tháng","9 triệu/tháng"],"NQ 110/2025: 15,5 triệu; người phụ thuộc 6,2 triệu/tháng."],["Số bậc của biểu thuế lũy tiến từng phần TNCN từ 2026?","5 bậc",["7 bậc","3 bậc","10 bậc"],"Biểu 5 bậc từ 5% đến 35%."],["Hộ kinh doanh có doanh thu năm từ mức nào phải nộp thuế (từ 2026)?","Trên 1 tỷ đồng",["Trên 100 triệu đồng","Trên 200 triệu đồng","Trên 500 triệu đồng"],"NĐ 68/2026 sđ NĐ 141/2026: doanh thu từ 1 tỷ đồng/năm trở xuống được miễn thuế GTGT, TNCN (áp dụng từ 1/1/2026)."],["Hóa đơn hàng hóa hợp lệ 6 triệu đồng (đã gồm thuế) trả tiền mặt. Khấu trừ GTGT đầu vào?","Không được",["Được toàn bộ","Được một nửa","Chỉ khi có xác nhận"],"Từ 5 triệu phải thanh toán không dùng tiền mặt."],["Khai theo tháng: hạn nộp tờ khai GTGT là ngày nào của tháng sau?","Ngày 20",["Ngày 10","Ngày 25","Ngày cuối tháng"],"Khai tháng: chậm nhất ngày 20 tháng sau."],["Tiền chậm nộp thuế tính theo mức nào?","0,03%/ngày",["0,05%/ngày","0,1%/ngày","0,3%/ngày"],"0,03% trên số tiền chậm nộp mỗi ngày."],["Phạt khai sai làm thiếu thuế (không phải trốn thuế) là?","20% số thuế thiếu",["10% số thuế thiếu","50% số thuế thiếu","1 lần số thuế thiếu"],"Điều 16 NĐ 125/2020."],["Ô tô ≤9 chỗ (không kinh doanh vận tải) được khấu trừ GTGT tối đa trên giá chưa thuế?","1,6 tỷ đồng",["1 tỷ đồng","2 tỷ đồng","Không giới hạn"],"NĐ 181/2025: trần giá chưa thuế 1,6 tỷ."],["Thuế suất GTGT hàng hóa xuất khẩu đủ điều kiện?","0%",["5%","8%","10%"],"Xuất khẩu đủ điều kiện → 0%."],["Hàng hóa thông thường được giảm GTGT xuống bao nhiêu đến hết 2026?","8%",["5%","7%","9%"],"NQ 204/2025: giảm 2% từ 10% xuống 8%."],["Cá nhân tự quyết toán thuế TNCN năm dương lịch, hạn nộp hồ sơ là?","30/4 năm sau",["31/1 năm sau","31/3 năm sau","30/6 năm sau"],"Cá nhân trực tiếp quyết toán: chậm nhất ngày cuối tháng thứ 4 kể từ khi kết thúc năm."]];
 function rQuick(){G={k:'quick',qs:sh(QB).slice(0,5).map(x=>({q:x[0],o:sh([x[1],...x[2]]),a:x[1],w:x[3]})),i:0,ok:0,done:0};qShow()}
 function qShow(){const q=G.qs[G.i];G.ans=0;G.done=0;$('#app').innerHTML=`<div class="card"><span class="pill">Chớp nhoáng · câu ${G.i+1}/5</span><h3>${q.q}</h3>${q.o.map((o,i)=>`<button class="opt" onclick="qAns(${i})">${o}</button>`).join('')}<div id="fb"></div></div><div id="res"></div>`;timer([15,14,12,10,8][LV()-1],()=>qAns(-1))}
 function qAns(i){if(G.ans)return;G.ans=1;clearInterval(TI);const q=G.qs[G.i],c=i>=0&&q.o[i]===q.a,last=G.i>=4;if(c)G.ok++;document.querySelectorAll('.opt').forEach((b,k)=>{b.disabled=true;if(q.o[k]===q.a)b.classList.add('c');else if(k===i)b.classList.add('w')});
@@ -2544,14 +2659,14 @@ function rExc(){const lv=LV(),it=P([["Bia",65],["Rượu dưới 20 độ",35],[
  rForm({pill:'Tờ khai TTĐB',title:'Bán '+it[0].toLowerCase()+' (Mẫu 01/TTĐB rút gọn)',intro:'Doanh nghiệp bán hàng chịu thuế tiêu thụ đặc biệt. Giá bán đã gồm thuế TTĐB, chưa gồm GTGT. Hàng chịu TTĐB không thuộc diện giảm GTGT.',chips:[lv<=2?'Thuế suất TTĐB '+it[1]+'%':'Tự tra thuế suất TTĐB','GTGT 10%'],rows:[['1','Giá bán chưa GTGT (đã gồm TTĐB)',gia,1],['2','Giá tính thuế TTĐB = [1] ÷ (1 + thuế suất)',base],['3','Thuế TTĐB phải nộp',Math.round(base*tt),0,1],['4','Thuế GTGT đầu ra 10% (tính trên [1])',Math.round(gia*.1),0,1]],law:'Luật Thuế TTĐB, Luật GTGT 48/2024.',lines:[`Giá tính thuế TTĐB = ${f(gia)} ÷ ${1+tt} = ${f(base)} đ; thuế TTĐB = ${f(base*tt)} đ.`,'GTGT tính trên giá đã gồm TTĐB nên là '+f(gia*.1)+' đ.']})}
 function rFct(){const c=P([["Tư vấn pháp lý của công ty Singapore",5,5,"Dịch vụ: GTGT 5%, TNDN 5%."],["Thi công xây dựng có cung cấp nguyên vật liệu, nhà thầu Hàn Quốc",3,2,"Xây dựng có NVL: GTGT 3%, TNDN 2%."],["Trả phí bản quyền phần mềm cho công ty Mỹ",0,10,"Bản quyền: không chịu GTGT, TNDN 10%."],["Quảng cáo trực tuyến của nhà cung cấp Ireland",5,5,"Dịch vụ: GTGT 5%, TNDN 5%."],["Thuê máy móc của công ty Nhật",5,5,"Cho thuê máy móc: GTGT 5%, TNDN 5%."],["Lắp đặt máy móc của nhà thầu Đức, không bao thầu nguyên vật liệu",5,2,"Xây lắp không bao thầu NVL: GTGT 5%, TNDN 2%."]]),v=amt(5,80,1e7);
  rForm({pill:'Thuế nhà thầu',title:c[0],intro:'Doanh nghiệp Việt Nam trả tiền cho nhà thầu nước ngoài không có cơ sở thường trú, phải khấu trừ và nộp thuế thay theo tỷ lệ % trên doanh thu.',chips:[LV()<=2?c[3]:'Tự xác định tỷ lệ theo loại hợp đồng'],rows:[['1','Giá trị hợp đồng chưa thuế',v,1],['2','Thuế GTGT nhà thầu nộp thay',v*c[1]/100,0,1],['3','Thuế TNDN nhà thầu nộp thay',v*c[2]/100,0,1],['4','Tổng thuế nhà thầu phải nộp = [2] + [3]',v*(c[1]+c[2])/100,0,1]],law:'Thông tư 103/2014/TT-BTC (thuế nhà thầu).',lines:[c[3]]})}
-function rHkd(){const c=P([["Bán lẻ hàng tạp hóa",1,.5],["Dịch vụ sửa chữa, cắt tóc (không kèm hàng hóa)",5,2],["Sản xuất, gia công đồ gỗ",3,1.5],["Cho thuê nhà, cửa hàng",5,5],["Vận tải hàng hóa",3,1.5],["Bán hàng online qua sàn thương mại điện tử",1,.5]]),o=Math.random()<.75,d=(o?R(52,300):R(10,49))*1e7+(LV()>=3?R(1,99)*1e5:0),ex=Math.max(0,d-5e8);
- rForm({pill:'Hộ kinh doanh',title:c[0],intro:'Hộ kinh doanh kê khai theo doanh thu năm 2026. Doanh thu từ 500 triệu trở xuống không phải nộp thuế; vượt ngưỡng thì GTGT tính trên toàn bộ doanh thu, TNCN tính trên phần vượt 500 triệu.',chips:[LV()<=2?`GTGT ${c[1]}% · TNCN ${c[2]}%`:'Tự xác định tỷ lệ theo ngành nghề'],rows:[['1','Doanh thu năm 2026',d,1],['2','Thuế GTGT',o?Math.round(d*c[1]/100):0,0,1],['3','Doanh thu tính thuế TNCN (phần vượt 500 triệu)',ex],['4','Thuế TNCN',Math.round(ex*c[2]/100),0,1]],law:'NQ 198/2025, Luật GTGT và TNCN sửa đổi. Cần đối chiếu văn bản hướng dẫn mới nhất.',lines:[o?`Doanh thu ${f(d)} đ vượt 500 triệu → GTGT ${c[1]}% trên toàn bộ, TNCN ${c[2]}% trên ${f(ex)} đ.`:'Doanh thu không vượt 500 triệu → không phát sinh GTGT và TNCN.']})}
+function rHkd(){const c=P([["Bán lẻ hàng tạp hóa",1,.5],["Dịch vụ sửa chữa, cắt tóc (không kèm hàng hóa)",5,2],["Sản xuất, gia công đồ gỗ",3,1.5],["Cho thuê máy móc, thiết bị",5,5],["Vận tải hàng hóa",3,1.5],["Bán hàng online qua sàn thương mại điện tử",1,.5]]),o=Math.random()<.75,d=(o?R(102,300):R(10,99))*1e7+(LV()>=3?R(1,99)*1e5:0),ex=Math.max(0,d-1e9);
+ rForm({pill:'Hộ kinh doanh',title:c[0],intro:'Hộ kinh doanh kê khai theo doanh thu năm 2026. Doanh thu từ 1 tỷ trở xuống không phải nộp thuế GTGT, TNCN (NĐ 68/2026 sđ NĐ 141/2026); vượt ngưỡng thì GTGT tính trên toàn bộ doanh thu (tỷ lệ % đã giảm 20% theo NQ 204/2025 đến 31/12/2026), TNCN tính trên phần vượt 1 tỷ.',chips:[LV()<=2?`GTGT ${+(c[1]*.8).toFixed(1)}% (đã giảm 20%) · TNCN ${c[2]}%`:'Tự xác định tỷ lệ theo ngành nghề'],rows:[['1','Doanh thu năm 2026',d,1],['2','Thuế GTGT',o?Math.round(d*c[1]*.8/100):0,0,1],['3','Doanh thu tính thuế TNCN (phần vượt 1 tỷ)',ex],['4','Thuế TNCN',Math.round(ex*c[2]/100),0,1]],law:'NĐ 68/2026 sđ NĐ 141/2026 (ngưỡng 1 tỷ); Luật GTGT 48/2024; Luật TNCN 109/2025; NQ 204/2025 (giảm 20% tỷ lệ GTGT đến 31/12/2026).',lines:[o?`Doanh thu ${f(d)} đ vượt 1 tỷ → GTGT ${c[1]}% giảm 20% = ${+(c[1]*.8).toFixed(1)}% trên toàn bộ, TNCN ${c[2]}% trên ${f(ex)} đ.`:'Doanh thu không vượt 1 tỷ → không phát sinh GTGT và TNCN.']})}
 /* ---------- 5. Thanh tra ---------- */
 const INS=[
 [A=>`Cơ quan thuế gửi thông báo giải trình: hóa đơn đầu vào của NCC "bỏ trốn" (thuế ${f(A)} đ) đã được bạn khấu trừ kỳ trước.`,["Giải trình, khai bổ sung giảm khấu trừ, nộp đủ thuế thiếu và tiền chậm nộp","Chủ động khắc phục: chỉ phải nộp thuế thiếu và tiền chậm nộp, được đánh giá thiện chí."],["Không phản hồi, chờ xem sao","Bị ấn định thuế, phạt 20% thuế thiếu và bị chuyển thanh tra."],["Nhờ NCC lập lại hóa đơn để hợp thức hóa","Hợp thức hóa chứng từ là gian dối, dấu hiệu trốn thuế."]],
 [A=>`Đoàn kiểm tra phát hiện doanh thu ${f(A)} đ chưa xuất hóa đơn và chưa khai thuế đầu ra.`,["Lập hóa đơn, khai bổ sung thuế đầu ra, nộp thuế và tiền chậm nộp","Khắc phục kịp thời, chỉ bị phạt vi phạm hóa đơn mức thấp."],["Xin bỏ qua vì đây là sơ suất","Không tự khắc phục, bị truy thu và phạt 20%."],["Xóa dữ liệu bán hàng gốc","Che giấu chứng từ là tình tiết tăng nặng, nghi trốn thuế."]],
 [A=>`Giám đốc yêu cầu không ghi nhận doanh thu thu tiền mặt ${f(A)} đ để giảm thuế.`,["Từ chối, giải thích rủi ro và ghi nhận đầy đủ doanh thu","Tuân thủ pháp luật, bảo vệ doanh nghiệp và bản thân."],["Ghi nhận một phần cho đỡ nghi ngờ","Vẫn là khai thiếu doanh thu, bị truy thu và phạt."],["Làm theo yêu cầu","Che giấu doanh thu là trốn thuế, cả kế toán và người ra lệnh có thể bị truy cứu."]],
-[A=>`Một hộ kinh doanh khách hàng có doanh thu năm 2026 đạt ${f(A*1.5)} đ nhưng chưa đăng ký kê khai thuế.`,["Hướng dẫn đăng ký, kê khai và nộp thuế theo doanh thu vượt ngưỡng 500 triệu","Ngưỡng 500 triệu/năm chỉ miễn thuế phần dưới ngưỡng; vượt thì phải kê khai đúng quy định."],["Chờ cơ quan thuế nhắc rồi tính","Bị truy thu, phạt chậm kê khai và tính tiền chậm nộp."],["Chia nhỏ doanh thu sang tên người thân","Chia tách doanh thu để né thuế là hành vi gian dối."]],
+[A=>`Một hộ kinh doanh khách hàng có doanh thu năm 2026 đạt ${f(Math.max(A*1.5,1.2e9))} đ nhưng chưa đăng ký kê khai thuế.`,["Hướng dẫn đăng ký, kê khai và nộp thuế theo doanh thu vượt ngưỡng 1 tỷ","Doanh thu từ 1 tỷ/năm trở xuống được miễn thuế; vượt ngưỡng thì phải đăng ký, kê khai đúng quy định."],["Chờ cơ quan thuế nhắc rồi tính","Bị truy thu, phạt chậm kê khai và tính tiền chậm nộp."],["Chia nhỏ doanh thu sang tên người thân","Chia tách doanh thu để né thuế là hành vi gian dối."]],
 [A=>`Nhân viên nhờ bạn giảm trừ thêm 2 người phụ thuộc chưa đăng ký MST, lương tháng này ${f(A/10)} đ.`,["Yêu cầu hồ sơ, đăng ký người phụ thuộc rồi mới giảm trừ","Chỉ giảm trừ khi người phụ thuộc đủ điều kiện và đã đăng ký."],["Tạm giảm trừ, bổ sung hồ sơ sau","Giảm trừ khi chưa đủ hồ sơ có thể khấu trừ thiếu thuế và bị truy thu."],["Kê người phụ thuộc không có thật","Kê khai giảm trừ giả là hành vi gian dối về thuế."]]];
 function rImp(){const c=P([["Nhập khẩu linh kiện điện tử",5,0,8],["Nhập khẩu quần áo may sẵn",20,0,8],["Nhập khẩu rượu vang",30,65,10],["Nhập khẩu ô tô 5 chỗ dung tích 2.0L",50,40,10]]),cif=amt(2,40,1e8),nk=Math.round(cif*c[1]/100),tt=Math.round((cif+nk)*c[2]/100),vat=Math.round((cif+nk+tt)*c[3]/100);
  rForm({pill:'Thuế xuất nhập khẩu',title:c[0],intro:'Lô hàng nhập khẩu theo đề bài. Thuế suất cho sẵn, bạn tính lần lượt: thuế NK → TTĐB → GTGT.',chips:['Thuế NK '+c[1]+'%',c[2]?'TTĐB '+c[2]+'%':'Không chịu TTĐB','GTGT '+c[3]+'%'],rows:[['1','Giá CIF (giá tính thuế NK)',cif,1],['2','Thuế nhập khẩu',nk,0,1],['3','Thuế TTĐB = ([1] + [2]) × thuế suất',tt,0,1],['4','Thuế GTGT hàng nhập = ([1] + [2] + [3]) × thuế suất',vat,0,1]],law:'Luật Thuế xuất khẩu, thuế nhập khẩu; Luật TTĐB; Luật GTGT 48/2024.',lines:['Giá tính GTGT hàng nhập khẩu = CIF + thuế NK + thuế TTĐB (nếu có).']})}
@@ -2610,13 +2725,13 @@ const EXC=[
  qs:[['Khoản 12 triệu trả tiền mặt cho NCC. Có được khấu trừ GTGT không?','Không, hóa đơn từ 5 triệu trở lên phải thanh toán không dùng tiền mặt',['Được, vì hóa đơn hợp lệ','Được, nếu chia nhỏ thành nhiều lần dưới 5 triệu'],'Chia nhỏ để né ngưỡng thanh toán là hành vi gian dối.'],
  ['Khoản chi nào vẫn giữ được là chi phí được trừ?','Khoản thực tế, phục vụ kinh doanh, đủ hóa đơn và chứng từ thanh toán hợp lệ',['Chi cá nhân của giám đốc có hóa đơn công ty','Khoản chi không chứng từ nhưng có xác nhận miệng'],'Chi phí được trừ phải thực tế, đúng mục đích, đủ chứng từ.']],
  law:'Luật GTGT 48/2024 (thanh toán không dùng tiền mặt); NĐ 125/2020 sđ NĐ 310/2025.'},
-{t:'Hộ kinh doanh bán hàng trên sàn thương mại điện tử',lv:3,a:()=>R(700,1800)*1e6,T:A=>Math.round((A-5e8)*.015),p:.2,
+{t:'Hộ kinh doanh bán hàng trên sàn thương mại điện tử',lv:3,a:()=>R(1200,3000)*1e6,T:A=>Math.round(A*.008+(A-1e9)*.005),p:.2,
  n:A=>`Dữ liệu sàn TMĐT báo cáo hộ kinh doanh có doanh thu ${f(A)} đ/năm, nhưng tờ khai chỉ khai doanh thu dưới ngưỡng miễn thuế.`,
- k:A=>`Doanh thu sàn: <b>${f(A)} đ</b>. Ngưỡng miễn thuế 500 triệu/năm; bán lẻ hàng hóa 1,5% (GTGT 1% + TNCN 0,5%) trên phần vượt ngưỡng (mô phỏng). Tự tính thuế thiếu rồi cộng phạt 20% và tiền chậm nộp.`,
+ k:A=>`Doanh thu sàn: <b>${f(A)} đ</b>. Ngưỡng miễn thuế 1 tỷ/năm; bán lẻ hàng hóa: GTGT 1% giảm 20% = 0,8% trên toàn bộ doanh thu + TNCN 0,5% trên phần vượt 1 tỷ. Tự tính thuế thiếu rồi cộng phạt 20% và tiền chậm nộp.`,
  docs:[['Sao kê doanh thu và đối soát của sàn TMĐT',1],['Hóa đơn nhập hàng, nguồn gốc hàng hóa',1],['Sổ doanh thu ghi nhận theo ngày',1],['Ảnh chụp gian hàng để chứng minh uy tín',0],['Sổ doanh thu lập lại, chia sang tên người thân',-1]],
  qs:[['Doanh thu trên sàn khác tờ khai, giải thích thế nào?','Đối chiếu sao kê sàn, tách đơn hoàn/hủy và thừa nhận phần đã bán',['Nói doanh thu sàn là của người khác','Nói tiền còn trong ví sàn thì chưa là doanh thu'],'Doanh thu tính theo đơn bán thành công, không theo thời điểm rút tiền.'],
- ['Doanh thu vượt ngưỡng 500 triệu, cách xử lý đúng là?','Kê khai, nộp thuế phần vượt ngưỡng theo quy định',['Chia doanh thu sang tài khoản người thân','Ngừng bán trên sàn để tránh bị theo dõi'],'Chia tách doanh thu để né ngưỡng bị coi là trốn thuế.']],
- law:'NQ 198/2025 (ngưỡng 500 triệu); Luật QLT 108/2025; NĐ 125/2020 sđ NĐ 310/2025.'}];
+ ['Doanh thu vượt ngưỡng 1 tỷ, cách xử lý đúng là?','Kê khai, nộp thuế phần vượt ngưỡng theo quy định',['Chia doanh thu sang tài khoản người thân','Ngừng bán trên sàn để tránh bị theo dõi'],'Chia tách doanh thu để né ngưỡng bị coi là trốn thuế.']],
+ law:'NĐ 68/2026 sđ NĐ 141/2026 (ngưỡng 1 tỷ); Luật QLT 108/2025; NĐ 125/2020 sđ NĐ 310/2025.'}];
 const xLate=g=>Math.round(g.T*.0003*g.d),xTot=g=>g.T+xLate(g)+Math.round(g.T*g.c.p);
 function rExp(){const c=P(EXC.filter(x=>x.lv<=LV()+1)),A=c.a();G={k:'exp',c,A,T:c.T(A),d:R(20,120),tr:3,pick:{},qi:0,done:0,docs:sh([0,1,2,3,4])};
  $('#app').innerHTML='<div id="ex"></div><div id="res"></div>';
@@ -2656,7 +2771,7 @@ const Z=[['đặc thù','adv','Cao Nguyên Tài Sản',[['🦂','Bọ Cạp Chuy
 ['TNDN','hunt','Hang Chi Phí',[['🐲','Rồng Chi Phí Ma'],['🦎','Thằn Lằn Hóa Đơn Tiền Mặt']],['tndn']],
 ['TTĐB','hunt','Lò Rượu Ma',[['🧌','Ogre Rượu Bia'],['🚗','Xe Quỷ Đặc Biệt']],[]],
 ['nhà thầu','adv','Hải Đảo Nhà Thầu',[['🦈','Cá Mập Khấu Trừ'],['🐙','Bạch Tuộc Nước Ngoài']],[]],
-['Hộ kinh doanh','adv','Làng Chợ Phiên',[['🐗','Heo Rừng Ngưỡng 500 Triệu'],['🐓','Gà Trống Doanh Thu']],['nq198']],
+['Hộ kinh doanh','adv','Làng Chợ Phiên',[['🐗','Heo Rừng Ngưỡng 1 Tỷ'],['🐓','Gà Trống Doanh Thu']],['nq198']],
 ['Chớp nhoáng','surv','Đấu Trường Sinh Tồn',[['🐝','Bầy Ong Chớp Nhoáng'],['🦟','Muỗi Giờ Chót']],[]],
 ['nhập khẩu','adv','Cảng Biển CIF',[['🦑','Thủy Quái CIF'],['🐊','Cá Sấu Hải Quan']],[]],
 ['trước bạ','hunt','Thành Cổ Trước Bạ',[['🗿','Tượng Đá Lệ Phí'],['🐉','Rồng Nhà Đất']],[]],
@@ -2674,7 +2789,7 @@ nq204:[/NQ 204\/2025/,'NQ 204/2025','Giảm 2% thuế suất GTGT (10% xuống 8
 lqlt:[/LQLT 108\/2025|Luật Quản lý thuế 108/,'Luật Quản lý thuế 108/2025','Người nộp thuế được khai bổ sung hồ sơ khai thuế; khai thiếu phải nộp đủ số thuế thiếu kèm tiền chậm nộp.'],
 tncn:[/TNCN 109\/2025/,'Luật TNCN 109/2025','Giảm trừ 15,5 triệu/tháng cho bản thân và 6,2 triệu/người phụ thuộc; biểu thuế lũy tiến 5 bậc (5%–35%) từ 01/01/2026.'],
 tndn:[/TNDN 67\/2025/,'Luật TNDN 67/2025','Thuế suất 15%/17%/20% theo doanh thu năm; chi phí được trừ phải phục vụ sản xuất kinh doanh và có hóa đơn, chứng từ hợp pháp.'],
-nq198:[/NQ 198\/2025/,'NQ 198/2025','Hộ, cá nhân kinh doanh có doanh thu dưới 500 triệu đồng/năm được miễn thuế.'],
+nq198:[/NĐ 68\/2026|NĐ 141\/2026/,'NĐ 68/2026, NĐ 141/2026','Hộ, cá nhân kinh doanh có doanh thu từ 1 tỷ đồng/năm trở xuống được miễn thuế GTGT và TNCN (nâng từ 500 triệu).'],
 blhs:[/Điều 200|BLHS/,'Điều 200 Bộ luật Hình sự','Chỉ truy cứu hình sự khi hành vi cấu thành tội trốn thuế, không phải vì chậm nộp thông thường.']};
 const lawCard=(txt,z)=>{const ks=Object.keys(L).filter(k=>L[k][0].test(txt));(ks.length?ks:z[4]).forEach(()=>0);
  const use=[...new Set([...ks,...(ks.length?[]:z[4])])];
@@ -2708,6 +2823,44 @@ const _hub=hub;hub=function(){_hub();const q=s=>document.querySelector(s);
  const all=[...new Map(MODES.flatMap((_,i)=>zone(i)[3]).map(y=>[y[1],y])).values()];
  $('#app').insertAdjacentHTML('beforeend',`<div class="card"><h2>📖 Sổ săn quái vật</h2><div class="bst">${all.map(y=>S.mon[y[1]]?`<span class="on">${y[0]} <b>${y[1]}</b><br>hạ ${S.mon[y[1]]} lần</span>`:'<span>❓ Chưa gặp</span>').join('')}</div></div>`)};
 const ul=document.querySelector('details.card ul');ul&&ul.insertAdjacentHTML('beforeend','<li><b>Chế độ phiêu lưu:</b> mỗi chế độ là một vùng đất với quái vật riêng (săn quái, phiêu lưu, sinh tồn, đấu trùm). Làm đúng để hạ gục quái và nhận chiến lợi phẩm; sau mỗi câu có thẻ trích dẫn luật kèm tên văn bản.</li>');
+/* ===== Bản đồ đảo (kiểu tranh màu nước) ===== */
+{const GR=[['🧾','Nền móng','Khởi động chớp nhoáng và tờ khai GTGT đầu tiên.',['Chớp nhoáng','GTGT']],
+['👤','Lương & kinh doanh nhỏ','TNCN, ăn trưa, tăng ca, hộ kinh doanh ngưỡng 1 tỷ.',['TNCN','Hộ kinh doanh']],
+['🏢','Doanh nghiệp','Quyết toán TNDN, chi phí được trừ, tiêu thụ đặc biệt.',['TNDN','TTĐB']],
+['⚓','Biên giới & tài sản','Nhập khẩu, nhà thầu, trước bạ, chuyển nhượng.',['nhập khẩu','nhà thầu','trước bạ','đặc thù']],
+['👑','Đấu trùm thanh tra','Thanh tra và giải trình với cơ quan thuế.',['Thanh tra','Giải trình']]];
+const gi=i=>{const k=GR.findIndex(g=>g[3].includes(zone(i)[0]));return k<0?3:k},
+LY=m=>m?{W:400,H:1040,cw:330,S:[70,70],F:[70,985],C:[[175,200],[225,375],[175,550],[225,725],[175,880]],mid:1}:{W:1180,H:660,cw:300,S:[100,95],F:[75,560],C:[[190,200],[533,252],[880,200],[765,468],[303,457]]},
+bez=p=>{let d='M'+p[0];for(let i=0;i<p.length-1;i++){const a=p[i-1]||p[i],b=p[i],c=p[i+1],e=p[i+2]||c;d+=' C'+[b[0]+(c[0]-a[0])/6,b[1]+(c[1]-a[1])/6,c[0]-(e[0]-b[0])/6,c[1]-(e[1]-b[1])/6,c[0],c[1]].map(Math.round)}return d},
+sc=(W,H)=>{let s=7;const r=()=>(s=s*16807%2147483647)/2147483647,X=v=>Math.round(v*W),Y=v=>Math.round(v*H),k=W>500?1:.7,
+ T=[[.05,.4],[.5,.04],[.95,.28],[.95,.8],[.5,.93],[.05,.68]],pt=(a,dy)=>a.map(p=>X(p[0])+','+Y(p[1]+dy)).join(' ');
+ let o=`<defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe6a8"/><stop offset="1" stop-color="#a6d086"/></linearGradient><linearGradient id="gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dccaa3"/><stop offset="1" stop-color="#b39b74"/></linearGradient></defs><ellipse cx="${X(.5)}" cy="${Y(.5)}" rx="${X(.62)}" ry="${Y(.5)}" fill="#f1ecdc"/><polygon points="${pt(T,.05)}" fill="url(#gs)"/><polygon points="${pt(T,0)}" fill="url(#gg)" stroke="#8fbf6f" stroke-width="2"/>`;
+ [[.3,.3,.2,.12],[.62,.2,.22,.13],[.78,.6,.16,.1],[.22,.62,.16,.1]].forEach(h=>o+=`<ellipse cx="${X(h[0])}" cy="${Y(h[1])}" rx="${X(h[2])}" ry="${Y(h[3])}" fill="#b9dc94" opacity=".55"/>`);
+ o+=`<path d="M${X(.63)} ${Y(.93)}C${X(.55)} ${Y(.72)} ${X(.78)} ${Y(.6)} ${X(.6)} ${Y(.48)}S${X(.36)} ${Y(.3)} ${X(.5)} ${Y(.1)}" fill="none" stroke="#9fd0e8" stroke-width="${44*k}" stroke-linecap="round"/><path d="M${X(.63)} ${Y(.93)}C${X(.55)} ${Y(.72)} ${X(.78)} ${Y(.6)} ${X(.6)} ${Y(.48)}S${X(.36)} ${Y(.3)} ${X(.5)} ${Y(.1)}" fill="none" stroke="#c9e9f6" stroke-width="${16*k}" stroke-linecap="round"/><rect x="${X(.6)-40*k}" y="${Y(.49)}" width="${80*k}" height="${16*k}" rx="4" fill="#a9825a" transform="rotate(-20 ${X(.6)} ${Y(.5)})"/>`;
+ for(let n=0;n<46;n++){const x=.08+r()*.84,y=.1+r()*.8,d=Math.abs(x-.5)/.45;if(y<.07+d*(x>.5?.24:.36)||y>.9-d*(x>.5?.13:.25))continue;const q=(9+r()*9)*k;o+=`<rect x="${X(x)-1.5}" y="${Y(y)}" width="3" height="${q*.6}" fill="#8a6a45"/><circle cx="${X(x)}" cy="${Y(y)-q*.2}" r="${q}" fill="${r()>.5?'#7fb45f':'#93c46f'}" opacity=".92"/>`}
+ [[.42,.42],[.78,.42],[.22,.5]].forEach(h=>{const x=X(h[0]),y=Y(h[1]),q=22*k;o+=`<rect x="${x-q}" y="${y}" width="${q*2}" height="${q*1.2}" fill="#f4ecdc"/><polygon points="${x-q*1.2},${y} ${x+q*1.2},${y} ${x},${y-q*1.1}" fill="#d9775c"/>`});
+ return o},
+st=()=>MODES.map((_,i)=>i);
+window.qDraw=()=>{const bx=document.querySelector('.gmap');if(!bx)return;const m=innerWidth<760,L=LY(m),{W,H}=L,
+ gs=GR.map((g,k)=>{const ms=st().filter(i=>gi(i)===k),n=Math.max(1,ms.length*5),t=ms.reduce((a,i)=>a+Math.min(5,S.st[i]||0),0);return{ms,t,n,p:Math.round(t/n*100)}}),
+ f=gs.findIndex(g=>g.p<100),cur=f<0?4:f;
+ let pts=[L.S];L.C.forEach((c,k)=>{if(L.mid&&k)pts.push([k%2?45:355,(L.C[k-1][1]+c[1])/2]);pts.push(c)});pts.push(L.F);
+ const ci=pts.findIndex(p=>p===L.C[cur]),lit=Math.min(100,(ci+gs[cur].p/100*(m?2:1))/(pts.length-1)*100),d=bez(pts),
+ cards=L.C.map((c,k)=>{const g=GR[k],a=gs[k];return`<button class="gc${k===cur?' cur':''}${k>cur?' lk':''}" style="left:${c[0]/W*100}%;top:${c[1]/H*100}%;width:${L.cw/W*100}%" onclick="qG(${k})">${k===cur?'<u>📍 Bạn ở đây</u>':''}<i class="gt">${g[0]}</i><div><h4><em>0${k+1}</em>${g[1]}<span>${a.p>=100?'✅':k>cur?'🔒':''}</span></h4><p>${g[2]}</p><s><b>${a.p}%</b> ${a.t}/${a.n} chặng</s></div></button>`}).join('');
+ bx.style.aspectRatio=W+'/'+H;bx.style.setProperty('--u','calc(100cqw/'+W+')');
+ bx.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${sc(W,H)}<path d="${d}" fill="none" stroke="#e2d9bf" stroke-width="26" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#2fb384" stroke-width="4" stroke-dasharray="11 9" stroke-linecap="round"/><path d="${d}" pathLength="100" fill="none" stroke="#ffc531" stroke-width="7" stroke-linecap="round" stroke-dasharray="${lit} 100" opacity=".9"/></svg>
+ <div class="gsg" style="left:${L.S[0]/W*100}%;top:${(L.S[1]-45)/H*100}%">XUẤT PHÁT</div><div class="gfl" style="left:${L.F[0]/W*100}%;top:${(L.F[1]+30)/H*100}%"></div>${cards}`};
+const _h2=hub;hub=function(){_h2();const q=s=>document.querySelector(s),old=q('.wmap'),h=q('.sec-title');if(!old)return;
+ const n=MODES.length,done=st().filter(i=>S.st[i]>0).length,xp=Math.round(LP());
+ h&&(h.innerHTML='<h2>🗺️ Bản đồ hành trình</h2><span>'+done+'/'+n+' vùng đã khám phá</span>');
+ const m=document.createElement('div');m.innerHTML=`<div class="qhead"><div><small>Cấp bậc</small><b>${LT[LV()-1]}</b></div><div class="qbar"><i style="width:${xp}%"></i><span>${xp}% tới cấp kế</span></div><div><small>Chuỗi thắng</small><b>🔥 ${S.streak||0}</b></div></div><button class="qme" onclick="document.querySelector('.gc.cur').scrollIntoView({behavior:'smooth',block:'center'})">📍 Về vị trí của tôi</button><div class="gwrap"><div class="gmap"></div></div>`;
+ old.replaceWith(m);qDraw()};
+let lm=innerWidth<760,tm;addEventListener('resize',()=>{clearTimeout(tm);tm=setTimeout(()=>{const x=innerWidth<760;if(x!==lm){lm=x;qDraw()}},150)});
+window.qG=k=>{const g=GR[k];let e=document.getElementById('qsh');e&&e.remove();e=document.createElement('div');e.id='qsh';
+ e.innerHTML=`<div class="qbk" onclick="qClose()"></div><div class="qsh" style="--a:#2fb384;--b:#0b6b4b"><i class="qe">${g[0]}</i><h3>Chặng 0${k+1}: ${g[1]}</h3><p>${g[2]}</p>${st().filter(i=>gi(i)===k).map(i=>{const z=zone(i),w=S.st[i]||0;return`<div class="gr"><i>${MODES[i][0]}</i><div><b>${z[2]}</b><small>${MODES[i][1]} · ${z[3].map(y=>y[0]).join(' ')}</small><small>${'★'.repeat(w>=5?3:w>=3?2:w>=1?1:0)||'☆'} ${w} chặng đã vượt</small></div><button onclick="qClose();go(${i})">${w?'Tiếp':'Chơi'}</button></div>`}).join('')}<button class="qx" onclick="qClose()">Đóng</button></div>`;
+ document.body.appendChild(e);requestAnimationFrame(()=>e.classList.add('on'))};
+window.qClose=()=>{const e=document.getElementById('qsh');e&&(e.classList.remove('on'),setTimeout(()=>e.remove(),220))}}
+
 if($('#app .hero'))hub();
 })();
 
@@ -2744,8 +2897,8 @@ const Q2=[
 ['Năm 2021 doanh nghiệp lỗ 2 tỷ. Lãi năm 2027 có được trừ khoản lỗ này không?','Không, quá 5 năm liên tục',['Có, không giới hạn','Có, tối đa 50%','Có nếu được cơ quan thuế chấp thuận'],'Lỗ chuyển tối đa 5 năm liên tục: lỗ 2021 chỉ trừ được đến hết 2026.'],
 ['Tạm nộp thuế TNDN quý III/2026 chậm nhất vào ngày?','30/10/2026',['20/10/2026','31/12/2026','31/3/2027'],'Tạm nộp quý chậm nhất ngày 30 của tháng đầu quý sau.'],
 ['DN có giao dịch liên kết, EBITDA 10 tỷ, lãi vay 4,2 tỷ. Chi phí lãi vay không được trừ là?','1,2 tỷ',['0 đồng','4,2 tỷ','3 tỷ'],'Trần lãi vay 30% EBITDA = 3 tỷ; phần vượt 4,2 − 3 = 1,2 tỷ bị loại (đối chiếu văn bản hiện hành).'],
-['Tiền ăn giữa ca chi bằng tiền mặt 1.000.000 đ/tháng. Phần chịu thuế TNCN (theo mức miễn 730.000 đ) là?','270.000 đ',['Toàn bộ 1.000.000 đ','0 đồng','730.000 đ'],'Chỉ phần vượt mức trần miễn thuế mới tính vào thu nhập chịu thuế.'],
-['Giờ thường 100.000 đ, làm thêm 10 giờ ngày thường trả 150%. Phần chịu thuế TNCN của tiền tăng ca là?','1.000.000 đ',['1.500.000 đ','500.000 đ','0 đồng'],'Phần chênh so với lương giờ bình thường (500.000 đ) được miễn thuế.'],
+['Tiền ăn giữa ca chi bằng tiền mặt 1.500.000 đ/tháng. Phần chịu thuế TNCN (mức miễn 1.200.000 đ/tháng từ 1/7/2026) là?','300.000 đ',['Toàn bộ 1.500.000 đ','0 đồng','1.200.000 đ'],'Chỉ phần vượt 1,2 triệu đ/tháng mới tính vào thu nhập chịu thuế (điểm g khoản 2 Điều 8 NĐ 253/2026).'],
+['Giờ thường 100.000 đ, làm thêm 10 giờ ngày thường trả 150% (từ 1/7/2026, đúng quy định lao động). Phần chịu thuế TNCN của tiền tăng ca là?','0 đồng',['1.500.000 đ','1.000.000 đ','500.000 đ'],'Từ 1/7/2026 toàn bộ tiền lương làm thêm giờ, làm đêm đúng pháp luật lao động được miễn thuế TNCN (Luật 109/2025; Điều 26 NĐ 253/2026), cần có bảng chấm công.'],
 ['Số thuế GTGT hàng xuất khẩu chưa khấu trừ hết tối thiểu bao nhiêu mới đề nghị hoàn theo kỳ?','300 triệu đồng',['100 triệu đồng','500 triệu đồng','1 tỷ đồng'],'Luật GTGT 48/2024: từ 300 triệu trở lên.'],
 ['Kế toán tự phát hiện khai thiếu thuế và khai bổ sung trước khi cơ quan thuế công bố quyết định kiểm tra. Hậu quả?','Nộp thuế thiếu và tiền chậm nộp, không bị phạt khai sai',['Bị phạt 20% số thuế thiếu','Bị phạt 1–3 lần số thuế','Không phải nộp tiền chậm nộp'],'Chủ động khắc phục trước khi có quyết định kiểm tra: không bị phạt hành vi khai sai, vẫn nộp tiền chậm nộp.'],
 ['Hóa đơn tặng hàng cho khách ngoài chương trình khuyến mại đăng ký. Kế toán phải?','Xuất hóa đơn và kê khai GTGT đầu ra',['Không cần xuất hóa đơn vì không thu tiền','Chỉ ghi giảm giá vốn','Chỉ hạch toán chi phí quảng cáo'],'Hàng biếu, tặng là tiêu dùng nội bộ: phải xuất hóa đơn, tính thuế đầu ra.'],
@@ -2753,16 +2906,16 @@ const Q2=[
 ['Nhà thầu Mỹ thu 500 triệu phí bản quyền phần mềm. DN Việt Nam khấu trừ thuế nhà thầu thế nào?','GTGT không chịu; TNDN 10% = 50 triệu',['GTGT 5% và TNDN 5%','GTGT 10% và TNDN 20%','Không khấu trừ gì'],'Chuyển giao bản quyền: không chịu GTGT, TNDN 10% trên doanh thu.'],
 ['Nhập khẩu: CIF 1 tỷ, thuế NK 10%, TTĐB 0, GTGT 8%. Thuế GTGT hàng nhập là?','88 triệu đồng',['80 triệu đồng','100 triệu đồng','108 triệu đồng'],'Giá tính GTGT = CIF + thuế NK = 1,1 tỷ; × 8% = 88 triệu.'],
 ['Bán ô tô con chịu TTĐB, giá bán chưa GTGT đã gồm TTĐB là 1,5 tỷ, thuế suất TTĐB 50%. Giá tính TTĐB là?','1 tỷ đồng',['750 triệu đồng','1,5 tỷ đồng','2,25 tỷ đồng'],'Giá tính TTĐB = 1,5 tỷ ÷ 1,5 = 1 tỷ.'],
-['Hộ kinh doanh doanh thu 800 triệu/năm, bán lẻ hàng hóa (GTGT 1%, TNCN 0,5% trên phần vượt 500 triệu). Tổng thuế phải nộp?','9,5 triệu đồng',['4 triệu đồng','8 triệu đồng','1,5 triệu đồng'],'GTGT 1% × 800 triệu = 8 triệu; TNCN 0,5% × 300 triệu = 1,5 triệu; tổng 9,5 triệu (mô phỏng theo quy tắc trong game).']];
+['Hộ kinh doanh doanh thu 2 tỷ/năm, bán lẻ hàng hóa (GTGT 1% đã giảm 20% còn 0,8%, TNCN 0,5% trên phần vượt 1 tỷ). Tổng thuế phải nộp?','21 triệu đồng',['25 triệu đồng','20 triệu đồng','16 triệu đồng'],'Ngưỡng miễn thuế 1 tỷ. GTGT 0,8% × 2 tỷ = 16 triệu; TNCN 0,5% × (2 tỷ − 1 tỷ) = 5 triệu; tổng 21 triệu (NĐ 68/2026 sđ NĐ 141/2026, NQ 204/2025).']];
 QB.length=0;QB.push(...Q2);
 rQuick=function(){G={k:'quick',qs:U('qb',QB,5).map(x=>({q:x[0],o:sh([x[1],...x[2]]),a:x[1],w:x[3]})),i:0,ok:0,done:0};qShow()};
 
 /* ---------- 3. TNCN nâng cao: phụ cấp ăn trưa, tăng ca, BH ---------- */
 rPit=function(){const sal=R(25,90)*1e6,lun=P([1e6,1.2e6,1.5e6,2e6]),hr=Math.round(sal/26/8/1000)*1000,h=R(6,30),ot=Math.round(h*hr*1.5),dep=R(0,3),
- ins=Math.round(Math.min(sal,46.8e6)*.105),ex=Math.min(lun,730000)+(ot-h*hr),tot=sal+lun+ot,tax=tot-ex,ti=Math.max(0,tax-ins-15.5e6-dep*6.2e6);
- rForm({pill:'Thuế TNCN nâng cao',title:'Chốt bảng lương tháng: lương, ăn trưa, tăng ca',intro:`Lương cơ bản ${f(sal)} đ (cũng là mức đóng BH bắt buộc 10,5%, trần 46,8 triệu). Tiền ăn trưa ${f(lun)} đ (miễn thuế tối đa 730.000 đ). Tăng ca ${h} giờ ngày thường, lương giờ thường ${f(hr)} đ, trả 150%. ${dep} người phụ thuộc đã đăng ký.`,chips:['Giảm trừ 15,5 tr + 6,2 tr/người phụ thuộc','Tăng ca: miễn phần chênh so với lương giờ thường'],
+ ins=Math.round(Math.min(sal,50.6e6)*.105),ex=Math.min(lun,1.2e6)+ot,tot=sal+lun+ot,tax=tot-ex,ti=Math.max(0,tax-ins-15.5e6-dep*6.2e6);
+ rForm({pill:'Thuế TNCN nâng cao',title:'Chốt bảng lương tháng: lương, ăn trưa, tăng ca',intro:`Lương cơ bản ${f(sal)} đ (cũng là mức đóng BH bắt buộc 10,5%, trần 50,6 triệu). Tiền ăn trưa ${f(lun)} đ (miễn thuế tối đa 1.200.000 đ/tháng). Tăng ca ${h} giờ ngày thường, lương giờ thường ${f(hr)} đ, trả 150%. ${dep} người phụ thuộc đã đăng ký.`,chips:['Giảm trừ 15,5 tr + 6,2 tr/người phụ thuộc','Tăng ca đúng luật lao động: miễn toàn bộ (từ 1/7/2026)'],
  rows:[['1','Tổng thu nhập nhận được (lương + ăn trưa + tăng ca)',tot,1],['2','Phần thu nhập được miễn thuế',ex,0,1],['3','Thu nhập chịu thuế = [1] − [2]',tax,0,1],['4','Bảo hiểm bắt buộc người lao động đóng',ins,0,1],['5','Tổng giảm trừ gia cảnh',15.5e6+dep*6.2e6,0,1],['6','Thu nhập tính thuế',ti,0,1],['7','Thuế TNCN phải khấu trừ theo biểu 5 bậc',pit(ti).t,0,1]],
- law:'Luật TNCN 109/2025; mức miễn tiền ăn 730.000 đ và quy tắc tăng ca cần đối chiếu văn bản hiện hành.',lines:['Miễn thuế = min(ăn trưa, 730.000) + (tiền tăng ca − số giờ × lương giờ thường).','Bảo hiểm tính trên lương cơ bản, không tính ăn trưa và tăng ca.']})};
+ law:'Luật TNCN 109/2025; NĐ 253/2026 (ăn trưa miễn đến 1,2 tr/tháng – Điều 8; tăng ca, làm đêm miễn thuế – Điều 26, từ 1/7/2026).',lines:['Miễn thuế = min(ăn trưa, 1.200.000) + toàn bộ tiền tăng ca.','Bảo hiểm tính trên lương cơ bản, không tính ăn trưa và tăng ca.']})};
 
 /* ---------- 4. TNDN nâng cao: điều chỉnh tăng thu nhập, lỗ chuyển ---------- */
 rCit=function(){const rev=P([R(1,3)*1e9,R(5,48)*1e9,R(55,90)*1e9]),pf=R(2000,9000)*1e6,X=R(2000,3000)*1e6,kh=Math.round((X-1.6e9)/10),E=R(5,12)*1e9,I=R(15,50)*1e8,li=Math.max(0,I-Math.round(E*.3)),fn=R(30,120)*1e6,pn=R(20,90)*1e6,ls=P([0,R(3,15)*1e8]),ti=Math.max(0,pf+kh+li+fn+pn-ls),rate=cr(rev);
@@ -2858,7 +3011,7 @@ return`<span class="chw" style="width:${z}px"><svg class="ch" width="${z}" heigh
 ${eye(47)}${eye(73)}<path d="${brL}" stroke="${c.acc==='glass'?'#7b8394':c.hair}" stroke-width="2.8" stroke-linecap="round" fill="none"/><path d="${brR}" stroke="${c.acc==='glass'?'#7b8394':c.hair}" stroke-width="2.8" stroke-linecap="round" fill="none"/>
 <path d="M60 66Q56.5 74 60.5 75.4" stroke="${skD}" stroke-width="2" stroke-linecap="round" fill="none"/><ellipse cx="37" cy="77" rx="6" ry="4" fill="#ff7a8a" opacity=".28"/><ellipse cx="83" cy="77" rx="6" ry="4" fill="#ff7a8a" opacity=".28"/>
 ${teeth}<path d="${mo}" stroke="#8a3f35" stroke-width="2.6" stroke-linecap="round" fill="none"/>${acc}</svg></span>`};
-const bub=(t,txt)=>`<div class="bub"><b>${CHR[t].n}</b><small>${CHR[t].r}</small><p>${txt}</p></div>`;
+window.__ch=ch;const bub=(t,txt)=>`<div class="bub"><b>${CHR[t].n}</b><small>${CHR[t].r}</small><p>${txt}</p></div>`;
 const npcH=(t,m,txt)=>`<div class="npc" data-t="${t}">${ch(t,m)}${bub(t,txt)}</div>`;
 const NL={chk:[['tp','Lô chứng từ này em xem kỹ giúp chị. Cuối tháng cơ quan thuế hay soi đúng mấy khoản thế này.'],['nv','Anh ơi, NCC vừa gửi bộ này. Em thấy có gì đó lấn cấn...']],
 rec:[['nv','Cổng thuế vừa cập nhật dữ liệu. Mình đối chiếu bảng kê nhé!']],vat:[['tp','Sát hạn nộp rồi. Tờ khai này em chốt giúp chị trước giờ nghỉ nhé.']],
@@ -2935,8 +3088,8 @@ window.fin=function(o){const fail=o.sc<=0,st0=S.streak,sh=fail&&S.inv.shield>0,k
 /* ---- sảnh mới ---- */
 const _hub=hub;
 window.hub=function(){_hub();try{up()}catch(e){console.error(e)}};
-function up(){paint();const h=$('.hero');if(!h)return;document.querySelectorAll('#app button.focus,#app button[data-shopbtn]').forEach(e=>e.remove());const l=LV(),pct=l>=5?100:S.xp%250/2.5,C=2*Math.PI*33,w=Math.min(100,S.wk.xp/GOAL*100);
- h.innerHTML=`<div class="hx"><div><div class="rk">${LT[l-1]}${l<5?' · còn '+(250-S.xp%250)+' XP lên cấp':''}</div><h1 class="hero-title">Tax Shield</h1><p class="hero-sub">Mỗi ván một hồ sơ mới. Tính đúng, giữ uy tín, leo hạng.</p></div>
+function up(){paint();const h=$('.hero');if(!h)return;document.querySelectorAll('#app button.focus,#app button[data-shopbtn]').forEach(e=>e.remove());const l=LV(),pct=LP(),C=2*Math.PI*33,w=Math.min(100,S.wk.xp/GOAL*100);
+ h.innerHTML=`<div class="hx"><div><div class="rk">${LT[l-1]}${l<5?' · còn '+LN()+' XP lên cấp':''}</div><h1 class="hero-title">Tax Shield</h1><p class="hero-sub">Mỗi ván một hồ sơ mới. Tính đúng, giữ uy tín, leo hạng.</p></div>
  <svg class="ring" viewBox="0 0 80 80" role="img" aria-label="Cấp ${l}"><circle cx="40" cy="40" r="33" fill="none" stroke="var(--ln)" stroke-width="7"/><circle cx="40" cy="40" r="33" fill="none" stroke="var(--jd)" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C*pct/100} ${C}" transform="rotate(-90 40 40)"/><text x="40" y="48" text-anchor="middle">${l}</text></svg></div>
  <div class="hs"><div class="hero-stat"><b>${S.lg.n} ngày</b><span>Chuyên cần liên tục</span></div>
  <div class="hero-stat"><b>${S.wk.xp}/${GOAL} XP</b><span>Mục tiêu tuần này</span><div class="xb"><i style="width:${w}%"></i></div></div>
@@ -3172,6 +3325,282 @@ new MutationObserver(chk).observe($('#app'),{childList:true,subtree:true});chk()
   pn.style.left=Math.max(4,Math.min(innerWidth-r.width-4,r.left))+'px';
   pn.style.top=Math.max(4,Math.min(innerHeight-r.height-4,r.top))+'px'}});
 })();
-</script></body>
+</script>
+<script>
+/* ===== Màn chơi mới: tổng hợp hồ sơ + trang mở đầu ===== */
+(()=>{
+const fm=v=>Number(v).toLocaleString('vi-VN'),NM=['Cty An Phát','Cty Bình Minh','DN Việt Tiến','Cty Sao Mai','Cty Minh Long','Cty Đại Nam','Cty Hưng Thịnh','Cty Tân Á'],
+T=(cap,h,rows)=>`<div class="tw"><b>${cap}</b><div class="ts"><table><thead><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`,
+show=(t,html)=>{rForm(t);const h=document.querySelector('#app .card h3');h&&h.insertAdjacentHTML('afterend',html)};
+/* 1. GTGT: gộp bảng kê hóa đơn */
+const r1=()=>{const S1=[],B1=[];for(let i=R(3,4);i--;)S1.push({b:R(30,500)*1e6,r:P([8,10,8,10])});S1.push({b:R(50,300)*1e6,r:P([0,-1])});
+ sh([0,0,P([1,2,3]),P([1,2,3]),P([0,1,2,3])]).forEach(fl=>B1.push({b:R(20,400)*1e6,r:P([8,10]),fl}));
+ const ST=['Chuyển khoản, đủ điều kiện','Ghi sai MST người mua','Thanh toán tiền mặt','Phục vụ hoạt động không chịu thuế'],
+ tr=S1.filter(x=>x.r>0),rev=tr.reduce((a,x)=>a+x.b,0),out=tr.reduce((a,x)=>a+x.b*x.r/100,0),ok=B1.filter(x=>!x.fl),inn=ok.reduce((a,x)=>a+x.b*x.r/100,0);
+ show({pill:'Hồ sơ hóa đơn · GTGT',title:'Tổng hợp bảng kê hóa đơn và lập tờ khai',intro:'Đọc bảng kê, loại hóa đơn không đủ điều kiện khấu trừ rồi điền các chỉ tiêu.',chips:['Đầu ra 0% và không chịu thuế: không tính thuế','Đầu vào sai điều kiện bị loại'],
+ rows:[['1','Doanh thu chịu thuế 8% và 10% (bán ra)',rev,0,1],['2','Thuế GTGT đầu ra [35]',out,0,1],['3','Số hóa đơn mua vào bị loại',B1.length-ok.length,0,1],['4','Thuế GTGT đầu vào được khấu trừ [25]',inn,0,1],['5','Thuế GTGT phải nộp [40] (âm nếu còn được khấu trừ)',out-inn,0,1]],
+ law:'Luật GTGT 48/2024: đầu vào khấu trừ khi đúng MST, có chứng từ thanh toán không dùng tiền mặt từ 5 triệu và phục vụ hoạt động chịu thuế (đối chiếu văn bản hiện hành).',lines:['Đầu ra 0% (xuất khẩu) và không chịu thuế không phát sinh thuế đầu ra.','Chỉ cộng thuế đầu vào của hóa đơn đủ điều kiện.']},
+ T('Bảng kê hóa đơn trong kỳ',['HĐ','Loại','Giá chưa thuế','Thuế suất','Tình trạng'],[...S1.map((x,i)=>['B'+(i+1),'Bán ra',fm(x.b),x.r>0?x.r+'%':x.r===0?'0% (xuất khẩu)':'Không chịu thuế','Đã thu tiền']),...B1.map((x,i)=>['M'+(i+1),'Mua vào',fm(x.b),x.r+'%',ST[x.fl]])]))};
+/* 2. TNCN: bảng lương nhiều người */
+const r2=()=>{const E=sh(['Lan','Hùng','Mai','Đạt','Vy','Nam']).slice(0,5).map(n=>({n,s:P([R(10,15),R(18,90),R(18,90),R(25,120)])*1e6,l:P([730000,730000,1e6,1.2e6]),d:R(0,3)}));
+ let a=0,b=0,c=0,k=0,t=0;E.forEach(e=>{const inc=e.s+Math.max(0,e.l-730000),ins=Math.round(Math.min(e.s,46.8e6)*.105),gc=15.5e6+e.d*6.2e6,ti=Math.max(0,inc-ins-gc);a+=inc;b+=ins;c+=gc;if(ti>0)k++;t+=pit(ti).t});
+ show({pill:'Hồ sơ lương · TNCN',title:'Chốt thuế TNCN cho cả bảng lương',intro:'Tính từng người rồi cộng. Thu nhập tính thuế âm thì tính bằng 0.',chips:['Ăn trưa miễn tối đa 730.000 đ','BH 10,5% trên lương cơ bản, trần 46,8 triệu'],
+ rows:[['1','Tổng thu nhập chịu thuế (lương + ăn trưa vượt mức miễn)',a,0,1],['2','Tổng bảo hiểm bắt buộc người lao động đóng',b,0,1],['3','Tổng giảm trừ gia cảnh (15,5 tr + 6,2 tr/người phụ thuộc)',c,0,1],['4','Số người phát sinh thuế phải khấu trừ',k,0,1],['5','Tổng thuế TNCN phải khấu trừ',t,0,1]],
+ law:'Luật TNCN 109/2025; mức miễn ăn trưa và biểu thuế cần đối chiếu văn bản hiện hành.',lines:['Tính riêng từng người theo biểu 5 bậc, người có thu nhập tính thuế ≤ 0 nộp 0 đồng.']},
+ T('Bảng lương tháng',['Nhân viên','Lương cơ bản','Tiền ăn trưa','Người phụ thuộc'],E.map(e=>[e.n,fm(e.s),fm(e.l),e.d])))};
+/* 3. TNDN: lập tờ khai từ sổ sách */
+const r3=()=>{const rev=R(9,40)*1e9,fi=R(20,90)*1e6,oi=R(30,120)*1e6,cg=Math.round(rev*R(55,68)/100/1e6)*1e6,cb=R(300,900)*1e6,fn=R(20,80)*1e6,tl=R(60,240)*1e6,dp=R(80,300)*1e6,qd=R(700,1500)*1e6+fn+tl+dp,cf=R(40,150)*1e6,pn=R(20,90)*1e6,
+ lk=rev+fi+oi-cg-cb-qd-cf-pn,bad=fn+tl+dp+pn,ti=lk+bad,rate=cr(rev);
+ show({pill:'Hồ sơ sổ sách · TNDN',title:'Lập tờ khai quyết toán từ bảng tổng hợp sổ sách',intro:'Xác định lợi nhuận kế toán, cộng lại các khoản chi không được trừ rồi tính thuế.',chips:['Thuế suất theo doanh thu năm','Chi phí không đủ điều kiện phải cộng lại'],
+ rows:[['1','Lợi nhuận kế toán trước thuế',lk,0,1],['2','Tổng chi phí không được trừ',bad,0,1],['3','Thu nhập chịu thuế',ti,0,1],['4','Thuế TNDN phải nộp',Math.round(ti*rate),0,1]],
+ law:'Luật TNDN 67/2025: chi phí không hóa đơn, tiền phạt hành chính, thù lao thành viên không điều hành, dự phòng thiếu hồ sơ không được trừ.',lines:[`Thuế suất ${rate*100}%.`,'Cộng lại các khoản ghi chú "không được trừ" trong sổ sách.']},
+ T('Tổng hợp sổ sách năm',['Khoản mục','Số tiền','Ghi chú'],[['Doanh thu bán hàng (511)',fm(rev),''],['Doanh thu tài chính (515)',fm(fi),''],['Thu nhập khác (711)',fm(oi),''],['Giá vốn (632)',fm(cg),''],['Chi phí bán hàng (641)',fm(cb),''],['Chi phí QLDN (642)',fm(qd),`Gồm: không hóa đơn ${fm(fn)}; thù lao HĐQT không điều hành ${fm(tl)}; dự phòng thiếu hồ sơ ${fm(dp)}`],['Chi phí tài chính (635)',fm(cf),''],['Chi phí khác (811)',fm(pn),'Toàn bộ là tiền phạt vi phạm hành chính']]))};
+/* 4. Thanh tra: truy thu từ dữ liệu HĐĐT */
+const r4=()=>{const M=['Tháng 7','Tháng 8','Tháng 9'].map((m,i)=>{const d=R(300,900)*1e6,x=i===0?R(60,300)*1e6:P([0,R(60,300)*1e6]);return{m,d,e:d+x,x}}),df=M.reduce((a,x)=>a+x.x,0),rt=P([8,10]),tx=Math.round(df*rt/100),fi=Math.round(tx*.2),dy=R(30,300),ln=Math.round(tx*.0003*dy);
+ show({pill:'Truy thu · Thanh tra',title:'Đối chiếu tờ khai với dữ liệu hóa đơn điện tử',intro:`Cơ quan thuế phát hiện chênh lệch. Thuế suất ${rt}%, đã chậm nộp ${dy} ngày. Tính số phải nộp thêm.`,chips:['Phạt khai sai 20% số thuế thiếu','Chậm nộp 0,03%/ngày'],
+ rows:[['1','Tổng doanh thu chưa kê khai',df,0,1],['2','Thuế GTGT thiếu',tx,0,1],['3','Tiền phạt khai sai 20%',fi,0,1],['4','Tiền chậm nộp',ln,0,1],['5','Tổng số tiền phải nộp thêm',tx+fi+ln,0,1]],
+ law:'Điều 16 NĐ 125/2020 (phạt 20%); Luật Quản lý thuế (0,03%/ngày). Đối chiếu văn bản hiện hành.',lines:['Chậm nộp = thuế thiếu × 0,03% × số ngày.','Tổng = thuế thiếu + phạt + chậm nộp.']},
+ T('Doanh thu trên tờ khai và trên hệ thống HĐĐT',['Kỳ','Tờ khai','Hóa đơn điện tử'],M.map(x=>[x.m,fm(x.d),fm(x.e)])))};
+MODES.push(['🗂️','GTGT: Hồ sơ hóa đơn','Gộp bảng kê hóa đơn, loại hóa đơn sai, lập tờ khai.',r1,'MỚI'],['👥','TNCN: Bảng lương nhiều người','Tính riêng từng người rồi tổng hợp khấu trừ.',r2,'MỚI'],['📚','TNDN: Lập tờ khai từ sổ sách','Từ bảng tổng hợp sổ sách đến thuế phải nộp.',r3,'MỚI'],['🔍','Thanh tra: Truy thu từ HĐĐT','Đối chiếu dữ liệu, tính thuế, phạt và tiền chậm nộp.',r4,'MỚI']);
+/* Trang mở đầu gọn */
+const L=$('#landing');if(L){L.innerHTML=`<div class="ld"><div class="lt"><div class="brand"><svg width="30" height="34" viewBox="0 0 44 50" aria-hidden="true"><path d="M22 2 4 9v13c0 12 8 22 18 26 10-4 18-14 18-26V9z" fill="var(--jd)"/><path d="m14 25 6 6 11-13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>Tax Shield</div><span class="pl">Luật thuế 2026</span></div>
+<div class="lc"><h1>Khai thuế không khó, <span>chỉ dễ đi tù</span></h1><p>Lập tờ khai, xử lý hóa đơn, đối đầu thanh tra. Mỗi ván một hồ sơ mới.</p>
+<div class="nm"><input id="ldn" type="text" maxlength="30" placeholder="Nhập tên của bạn để vào chơi" autocomplete="nickname" aria-label="Tên hiển thị"><small id="lde" role="alert"></small></div>
+<button id="lpgo" class="go" onclick="ldStart()">Bắt đầu chơi <i>→</i></button>
+<div class="ldst"><span><b>${MODES.length}</b>chế độ</span><span><b>5</b>độ khó</span><span><b>🏆</b>xếp hạng</span></div>
+<div class="ldp"><span>🧾 Chứng từ</span><span>🧮 Tờ khai</span><span>🛡️ Thanh tra</span></div></div>
+<div class="stg" aria-hidden="true">
+<div class="fc doc"><b>Tờ khai 01/GTGT</b><small>Kỳ 09/2026</small><div class="rw"><span>[35] Thuế đầu ra</span><b>124.800.000</b></div><div class="rw"><span>[25] Đầu vào</span><b>98.350.000</b></div><div class="rw t"><span>[40] Phải nộp</span><b>26.450.000</b></div><em>ĐÃ DUYỆT</em></div>
+<div class="fc cal"><svg viewBox="0 0 90 112"><rect x="2" y="2" width="86" height="108" rx="14" fill="var(--vt)"/><rect x="11" y="11" width="68" height="26" rx="6" fill="#eafff7"/><text x="74" y="31" text-anchor="end" font-size="16" font-weight="800" fill="#0b7d59">26.450</text>${[0,1,2,3].map(r=>[0,1,2].map(c=>`<rect x="${12+c*24}" y="${46+r*16}" width="19" height="11" rx="4" fill="${c==2?'#ffc531':'rgba(255,255,255,.85)'}"/>`).join('')).join('')}</svg></div>
+<div class="fc bil"><b>Hóa đơn GTGT</b><small>Số 0001234 · VAT 8%</small><div class="lb"></div><div class="rw"><span>Cộng</span><b>10.800.000</b></div><svg viewBox="0 0 24 24" width="26" height="26"><circle cx="12" cy="12" r="11" fill="var(--jd)"/><path d="m7 12.5 3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="fc shd"><svg viewBox="0 0 44 50"><path d="M22 2 4 9v13c0 12 8 22 18 26 10-4 18-14 18-26V9z" fill="var(--jd)"/><path d="m14 25 6 6 11-13" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="fc coin"><svg viewBox="0 0 70 60">${[[35,48],[35,38],[35,28]].map(p=>`<ellipse cx="${p[0]}" cy="${p[1]}" rx="26" ry="9" fill="#e6a000"/><ellipse cx="${p[0]}" cy="${p[1]-3}" rx="26" ry="9" fill="#ffc531"/>`).join('')}<text x="35" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#8a5a00">₫</text></svg></div>
+<div class="cast" id="ldc"></div></div>
+<small class="ldf">Đề bài mô phỏng, hãy đối chiếu văn bản hiện hành khi làm thật.</small></div>`;
+ if(window.__ch)$('#ldc').innerHTML=__ch('nv','ok',72)+__ch('tp','ok',84)+__ch('sep','ok',100)+__ch('cb','think',84)}
+{const ni=$('#ldn'),gb=$('#lpgo'),cl=()=>ni.value.trim().replace(/\s+/g,' '),up=()=>{gb.disabled=cl().length<2;$('#lde').textContent=''};
+if(USER)ni.value=USER.name;gb.childNodes[0].nodeValue=USER?'Tiếp tục chơi ':'Bắt đầu chơi ';up();ni.addEventListener('input',up);ni.addEventListener('keydown',e=>{if(e.key==='Enter'&&!gb.disabled)ldStart()});
+window.ldStart=async()=>{const n=cl();if(n.length<2){$('#lde').textContent='Tên cần ít nhất 2 ký tự.';ni.focus();return}
+ if(!USER||USER.name!==n){gb.disabled=true;try{setUser(await api('/join',{name:n}))}catch(e){$('#lde').textContent=e.message;gb.disabled=false;return}}
+ enterApp()};
+const _en=enterApp;enterApp=function(){if(!USER){$('#ldn')&&$('#ldn').focus();return}_en()}}
+hub()})();
+
+</script>
+<script>
+/* ===== HUD tiền phạt + chuyên cần 28 ngày ===== */
+(()=>{
+const cmp=v=>(v=Math.round(v))>=1e9?(v/1e9).toFixed(1).replace('.0','')+' tỷ':v>=1e6?(v/1e6).toFixed(1).replace('.0','')+' tr':v>=1e3?Math.round(v/1e3)+'k':String(v),
+dk=()=>{const d=new Date();return Math.floor((d.getTime()-d.getTimezoneOffset()*6e4)/864e5)};
+const us=$('#userSlot');us&&us.insertAdjacentHTML('beforebegin','<div title="Tổng tiền phạt và truy thu đã bị xử lý"><small>Đã phạt</small><b>💸 <span id="fnd">0</span></b></div>');
+const _hud=hud;hud=function(){_hud();const e=$('#fnd');e&&(e.textContent=cmp(S.fined||0))};
+S.att=S.att&&S.att.d?S.att:{s:dk(),d:[]};
+function cyc(){const A=S.att,t=dk(),res=[];for(let n=0;A.s+28<=t&&n<6;n++){const c=A.d.filter(d=>d>=A.s&&d<A.s+28).length;
+ if(c<28){const l=Math.floor(S.coin/2);S.coin-=l;res.push(`<p>📅 Chu kỳ 28 ngày: bạn chỉ chấm công <b>${c}/28</b> ngày.<br>Sếp trừ <b>50% lương</b>: <b>−${l} 🪙</b>.</p>`)}
+ else{S.coin+=200;res.push('<p>🏅 Chấm công đủ <b>28/28</b> ngày! Thưởng <b>+200 🪙</b>.</p>')}A.s+=28}
+ if(A.s+28<=t)A.s=t;if(res.length){save();hud();setTimeout(()=>typeof modal==='function'?modal('<h2>📅 Tổng kết chấm công</h2>'+res.join(''),'Đã hiểu'):toast('Đã tổng kết chấm công'),700)}}
+function card(){const A=S.att,t=dk(),n=A.d.filter(d=>d>=A.s&&d<A.s+28).length,pass=t-A.s+1,today=A.d.includes(t),left=28-pass,miss=(pass-n-(today?0:1))>0,
+ cells=Array.from({length:28},(_,i)=>{const d=A.s+i;return`<i class="${A.d.includes(d)?'d':d<t?'m':''} ${d===t?'t':''}" title="Ngày ${i+1}${A.t&&A.t[d]?' · '+A.t[d]:''}"></i>`}).join('');
+ return`<div class="att"><div class="ah"><h3>🕒 Bảng chấm công · chu kỳ 28 ngày</h3><b>${n}/28 ngày · còn ${left} ngày</b></div><div class="ag">${cells}</div>
+ <button class="pn ${today?'':'go'}" onclick="punch()" ${today?'disabled':''}>${today?'✅ Đã chấm công lúc '+((A.t||{})[t]||'--:--'):'🕒 Chấm công vào ca hôm nay'}</button>
+ <p class="${miss?'w':''}">${miss?'Chu kỳ này đã có ngày nghỉ: cuối kỳ sẽ bị trừ 50% lương (xu).':'Quên chấm công dù 1 ngày, cuối kỳ bị trừ 50% lương (xu).'}</p></div>`}
+window.punch=()=>{const A=S.att,t=dk();if(A.d.includes(t))return;const d=new Date(),hm=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');A.d.push(t);A.d=A.d.slice(-120);A.t=Object.assign(A.t||{},{[t]:hm});save();const c=document.querySelector('.att');c&&(c.outerHTML=card());toast('🕒 Đã chấm công lúc '+hm)};
+const _hub=hub;hub=function(){cyc();_hub();const a=$('#app'),h=a&&a.querySelector('.hero');if(h)h.insertAdjacentHTML('afterend',card());else if(a&&a.querySelector('.stage'))a.querySelector('.stage').insertAdjacentHTML('afterend',card())};
+if(USER){const p=$('.ld .lc p');p&&(p.textContent='Chào mừng trở lại, '+USER.name+'! Hồ sơ mới đang chờ bạn.')}
+hud();if(USER)hub();
+})();
+
+</script>
+<script>
+/* ===== Thử thách theo mẫu tờ khai thực tế: 01/GTGT, 05/KK-TNCN, 03/TNDN ===== */
+(()=>{
+const fm=v=>Number(v).toLocaleString('vi-VN'),mst=()=>String(R(1000000000,9999999999)),ct=()=>'C26T'+P(['AA','TB','MM'])+'-'+String(R(100,999)).padStart(7,'0'),
+CO=['Công ty TNHH Thương mại Sao Việt','Công ty CP Cơ khí Đại Nam','Công ty TNHH Dịch vụ Minh Long','Công ty CP Thực phẩm Hưng Thịnh','Công ty TNHH Xây dựng Tân Á','Công ty CP Công nghệ Nam Việt'],
+BN=['Cty TNHH An Phát','Cty CP Bình Minh','DN TN Việt Tiến','Cty CP Sao Mai','Cty TNHH Minh Long','Cty CP Đại Nam','Cty TNHH Hưng Thịnh','Cty CP Tân Á'],
+T=(cap,h,rows)=>`<div class="tw"><b>${cap}</b><div class="ts"><table><thead><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`,
+HD=(co,m)=>`<div class="tw"><b>${co}</b><br><small class="mu">MST ${mst()} · ${m}</small></div>`,
+show=(t,html)=>{rForm(t);const h=document.querySelector('#app .card h3');h&&h.insertAdjacentHTML('afterend',html)};
+/* 01/GTGT */
+const g1=()=>{const co=P(CO),nb=sh(BN),S1=sh([10,10,5,0,-1]).map((r,i)=>({r,b:R(30,600)*1e6,n:nb[i]})),ST=['Chuyển khoản, đủ điều kiện','Ghi sai MST người mua','Thanh toán tiền mặt','Dùng cho hoạt động không chịu thuế'],
+ B1=sh([0,0,0,P([1,2,3]),P([1,2,3]),P([0,1,2,3])]).map((fl,i)=>({fl,r:P([5,10,10]),b:R(20,400)*1e6,n:nb[i+1]||nb[0]})),tx=x=>x.r>0?x.b*x.r/100:0,sm=(a,f)=>a.reduce((s,x)=>s+f(x),0),
+ r0=sm(S1.filter(x=>x.r===0),x=>x.b),r5=sm(S1.filter(x=>x.r===5),x=>x.b),r10=sm(S1.filter(x=>x.r===10),x=>x.b),kct=sm(S1.filter(x=>x.r<0),x=>x.b),
+ v23=sm(B1,x=>x.b),v24=sm(B1,tx),v25=sm(B1.filter(x=>!x.fl),tx),v27=r0+r5+r10,v28=r5*.05+r10*.1,v36=v28-v25,pv=P([0,R(10,80)*1e6]);
+ show({pill:'Tờ khai 01/GTGT',title:'Lập tờ khai 01/GTGT từ bảng kê 01-1 và 01-2',intro:'Đọc hai bảng kê, loại hóa đơn không đủ điều kiện khấu trừ rồi điền các chỉ tiêu theo mã trên tờ khai.',chips:['[24] gồm cả thuế được và không được khấu trừ','Các chỉ tiêu [37], [38], [39a], [40b], [42] = 0'],
+ rows:[['[22]','Thuế GTGT còn được khấu trừ kỳ trước chuyển sang',pv,1],['[23]','Giá trị HHDV mua vào (chưa thuế)',v23,0,1],['[24]','Thuế GTGT của HHDV mua vào',v24,0,1],['[25]','Thuế GTGT được khấu trừ kỳ này',v25,0,1],['[27]','Tổng doanh thu HHDV bán ra chịu thuế = [29]+[30]+[32]',v27,0,1],['[28]','Tổng thuế GTGT bán ra = [31]+[33]',v28,0,1],['[34]','Tổng doanh thu HHDV bán ra = [26]+[27]',kct+v27,0,1],['[36]','Thuế GTGT phát sinh trong kỳ = [35]−[25]',v36,0,1],['[40]','Thuế GTGT còn phải nộp trong kỳ',Math.max(0,v36-pv),0,1],['[43]','Thuế GTGT còn được khấu trừ chuyển kỳ sau',Math.max(0,pv-v36),0,1]],
+ law:'Mẫu 01/GTGT (TT 80/2021/TT-BTC, được sửa đổi, bổ sung). [35]=[28]; [40]=[36]−[22] nếu dương, [43]=[22]−[36] nếu âm. Đối chiếu HTKK và văn bản hiện hành.',lines:['Doanh thu 0% điền [29], không chịu thuế điền [26]; hai loại này không phát sinh thuế đầu ra.','Hóa đơn sai MST, trả tiền mặt từ 5 triệu hoặc phục vụ hoạt động không chịu thuế: có trong [23], [24] nhưng không vào [25].']},
+ HD(co,'Kỳ tính thuế: Quý III/2026 · Mẫu 01/GTGT')+T('Bảng kê bán ra 01-1/GTGT',['Số HĐ','Người mua','Doanh thu chưa thuế','Thuế suất','Thuế GTGT'],S1.map(x=>[ct(),x.n,fm(x.b),x.r>0?x.r+'%':x.r===0?'0% (xuất khẩu)':'Không chịu thuế',fm(tx(x))]))+T('Bảng kê mua vào 01-2/GTGT',['Số HĐ','Người bán','Giá trị chưa thuế','Thuế suất','Thuế GTGT','Ghi chú'],B1.map(x=>[ct(),x.n,fm(x.b),x.r+'%',fm(tx(x)),ST[x.fl]])))};
+/* 05/KK-TNCN */
+const g2=()=>{const nm=sh(['Nguyễn Văn Lan','Trần Minh Hùng','Lê Thu Mai','Phạm Quốc Đạt','Võ Khánh Vy','Đặng Hoài Nam']),E=nm.slice(0,5).map(n=>({n,nr:0,s:P([R(10,15),R(18,90),R(18,90),R(25,120)])*1e6,l:P([730000,730000,1e6,1.2e6]),d:R(0,3)}));E.push({n:nm[5],nr:1,s:R(25,70)*1e6,l:0,d:0});
+ let c23=0,t26=0,t29=0,t32=0;E.forEach(e=>{const inc=e.s+Math.max(0,e.l-730000);e.inc=inc;e.ins=e.nr?0:Math.round(Math.min(e.s,46.8e6)*.105);const ti=e.nr?inc:Math.max(0,inc-e.ins-15.5e6-e.d*6.2e6),tax=e.nr?Math.round(inc*.2):pit(ti).t;t26+=inc;if(tax>0){c23++;t29+=inc;t32+=tax}});
+ show({pill:'Tờ khai 05/KK-TNCN',title:'Lập tờ khai khấu trừ thuế TNCN từ bảng lương',intro:'Tính từng người theo đối tượng cư trú hay không cư trú, rồi điền các chỉ tiêu tổng hợp.',chips:['Cá nhân cư trú: biểu 5 bậc sau giảm trừ','Không cư trú: 20% trên thu nhập, không giảm trừ'],
+ rows:[['[21]','Tổng số người lao động',6,0,1],['[22]','Trong đó: cá nhân cư trú có hợp đồng lao động',5,0,1],['[23]','Tổng số cá nhân đã khấu trừ thuế',c23,0,1],['[26]','Tổng TNCT trả cho cá nhân = [27]+[28]',t26,0,1],['[29]','Tổng TNCT trả cho cá nhân thuộc diện phải khấu trừ thuế',t29,0,1],['[32]','Tổng số thuế TNCN đã khấu trừ = [33]+[34]',t32,0,1]],
+ law:'Mẫu 05/KK-TNCN (TT 80/2021/TT-BTC). Giảm trừ 15,5 triệu + 6,2 triệu/người phụ thuộc, biểu thuế theo Luật TNCN 109/2025; đối chiếu văn bản hiện hành.',lines:['Người có thu nhập tính thuế ≤ 0 không khấu trừ: vẫn nằm trong [26] nhưng không nằm trong [23], [29].','Cá nhân không cư trú khấu trừ 20% trên toàn bộ thu nhập chịu thuế.']},
+ HD(P(CO),'Kỳ tính thuế: Tháng 09/2026 · Mẫu 05/KK-TNCN')+T('Bảng tính thuế TNCN theo tháng',['Họ tên','Đối tượng','Thu nhập chịu thuế','BH bắt buộc','Người phụ thuộc'],E.map(e=>[e.n,e.nr?'Không cư trú':'Cư trú, có HĐLĐ',fm(e.inc),fm(e.ins),e.d])))};
+/* 03/TNDN */
+const g3=()=>{const co=P(CO),rev=R(9,40)*1e9,dv=R(100,400)*1e6,fi=dv+R(20,90)*1e6,oi=R(30,120)*1e6,cg=Math.round(rev*R(55,68)/100/1e6)*1e6,cb=R(300,900)*1e6,fn=R(20,80)*1e6,tl=R(60,240)*1e6,dp=R(80,300)*1e6,qd=R(700,1500)*1e6+fn+tl+dp,cf=R(40,150)*1e6,pn=R(20,90)*1e6,
+ a1=rev+fi+oi-cg-cb-qd-cf-pn,b4=fn+tl+dp+pn,b12=a1+b4,c1=b12-dv,lo=P([0,R(2,9)*1e8]),c3=Math.min(lo,c1),c4=c1-c3,rt=cr(rev),c5=Math.round(c4*rt),g=Math.round(c5*P([.6,.8,.95,1.1])/1e6)*1e6;
+ show({pill:'Tờ khai 03/TNDN',title:'Quyết toán thuế TNDN năm 2026 theo mẫu 03/TNDN',intro:'Từ báo cáo kết quả kinh doanh, xác định thu nhập chịu thuế, thu nhập tính thuế và số thuế còn phải nộp.',chips:['Cổ tức từ công ty con: thu nhập miễn thuế [C2]','Chuyển lỗ tối đa bằng thu nhập còn lại'],
+ rows:[['[A1]','Tổng lợi nhuận kế toán trước thuế TNDN',a1,0,1],['[B4]','Các khoản chi không được trừ khi xác định thu nhập chịu thuế',b4,0,1],['[B12]','Tổng thu nhập chịu thuế = [A1]+[B1]−[B8]',b12,0,1],['[C2]','Thu nhập miễn thuế',dv,0,1],['[C3a]','Lỗ được chuyển trong kỳ',c3,0,1],['[C4]','Thu nhập tính thuế = [C1]−[C2]−[C3a]',c4,0,1],['[C5]','Thuế TNDN theo thuế suất phổ thông',c5,0,1],['[H]','Thuế TNDN còn phải nộp (âm là nộp thừa) sau khi trừ số đã tạm nộp',c5-g,0,1]],
+ law:'Mẫu 03/TNDN theo TT 89/2026/TT-BTC (theo LuatVietnam); Luật TNDN 67/2025. Chi phí không hóa đơn, tiền phạt, thù lao thành viên không điều hành, dự phòng thiếu hồ sơ không được trừ. Mã [H] và [G] cần đối chiếu HTKK.',lines:[`Thuế suất ${rt*100}% theo doanh thu năm.`,'Điều chỉnh tăng [B1] gồm các khoản chi không được trừ; [B8] = 0 trong bài này.']},
+ HD(co,'Kỳ tính thuế: Năm 2026 · Mẫu 03/TNDN')+T('Báo cáo kết quả kinh doanh và sổ sách',['Khoản mục','Số tiền','Ghi chú'],[['Doanh thu bán hàng (10)',fm(rev),''],['Doanh thu tài chính (21)',fm(fi),`Gồm cổ tức nhận từ công ty con: ${fm(dv)}`],['Thu nhập khác (31)',fm(oi),''],['Giá vốn (11)',fm(cg),''],['Chi phí bán hàng (25)',fm(cb),''],['Chi phí QLDN (26)',fm(qd),`Gồm: không hóa đơn ${fm(fn)}; thù lao HĐQT không điều hành ${fm(tl)}; dự phòng thiếu hồ sơ ${fm(dp)}`],['Chi phí tài chính (22)',fm(cf),''],['Chi phí khác (32)',fm(pn),'Toàn bộ là tiền phạt vi phạm hành chính'],['Lỗ năm trước còn được chuyển',fm(lo),'Trong thời hạn 5 năm'],['Thuế TNDN đã tạm nộp trong năm',fm(g),'4 quý']]))};
+[['GTGT: Hồ sơ hóa đơn','GTGT: Lập tờ khai 01/GTGT','Từ bảng kê 01-1, 01-2 lập các chỉ tiêu [22]–[43].',g1],['TNCN: Bảng lương','TNCN: Lập tờ khai 05/KK-TNCN','Cư trú, không cư trú, khấu trừ và tổng hợp [21]–[32].',g2],['TNDN: Lập tờ khai','TNDN: Quyết toán 03/TNDN','Từ báo cáo kết quả kinh doanh đến thuế còn phải nộp [A1]–[H].',g3]].forEach(([k,t,d,f])=>{const m=MODES.find(x=>x[1].startsWith(k));if(m){m[1]=t;m[2]=d;m[3]=f}});
+/* Tiêu đề trang mở đầu */
+const h=document.querySelector('.ld h1');if(h)h.innerHTML='<span class="l1"><span class="k1">Khai thuế</span> không khó,</span><br><span class="k2">chỉ dễ <span class="w">đi tù<svg viewBox="0 0 120 10" preserveAspectRatio="none" aria-hidden="true"><path d="M2 6Q12 0 22 6T42 6T62 6T82 6T102 6T118 5" fill="none" stroke="var(--rd)" stroke-width="3" stroke-linecap="round"/></svg></span></span>';
+const lc=document.querySelector('.ld .lc p');if(lc)lc.insertAdjacentHTML('afterend','<span class="stk">⚖️ Đùa thôi! Khai đúng, đủ, đúng hạn thì không sao</span>');
+})();
+
+</script><script>
+/* ===== Tình huống bất ngờ (như ngoài đời) ===== */
+;(()=>{
+const EV=[
+["📞","Số lạ 09xx (tự xưng Cục Thuế)","“Bạn nợ thuế 4,2 triệu, phải chuyển ngay vào tài khoản cá nhân này, nếu không sẽ bị khởi tố!”",["Cúp máy, tự tra cứu nghĩa vụ thuế trên eTax hoặc Cổng thuế điện tử","Chuyển tiền ngay cho khỏi rắc rối","Đọc mã OTP để họ kiểm tra hồ sơ"],"Cơ quan thuế không yêu cầu chuyển tiền vào tài khoản cá nhân hay đọc OTP. Tiền thuế chỉ nộp vào ngân sách nhà nước.","Luật QLT 108/2025"],
+["📱","SMS “HOAN-THUE”","“Bạn được hoàn thuế TNCN 6.800.000đ. Bấm link để nhận: bit.ly/xxxx”",["Không bấm; kiểm tra hoàn thuế trên ứng dụng eTax Mobile chính thức","Bấm link và nhập số thẻ ngân hàng","Chuyển link cho đồng nghiệp cùng nhận"],"Link lạ là chiêu lừa đảo phổ biến. Hồ sơ hoàn thuế chỉ tra cứu qua kênh chính thức của cơ quan thuế.","Luật QLT 108/2025"],
+["💬","Nhà cung cấp vật liệu (Zalo)","“Anh chuyển tiền mặt 25 triệu, em xuất hóa đơn giá thấp hơn, đỡ thuế cho cả hai.”",["Từ chối; chuyển khoản và yêu cầu hóa đơn đúng giá trị giao dịch","Đồng ý, trả tiền mặt cho nhanh","Nhận hóa đơn thấp hơn, phần chênh trả riêng"],"Hóa đơn từ 5 triệu phải thanh toán không dùng tiền mặt mới được khấu trừ GTGT; hóa đơn sai giá trị giao dịch là vi phạm.","Luật GTGT 48/2024; NĐ 181/2025"],
+["💬","Sếp (Zalo, 17:45)","“Em xuất giúp anh 3 hóa đơn cho đối tác A, hàng chưa giao, cuối quý cho đẹp số.”",["Từ chối, chỉ xuất hóa đơn khi có giao dịch thực tế; báo cấp trên nếu bị ép","Xuất trước, giao hàng sau","Xuất nhưng ghi ngày lùi lại"],"Lập hóa đơn khi không có giao dịch thực là hành vi vi phạm nghiêm trọng, có thể bị phạt nặng hoặc truy cứu trách nhiệm hình sự.","NĐ 125/2020 sđ NĐ 310/2025"],
+["🚪","Đoàn kiểm tra tại quầy lễ tân","“Chúng tôi đến kiểm tra thuế đột xuất, cho xem sổ sách ngay.”",["Đề nghị xuất trình quyết định kiểm tra và thẻ công chức, báo giám đốc, phối hợp và lập biên bản","Cho họ vào phòng kế toán tự lục hồ sơ","Từ chối và khóa cửa"],"Kiểm tra phải có quyết định bằng văn bản, thành viên xuất trình thẻ. Người nộp thuế có nghĩa vụ phối hợp, cung cấp hồ sơ đúng thẩm quyền.","Luật QLT 108/2025"],
+["💬","Chủ hộ kinh doanh quen","“Năm nay tiệm chị bán tạp hóa được 1,2 tỷ, có phải nộp thuế không em?”",["Có: GTGT tính trên toàn bộ doanh thu, TNCN tính trên phần vượt 1 tỷ","Không, dưới 2 tỷ mới nộp","Chỉ nộp khi vượt 500 triệu, tính trên phần vượt"],"Ngưỡng miễn thuế là 1 tỷ/năm. Vượt ngưỡng thì GTGT tính trên toàn bộ doanh thu (tỷ lệ đang giảm 20% đến hết 2026), TNCN chỉ tính trên phần vượt.","NĐ 68/2026 sđ NĐ 141/2026"],
+["💬","Phòng nhân sự","“Công ty trả ăn trưa 1,5 triệu/tháng bằng tiền mặt, phần nào bị tính thuế TNCN vậy?”",["300.000 đ (phần vượt 1,2 triệu)","Toàn bộ 1,5 triệu","Không đồng nào"],"Từ 1/7/2026 tiền ăn giữa ca, ăn trưa bằng tiền được miễn đến 1,2 triệu đồng/người/tháng; phần vượt tính vào thu nhập chịu thuế.","NĐ 253/2026 (Điều 8)"],
+["💬","Nhân viên nhà máy","“Em tăng ca 20 giờ tháng này, tiền tăng ca có bị trừ thuế không chị?”",["Được miễn thuế TNCN nếu làm thêm đúng quy định lao động, cần bảng chấm công","Chịu thuế toàn bộ","Chỉ miễn phần chênh so với giờ thường"],"Từ 1/7/2026 tiền lương làm thêm giờ, làm đêm đúng pháp luật lao động được miễn thuế TNCN; đơn vị phải lưu bảng chấm công, bảng lương.","Luật TNCN 109/2025; NĐ 253/2026 (Điều 26)"],
+["📧","Email “thuedientu-gov.xyz”","“Thông báo quyết định thanh tra: tải file đính kèm (.exe) để xem chi tiết.”",["Không mở file; xác minh với thuế quản lý qua kênh chính thức và báo bộ phận IT","Mở file xem cho rõ","Chuyển tiếp cho cả phòng cùng xem"],"Thông báo chính thức đến từ kênh của cơ quan thuế. File .exe từ tên miền lạ có thể là mã độc đánh cắp dữ liệu kế toán.","An toàn thông tin"],
+["📞","Thuế cơ sở (máy bàn)","“Tờ khai quý của công ty nộp chậm 12 ngày, sẽ bị tính tiền chậm nộp.”",["Rà soát, nộp ngay tiền thuế và tiền chậm nộp 0,03%/ngày, giải trình nếu bị xử phạt","Chờ xem họ có nhắc tiếp không","Nộp tờ khai nhưng không nộp tiền"],"Nộp chậm bị tính tiền chậm nộp 0,03%/ngày trên số thuế chậm; càng để lâu số phải nộp càng tăng.","Luật QLT 108/2025"],
+["💬","Bạn làm kinh doanh","“Chia bớt doanh thu sang tên vợ để mỗi người dưới 1 tỷ nhé, chỉ mình với.”",["Không giúp: chia nhỏ doanh thu để né ngưỡng là gian dối; hướng dẫn kê khai đúng","Chỉ cách chia đều hai tài khoản","Khuyên chia sang nhiều người hơn cho chắc"],"Tách doanh thu của cùng một hoạt động kinh doanh để né ngưỡng là hành vi trốn thuế, bị truy thu và xử phạt.","Luật QLT 108/2025"],
+["🚪","Giám đốc","“Anh vừa mua xe 5 chỗ giá 2,4 tỷ đi làm, đưa hết vào chi phí nhé.”",["Chỉ tính khấu hao và khấu trừ GTGT trên phần nguyên giá tối đa 1,6 tỷ","Đưa toàn bộ 2,4 tỷ vào chi phí","Ghi tài sản cá nhân giám đốc nhưng vẫn khấu trừ GTGT"],"Ô tô từ 9 chỗ trở xuống không kinh doanh vận tải: phần nguyên giá vượt 1,6 tỷ không được trừ chi phí và không được khấu trừ GTGT.","Luật TNDN 67/2025; NĐ 181/2025"],
+["📧","Nhân viên vừa nghỉ việc","“Chị cấp giúp em chứng từ khấu trừ thuế TNCN năm nay để em tự quyết toán.”",["Lập và cấp chứng từ khấu trừ đúng số thuế đã khấu trừ","Từ chối vì đã nghỉ việc","Cấp số liệu ước lượng cho nhanh"],"Đơn vị trả thu nhập phải cấp chứng từ khấu trừ khi cá nhân yêu cầu, số liệu phải khớp với thực tế đã khấu trừ và kê khai.","Luật QLT 108/2025"],
+["💬","Kế toán mới","“Em lỡ làm mất hóa đơn đầu vào 45 triệu, giờ làm sao chị?”",["Tra cứu, tải lại hóa đơn điện tử hoặc nhờ nhà cung cấp gửi lại, lập biên bản nếu cần","Bỏ qua, không kê khai hóa đơn đó","Tự lập hóa đơn mới thay thế"],"Hóa đơn điện tử có thể tra cứu, tải lại. Không tự lập hóa đơn thay thế; chi phí và thuế đầu vào cần chứng từ hợp pháp.","Hóa đơn điện tử (NĐ 123/2020 sđ NĐ 70/2025)"],
+["🚪","Khách mua tại cửa hàng công ty","“Chị không cần hóa đơn đâu, khỏi xuất cho nhanh nhé.”",["Vẫn lập hóa đơn đúng thời điểm bán, kể cả khi khách không lấy","Không xuất, ghi sổ tay","Xuất hóa đơn gộp cuối tháng"],"Doanh nghiệp phải lập hóa đơn khi bán hàng, cung cấp dịch vụ, kể cả khi người mua không lấy hóa đơn.","NĐ 123/2020 sđ NĐ 70/2025"]];
+let used=[],idle=0,gap=R(20,35),cnt=0,busy=0,tk,bt;
+const st=document.createElement('style');st.textContent=`#evn{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translate(-50%,-140%);width:min(94vw,460px);z-index:80;display:flex;gap:12px;align-items:center;background:var(--pn);color:var(--tx);border:1px solid var(--ln);border-left:6px solid var(--rd);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow-lg);transition:transform .35s;overflow:hidden}
+#evn.on{transform:translate(-50%,0)}#evn>i{font-style:normal;font-size:28px;animation:evr .5s 3}@keyframes evr{25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
+#evn div{flex:1;min-width:0;font-size:13px}#evn b{display:block}#evn span{color:var(--mu);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#evn button,.evc button.o{cursor:pointer;border:0;border-radius:99px;background:var(--rd);color:#fff;font-weight:800;padding:8px 16px}
+#evn em{position:absolute;left:0;bottom:0;height:3px;background:var(--rd);width:100%;transition:width 15s linear}
+#evm{position:fixed;inset:0;z-index:85;background:rgba(5,12,10,.6);display:grid;place-items:center;padding:14px}
+.evc{width:min(100%,480px);background:var(--pn);color:var(--tx);border-radius:22px;padding:20px;box-shadow:var(--shadow-lg);max-height:92vh;overflow:auto}
+.evc h3{margin:0 0 2px;font-size:18px}.evc small{color:var(--mu)}.evc .bb{background:var(--bg);border:1px solid var(--ln);border-radius:14px;padding:12px;margin:10px 0;line-height:1.5}
+.evc .tb{height:6px;border-radius:9px;background:var(--ln);overflow:hidden;margin-bottom:10px}.evc .tb i{display:block;height:100%;background:var(--gd);width:100%;transition:width 1s linear}
+.evc button.o{display:block;width:100%;text-align:left;margin:7px 0;background:var(--bg);color:var(--tx);border:1px solid var(--ln);font-weight:600;border-radius:12px;padding:11px 14px}
+.evc button.o:hover{border-color:var(--jd)}.evc .law{display:inline-block;background:var(--bg);border:1px solid var(--ln);border-radius:99px;padding:2px 10px;font-size:12px;color:var(--mu)}
+.evc .go{width:100%;margin-top:12px;padding:12px;border:0;border-radius:12px;background:var(--jd);color:#fff;font-weight:800;cursor:pointer}`;document.head.append(st);
+const rm=()=>{['evn','evm'].forEach(i=>{const e=document.getElementById(i);e&&e.remove()})},end=()=>{clearTimeout(bt);clearInterval(tk);busy=0;idle=0;gap=R(60,110);cnt++};
+function pick(){used.length>=EV.length&&(used=[]);let k;do k=R(0,EV.length-1);while(used.includes(k));used.push(k);return EV[k]}
+function notify(e){busy=1;rm();const n=document.createElement('div');n.id='evn';n.innerHTML=`<i>${e[0]}</i><div><b>${e[1]}</b><span>${e[2]}</span></div><button>Xem</button><em></em>`;document.body.append(n);
+ requestAnimationFrame(()=>{n.classList.add('on');n.querySelector('em').style.width='0'});
+ n.querySelector('button').onclick=()=>{clearTimeout(bt);n.remove();open(e)};
+ bt=setTimeout(()=>{n.remove();toast('⏰ Bạn bỏ lỡ một thông báo, ngoài đời hạn chót không chờ ai.');end()},15000)}
+function open(e){const m=document.createElement('div');m.id='evm';let t=30;const now=new Date().toTimeString().slice(0,5),ok=e[3][0],os=sh([...e[3]]);
+ m.innerHTML=`<div class="evc"><small>${e[0]} Tình huống bất ngờ · ${now}</small><h3>${e[1]}</h3><div class="bb">${e[2]}</div><div class="tb"><i></i></div><div class="os">${os.map(o=>`<button class="o">${o}</button>`).join('')}</div></div>`;document.body.append(m);
+ const c=m.querySelector('.evc'),bar=c.querySelector('.tb i');
+ const done=(res,sel)=>{clearInterval(tk);let h;const x=Math.max(10,LV()*5+10);
+  if(res==1){S.xp+=x;S.coin+=5;h=`<h3>✅ Xử lý đúng!</h3><p>+${x} XP · +5 🪙</p>`;S.ev=S.ev||{ok:0,bad:0};S.ev.ok++}
+  else if(res==0){S.hp>1&&S.hp--;S.fined=(S.fined||0)+2e6;h=`<h3>❌ Xử lý sai</h3><p>Uy tín −1 · bị phạt/thiệt hại tạm tính 2.000.000 đ</p>`;S.ev=S.ev||{ok:0,bad:0};S.ev.bad++}
+  else h=`<h3>⏳ Không kịp phản hồi</h3><p>Ngoài đời, chần chừ cũng là một quyết định.</p>`;
+  c.innerHTML=`${h}<div class="bb"><b>Cách xử lý đúng:</b> ${ok}<br><br>${e[4]}</div><span class="law">${e[5]}</span><button class="go">Tiếp tục chơi</button>`;
+  c.querySelector('.go').onclick=()=>{m.remove()};save();hud();end()};
+ c.querySelectorAll('.o').forEach(b=>b.onclick=()=>done(b.textContent===ok?1:0));
+ tk=setInterval(()=>{t--;bar.style.width=t/30*100+'%';t<=0&&done(-1)},1000)}
+setInterval(()=>{if(busy||cnt>=8)return;const mn=document.querySelector('main');
+ if(!mn||mn.inert||!document.querySelector('.gc')||document.querySelector('.mdl,#qsh,#evm'))return;
+ if(++idle>=gap)notify(pick())},1000);
+window.evFire=()=>notify(pick());
+})();
+</script>
+<script id="boss-js">
+/* ===== BOSS CUỐI: PHÒNG HỎI CUNG (Công an kinh tế) ===== */
+;(()=>{
+const CASES=[["Mua bán trái phép hóa đơn","Cơ quan điều tra phát hiện công ty dùng hóa đơn đầu vào của doanh nghiệp “ma” để khấu trừ thuế."],["Kê khai thiếu doanh thu","Dữ liệu ngân hàng và hóa đơn điện tử của khách hàng không khớp với doanh thu công ty đã kê khai."],["Hai bộ sổ, chi phí khống","Chi phí lương và vận chuyển được ghi nhận nhưng không có chứng từ thực tế."]];
+const PH=["","VÒNG 1 · Lai lịch và quyền của bạn","VÒNG 2 · Đối chất chứng cứ","VÒNG 3 · Bẫy mâu thuẫn"];
+/* [vòng, câu hỏi, đáp án (đúng đứng đầu; hoặc hàm(A)), giải thích, căn cứ] */
+const Q=[
+[1,"Anh/chị được mời làm việc vì nghi vấn vi phạm về thuế. Anh/chị hiểu quyền của mình thế nào?",["Được trình bày ý kiến, nhờ người bào chữa/luật sư, không bị ép nhận tội; đồng thời phải khai trung thực","Chưa lập biên bản nên khai gì cũng không sao","Từ chối làm việc rồi rời đi như chưa có chuyện gì","Chỉ trả lời qua điện thoại và không ký văn bản nào"],"Bạn có quyền bào chữa và quyền không bị buộc nhận tội, nhưng lời khai gian dối luôn gây bất lợi. Trung thực và có chứng từ là chiến lược an toàn nhất.","BLTTHS 2015 · quyền bào chữa"],
+[1,"Ai là người ký các tờ khai thuế của công ty trong kỳ bị nghi vấn?",["Nêu đúng chức danh người ký, phạm vi ủy quyền và xuất trình giấy ủy quyền","Nói không biết ai ký để tránh trách nhiệm","Nhận hết trách nhiệm dù không phải mình làm","Nói mọi việc do sếp bảo nên mình không liên quan"],"Trách nhiệm gắn với vai trò và ủy quyền thực tế. Né tránh hoặc nhận bừa đều làm hồ sơ mâu thuẫn.","Luật Quản lý thuế · trách nhiệm người nộp thuế"],
+[1,"Sổ sách, chứng từ kế toán của công ty được lưu ở đâu và tối thiểu bao lâu?",["Lưu tại đơn vị; chứng từ dùng ghi sổ, sổ kế toán, BCTC năm tối thiểu 10 năm; sẵn sàng xuất trình","Đã hủy sau 2 năm vì hết hạn","Để ở nhà riêng nên không cần đưa","Chỉ có bản mềm trên điện thoại cá nhân, có thể đã xóa"],"Tài liệu kế toán phải lưu trữ đủ thời hạn. Hủy sớm hoặc không xuất trình được sẽ bị coi là cố tình che giấu.","Luật Kế toán · thời hạn lưu trữ"],
+[1,"Theo quy định, hóa đơn bán hàng hóa và cung cấp dịch vụ được lập vào thời điểm nào?",["Hàng hóa: khi chuyển giao quyền sở hữu/sử dụng; dịch vụ: khi hoàn thành dịch vụ, kể cả chưa thu tiền","Chỉ khi khách trả tiền mới lập","Cuối quý lập bù một lần cho gọn","Lập khi sếp cần làm đẹp số liệu"],"Thời điểm lập hóa đơn gắn với việc giao hàng/hoàn thành dịch vụ, không phụ thuộc thu tiền hay ý muốn của lãnh đạo.","NĐ 123/2020 · thời điểm lập hóa đơn"],
+[1,"Công ty từng nhiều lần bị xử lý về thuế. Anh/chị giải thích thế nào?",["Trình bày trung thực nguyên nhân sai sót, cách đã khắc phục và xuất trình chứng từ nộp phạt","Do cơ quan thuế cố tình nhắm vào công ty","Không nhớ, tất cả do kế toán cũ","Chuyện cũ, từ chối trả lời mọi câu liên quan"],"Tái phạm là tình tiết bất lợi. Cách tốt nhất là chứng minh đã khắc phục bằng chứng từ cụ thể, không đổ lỗi.","Luật Quản lý thuế · xử phạt tái phạm"],
+[2,"Chi phí {A} đ của công ty dựa trên hóa đơn của Công ty Z, hiện đã bỏ trốn khỏi địa chỉ đăng ký. Anh/chị đã kiểm tra giao dịch chưa?",["Trình bày hợp đồng, nghiệm thu, giao nhận và chứng từ thanh toán qua ngân hàng; nếu thiếu thì thừa nhận và đề nghị điều chỉnh","Hóa đơn có mã của cơ quan thuế nên chắc chắn hợp pháp","Lỗi thuộc nhà cung cấp, mình không cần kiểm tra","Mua hộ người khác nên không biết giao dịch"],"Hóa đơn có mã chỉ chứng minh hóa đơn được cấp, không chứng minh giao dịch có thật. Cần đủ hợp đồng, giao nhận, thanh toán.","Luật GTGT/TNDN · điều kiện khấu trừ, chi phí hợp lý"],
+[2,"Bảng lương ghi 12 người nhưng chỉ đóng bảo hiểm cho 4 người. Anh/chị giải thích thế nào?",["Nêu rõ số còn lại là cộng tác viên/thời vụ, xuất trình hợp đồng, chứng từ chi trả và chứng từ khấu trừ TNCN","Bảng lương chỉ là bản nháp tham khảo, không có giá trị","Nhân viên tự đóng, công ty không quản","Không nhớ, để hỏi kế toán cũ"],"Chi phí lương chỉ hợp lý khi có hợp đồng và chứng từ chi trả thật. Nói bảng lương là bản nháp làm nghi vấn lương ảo nặng thêm.","Luật TNDN, TNCN · chi phí có chứng từ"],
+[2,"Điều tra viên thấy trên máy anh/chị có hai file: “Sổ thật” và “Sổ nộp thuế”. Anh/chị làm gì?",["Không xóa/sửa, giải thích mục đích từng file, hợp tác giao nộp, nếu có chênh lệch thì thừa nhận và đề nghị khai bổ sung","Xóa ngay file khi điều tra viên chưa để ý","Nói file của người khác, mình không biết mật khẩu","Thay bằng bản mới cho khớp rồi nộp"],"Hủy, sửa, giấu tài liệu kế toán bị nghiêm cấm và biến lỗi kê khai thành hành vi cản trở, có thể tăng nặng trách nhiệm.","Luật Kế toán · các hành vi bị nghiêm cấm"],
+[2,"Công ty chưa kê khai doanh thu {A} đ (chưa gồm thuế) của hàng hóa thông thường, thuế suất GTGT ưu đãi 8%. Số thuế GTGT đầu ra bị thiếu là bao nhiêu?",A=>[f(Math.round(A*.08))+" đ",f(Math.round(A*.10))+" đ",f(Math.round(A*.05))+" đ",f(Math.round(A*.08/1.08))+" đ"],"Doanh thu chưa gồm thuế nên thuế đầu ra = doanh thu × 8%. Chia cho 1,08 chỉ đúng khi doanh thu đã bao gồm thuế; 10% là mức chưa giảm.","Luật GTGT · thuế suất ưu đãi 8% (NQ 204/2025)"],
+[2,"Người mua khai đã đưa 30 triệu tiền mặt để công ty xuất hóa đơn giá thấp hơn. Anh/chị xác nhận không?",["Trả lời đúng sự thật theo chứng từ; nếu có khoản này thì khai rõ, không phủ nhận vô căn cứ, đề nghị đối chất","Phủ nhận tất cả dù biết có","Nói người mua nói dối và dọa họ","Đề nghị hai bên dàn xếp riêng ngoài cơ quan"],"Đối chất dựa trên chứng cứ. Phủ nhận sai sự thật hoặc đe dọa người làm chứng gây hậu quả nặng hơn chính lỗi ban đầu.","BLTTHS 2015 · đối chất; xuất hóa đơn sai giá trị"],
+[3,"Lúc nãy anh/chị khai không ký tờ khai, nhưng tờ khai có chữ ký số của anh/chị. Giải thích?",["Thừa nhận nhầm/điều chỉnh lời khai, nêu ai quản lý chữ ký số và ủy quyền, không bịa thêm","Khẳng định chữ ký số bị đánh cắp dù không có bằng chứng","Nói lời khai lúc nãy vẫn đúng và tờ khai là giả","Im lặng rồi bỏ ra ngoài"],"Mâu thuẫn lời khai là cái bẫy kinh điển. Sửa sớm, nêu căn cứ thật thì được đánh giá hợp tác; bịa thêm sẽ mất uy tín hoàn toàn.","BLTTHS 2015 · khai báo trung thực"],
+[3,"Cơ quan điều tra ra quyết định thu giữ máy tính và điện thoại. Anh/chị xử lý thế nào?",["Hợp tác theo quyết định hợp pháp, yêu cầu lập biên bản niêm phong, ký xác nhận, không xóa dữ liệu","Đổi mật khẩu và khóa máy từ xa","Reset máy về cài đặt gốc","Nói đã quên mật khẩu"],"Yêu cầu biên bản niêm phong là quyền chính đáng. Xóa, khóa hay reset dữ liệu là dấu hiệu cản trở, dễ bị khởi tố thêm.","BLTTHS 2015 · thu giữ đồ vật, tài liệu"],
+[3,"Anh/chị có nộp lại tiền thuế để được miễn trách nhiệm không?",["Chủ động nộp đủ thuế, tiền phạt, tiền chậm nộp là tình tiết giảm nhẹ quan trọng, nhưng không tự động miễn trách nhiệm hình sự; nêu rõ nguồn tiền hợp pháp","Nộp xong chắc chắn không bị xử lý hình sự","Không nộp vì nộp là nhận tội","Nhờ người quen lo để nộp ít hơn"],"Khắc phục hậu quả giúp giảm nhẹ và có thể được xem xét trong trường hợp luật cho phép. Không phải tấm vé miễn trừ, và “chạy án” là vi phạm mới.","BLHS · khắc phục hậu quả, tình tiết giảm nhẹ"],
+[3,"Cuối buổi làm việc, điều tra viên đưa biên bản ghi lời khai. Anh/chị làm gì?",["Đọc kỹ toàn bộ, yêu cầu sửa chỗ ghi sai/ghi thêm ý kiến rồi mới ký; có quyền không ký và ghi rõ lý do","Ký ngay cho nhanh về","Ký trắng các trang để điều tra viên điền","Chụp biên bản đăng mạng xã hội để phản đối"],"Biên bản là chứng cứ. Không bao giờ ký trước khi đọc, không ký trang trắng, và đưa tài liệu vụ án lên mạng có thể vi phạm quy định bảo mật.","BLTTHS 2015 · biên bản lấy lời khai"],
+[3,"Ở mức nào việc trốn thuế bị xem xét truy cứu trách nhiệm hình sự (cá nhân)?",["Từ 100 triệu đồng; hoặc dưới 100 triệu nhưng đã bị xử phạt hành chính về trốn thuế (hoặc đã bị kết án) mà còn vi phạm","Chỉ khi từ 1 tỷ đồng trở lên","Bất kỳ số tiền nào, kể cả chậm nộp 1 ngày","Chỉ khi doanh nghiệp bỏ trốn"],"Đây chính là lý do tái phạm nguy hiểm: số tiền dưới 100 triệu vẫn có thể bị xử lý hình sự nếu trước đó đã bị phạt hành chính về trốn thuế. Chậm nộp thông thường không phải trốn thuế.","Điều 200 BLHS · tội trốn thuế"]];
+let B=null,BUSY=0,ST=null;
+const $$=s=>document.getElementById(s);
+const css=document.createElement('style');css.textContent=`
+#bsm{position:fixed;inset:0;z-index:95;background:radial-gradient(ellipse at 50% -10%,#22305a,#070b16 68%);color:#e9eef9;overflow:auto;padding:14px;display:flex;justify-content:center}
+#bsm *{box-sizing:border-box}.bw{width:min(100%,580px);padding-bottom:30px}
+.bt{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;color:#ffb3b6;font-weight:800;margin:4px 0 10px}.bt i{width:9px;height:9px;border-radius:50%;background:#ff4b55;animation:bblink 1.2s infinite}
+@keyframes bblink{50%{opacity:.2}}
+.bh{display:flex;gap:12px;align-items:center;background:#131b33;border:1px solid #2b3a66;border-radius:18px;padding:12px}
+.bf{width:66px;height:66px;flex:none;border-radius:18px;display:grid;place-items:center;font-size:38px;background:#1f2b4d;border:2px solid #ff5d63;animation:bpu 2.4s infinite}
+@keyframes bpu{50%{box-shadow:0 0 0 8px rgba(255,93,99,.12)}}
+.bh b{display:block;font-size:15px}.bh small{color:#9fb0d6}
+.bm{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin:10px 0}
+.bb{height:11px;border-radius:9px;background:#26304a;overflow:hidden}.bb i{display:block;height:100%;background:linear-gradient(90deg,#ffb35c,#ff4b55);transition:width .6s}
+.bs{font-size:12px;color:#9fb0d6;margin-bottom:4px}
+.bp{display:inline-block;background:#2a2452;color:#cfc6ff;border-radius:99px;padding:3px 12px;font-size:12px;font-weight:800;margin:6px 0}
+.bd{background:#0f1730;border:1px dashed #3c4d80;border-radius:14px;padding:12px;margin:10px 0;line-height:1.55;font-size:14px}
+.bq{background:#1a2445;border:1px solid #33437a;border-left:5px solid #ff5d63;border-radius:14px;padding:14px;margin:10px 0;line-height:1.55;font-size:15px}
+.btm{height:6px;border-radius:9px;background:#26304a;overflow:hidden;margin:8px 0}.btm i{display:block;height:100%;background:#3fe0aa;width:100%;transition:width 1s linear}
+.bo{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 14px;border-radius:12px;border:1px solid #33437a;background:#121a35;color:#e9eef9;font:inherit;font-size:14px;line-height:1.45;cursor:pointer}
+.bo:hover:not(:disabled){border-color:#8fa4ff}.bo:focus-visible{outline:3px solid #8fa4ff}.bo.y{border-color:#3fe0aa;background:#0f3a2e}.bo.n{border-color:#ff5d63;background:#3d1620}.bo:disabled{cursor:default;opacity:.95}
+.bg{display:block;width:100%;margin-top:12px;padding:13px;border:0;border-radius:12px;background:#ff5d63;color:#fff;font:inherit;font-weight:800;cursor:pointer}.bg.s{background:#2b3a66}
+.bfb{background:#101830;border:1px solid #33437a;border-radius:14px;padding:13px;margin-top:10px;line-height:1.55;font-size:14px}
+.bl{display:inline-block;background:#1c2748;border:1px solid #33437a;border-radius:99px;padding:2px 10px;font-size:12px;color:#9fb0d6;margin-top:6px}
+#bsm.sk .bw{animation:bsk .4s}@keyframes bsk{20%{transform:translateX(-8px)}60%{transform:translateX(8px)}}
+@media(prefers-reduced-motion:reduce){#bsm *{animation:none!important;transition:none!important}}
+.bsc{border:2px solid var(--vt,#8b7cff)}.bsc h2{margin:0 0 4px}`;document.head.append(css);
+const pickN=(ph,n)=>sh(Q.filter(q=>q[0]===ph)).slice(0,n);
+const txt=(s)=>s.replace('{A}',f(B.A));
+function shell(inner){let m=$$('bsm');if(!m){m=document.createElement('div');m.id='bsm';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');m.setAttribute('aria-label','Phòng hỏi cung');document.body.append(m);document.body.style.overflow='hidden'}m.innerHTML='<div class="bw">'+inner+'</div>';m.scrollTop=0;return m}
+const head=()=>`<div class="bt"><i></i>PHÒNG HỎI CUNG · CƠ QUAN CẢNH SÁT ĐIỀU TRA (MÔ PHỎNG)</div>
+<div class="bh"><div class="bf">🕵️</div><div><b>Điều tra viên Trưởng Hải</b><small>Hỏi ngắn, im lặng lâu, và luôn nhớ lời khai trước của bạn.</small></div></div>
+<div class="bm"><div><div class="bs">Mức nghi vấn của điều tra viên: <b>${B.sus}%</b></div><div class="bb"><i style="width:${B.sus}%"></i></div></div><div title="Bình tĩnh" aria-label="Bình tĩnh ${B.calm} trên 3" style="font-size:20px">${'🧠'.repeat(B.calm)}${'💤'.repeat(3-B.calm)}</div></div>`;
+window.bossStart=function(dead){if(BUSY)return;BUSY=1;const cs=P(CASES);
+ B={dead:!!dead,cs,co:P(COMP),A:R(60,400)*1e6,qs:[...pickN(1,3),...pickN(2,3),...pickN(3,2)],i:0,sus:70,calm:3,ok:0,wr:0};
+ const mn=document.querySelector('main');mn&&(mn.inert=true);tone&&tone([[196,0,.2],[165,.2,.3]]);
+ const why=B.dead?`Bạn đã <b>5 lần vi phạm</b> và bị chuyển hồ sơ sang cơ quan điều tra. Đây là buổi làm việc quyết định: thoát ra hoặc bị khởi tố.`:`Bạn tự nguyện thử thách phòng hỏi cung. Thua sẽ mất 1 ❤️ nhưng không hết game.`;
+ shell(head()+`<div class="bd"><b>📁 Hồ sơ vụ án</b><br>Đơn vị: ${B.co}<br>Nghi vấn: <b>${cs[0]}</b><br>${cs[1]}<br>Số tiền nghi vấn: <b>${f(B.A)} đ</b><br><br>${why}</div>
+ <div class="bd">Luật chơi: <b>8 câu / 3 vòng</b>, mỗi câu 25 giây. Sai hoặc hết giờ: nghi vấn +15%, mất 1 🧠. Mất hết 3 🧠 là bị khởi tố. Sai tối đa 1 câu để được <b>đình chỉ điều tra</b>, sai 2 câu chỉ thoát bằng <b>xử lý hành chính</b>.</div>
+ <button class="bg" id="bgo">Bước vào phòng hỏi cung ▶</button>`);$$('bgo').onclick=ask;$$('bgo').focus()};
+function ask(){clearInterval(ST);const q=B.qs[B.i],o=typeof q[2]==='function'?q[2](B.A):q[2];B.ans=o[0];B.opts=sh(o.slice());B.lock=0;B.t=25;
+ const first=B.i===0||B.qs[B.i-1][0]!==q[0];
+ shell(head()+`<span class="bp">${PH[q[0]]} · Câu ${B.i+1}/8</span>${first&&q[0]>1?'<div class="bs">Điều tra viên lật sang tập hồ sơ khác…</div>':''}
+ <div class="bq">🕵️ “${txt(q[1])}”</div><div class="btm"><i id="btb"></i></div>
+ <div id="bos">${B.opts.map((t,k)=>`<button class="bo" data-k="${k}">${t}</button>`).join('')}</div><div id="bfb" aria-live="polite"></div>`);
+ document.querySelectorAll('.bo').forEach(b=>b.onclick=()=>ans(+b.dataset.k));
+ ST=setInterval(()=>{B.t--;const e=$$('btb');e&&(e.style.width=B.t/25*100+'%');B.t<=0&&ans(-1)},1000)}
+function ans(k){if(B.lock)return;B.lock=1;clearInterval(ST);const q=B.qs[B.i],ok=k>=0&&B.opts[k]===B.ans;
+ if(ok){B.sus=Math.max(0,B.sus-12);B.ok++;tone([[523,0,.12],[784,.1,.22]])}else{B.sus=Math.min(100,B.sus+15);B.calm--;B.wr++;tone([[196,0,.25],[147,.15,.3]]);const m=$$('bsm');m.classList.add('sk');setTimeout(()=>m.classList.remove('sk'),450)}
+ document.querySelectorAll('.bo').forEach((b,i)=>{b.disabled=true;if(B.opts[i]===B.ans)b.classList.add('y');else if(i===k)b.classList.add('n')});
+ const over=B.calm<=0||B.i>=7;
+ $$('bfb').innerHTML=`<div class="bfb"><b>${ok?'✅ Khai chuẩn, điều tra viên ghi nhận.':(k<0?'⏳ Im lặng quá lâu, bị coi là thiếu hợp tác.':'❌ Lời khai bất lợi, điều tra viên nhíu mày.')}</b><br>${q[3]}<br><span class="bl">⚖️ ${q[4]}</span></div>
+ <button class="bg" id="bnx">${over?'Nghe kết luận ▶':'Câu tiếp theo ▶'}</button>`;
+ $$('bnx').onclick=()=>over?end():(B.i++,ask());$$('bnx').focus();$$('bnx').scrollIntoView({block:'nearest'})}
+function end(){clearInterval(ST);const lose=B.calm<=0,full=!lose&&B.wr<=1;let tier,h,body,btn;
+ if(lose){tier=0;h='⛓️ Quyết định khởi tố bị can (mô phỏng)';body=B.dead?`Bạn mất bình tĩnh và khai mâu thuẫn. Cơ quan điều tra ra quyết định khởi tố. <b>GAME OVER</b>. XP và huy hiệu vẫn được giữ.`:`Bạn mất bình tĩnh trong phòng hỏi cung. Mất 1 ❤️ uy tín, hãy ôn lại rồi thử lại.`;btn=B.dead?'Làm lại nhiệm kỳ mới':'Về sảnh'}
+ else if(full){tier=2;h='🛡️ Đình chỉ điều tra: không đủ căn cứ';body=`Lời khai nhất quán, chứng từ đầy đủ. Bạn thoát khỏi vụ án.`;btn='Trở lại làm việc'}
+ else{tier=1;h='📝 Chuyển xử lý vi phạm hành chính';body=`Không đủ căn cứ hình sự, nhưng vẫn bị truy thu và xử phạt hành chính${B.dead?' (+50.000.000 đ)':''}.`;btn='Trở lại làm việc'}
+ let g='';const xp=[0,80+LV()*10,150+LV()*30][tier];
+ if(tier>0){S.xp+=xp;S.coin+=[0,40,120][tier];if(tier===2)badge('cs');S.boss=S.boss||{w:0,l:0};S.boss.w++;g=`<div class="bd">🎁 +${xp} XP · +${[0,40,120][tier]} 🪙${B.dead?` · Hồi uy tín còn ${tier===2?3:2} ❤️`:''}</div>`;
+  if(B.dead){S.hp=tier===2?3:2;S.help=Math.max(S.help||0,1);if(tier===1)S.fined=(S.fined||0)+50e6}else if(tier===2&&S.hp<5)S.hp++}
+ else{S.boss=S.boss||{w:0,l:0};S.boss.l++;if(!B.dead)S.hp=Math.max(1,S.hp-1)}
+ shell(head().replace(/Mức nghi vấn[^<]*<b>\d+%<\/b>/,`Mức nghi vấn cuối: <b>${B.sus}%</b>`)+`<div class="bfb"><h2 style="margin:0 0 6px">${h}</h2>${body}<br><br>Bạn trả lời đúng ${B.ok}/8 câu.</div>${g}<button class="bg" id="bfin">${btn}</button>`);
+ $$('bfin').onclick=()=>{const dead=B.dead&&lose;$$('bsm').remove();document.body.style.overflow='';const mn=document.querySelector('main');mn&&(mn.inert=false);BUSY=0;
+  if(dead){S.hp=5;S.help=3;S.streak=0;S.fined=0}
+  try{save()}catch(e){}hud();hub()};$$('bfin').focus()}
+/* Kích hoạt khi 5 vi phạm (hết ❤️) */
+const _fin=fin;fin=function(o){_fin(o);if(S.hp<=0&&!BUSY)setTimeout(()=>window.bossStart(1),1400)};
+/* Thẻ Boss ở sảnh */
+BADGES.cs=['🚔','Qua ải hỏi cung'];
+const _hub=hub;hub=function(){_hub();const a=$('#app');if(!a||a.querySelector('.bsc'))return;const h=a.querySelector('.hero'),r=S.boss||{w:0,l:0};
+ const c=`<div class="card bsc"><h2>🚔 Trùm cuối: Phòng hỏi cung</h2><p>Công an kinh tế hỏi cung về sổ sách, hóa đơn và lời khai của bạn. 8 câu, 3 vòng, sai tối đa 2 câu. Nếu bạn vi phạm 5 lần, trận này sẽ tự động bắt đầu.</p><p><small>Khuyến nghị cấp 3+ · Thắng ${r.w} · Thua ${r.l}</small></p><button onclick="bossStart()">Đối đầu điều tra viên</button></div>`;
+ h?h.insertAdjacentHTML('afterend',c):a.insertAdjacentHTML('afterbegin',c)};
+})();
+</script>
+
+</body>
 
 </html>
