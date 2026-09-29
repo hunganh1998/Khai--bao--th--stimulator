@@ -70,6 +70,7 @@
         }
         
         body {
+            overflow-wrap: break-word;
             margin: 0;
             min-height: 100%;
             background: var(--bg);
@@ -3071,7 +3072,7 @@ const HEART=on=>`<svg viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 
 const _hud=hud;window.hud=function(){_hud();const e=$('#hp');if(e)e.innerHTML='<span class="hp" aria-label="Uy tín '+S.hp+'/5">'+[0,1,2,3,4].map(i=>HEART(i<S.hp)).join('')+'</span>'};
 /* ---- tiến trình lưu ---- */
 const day=d=>d.toDateString(),wkKey=()=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));return day(d)};
-S.inv=Object.assign({time:0,x2:0,keep:0,shield:0},S.inv);S.lg=S.lg||{last:'',n:0};S.ms=S.ms||{};
+S.inv=Object.assign({time:0,x2:0,keep:0,shield:0},S.inv);S.ar=Object.assign({x2:0,keep:0,shield:0},S.ar);S.lg=S.lg||{last:'',n:0};S.ms=S.ms||{};
 if((S.wk||{}).k!==wkKey())S.wk={k:wkKey(),xp:0};
 const GOAL=300,RW=[20,30,40,50,60,80,150];
 /* ---- modal, pháo giấy ---- */
@@ -3079,7 +3080,7 @@ function modal(h,btn){const m=document.createElement('div');m.className='mdl';m.
 function confetti(n=70){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;let c=$('#fx');if(!c){c=document.createElement('canvas');c.id='fx';document.body.append(c)}c.width=innerWidth;c.height=innerHeight;const x=c.getContext('2d'),cl=['#35d6a0','#e9b44c','#a99bff','#ff5d63'];const p=Array.from({length:n},()=>({x:innerWidth/2,y:innerHeight*.4,vx:(Math.random()-.5)*14,vy:-Math.random()*13-4,s:4+Math.random()*5,c:cl[R(0,3)],r:Math.random()*6}));let t=0;(function a(){x.clearRect(0,0,c.width,c.height);p.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.vy+=.42;q.r+=.2;x.save();x.translate(q.x,q.y);x.rotate(q.r);x.fillStyle=q.c;x.fillRect(-q.s/2,-q.s/4,q.s,q.s/2);x.restore()});if(++t<95)requestAnimationFrame(a);else x.clearRect(0,0,c.width,c.height)})()}
 /* ---- bọc fin(): hiệu ứng, thống kê, lên cấp ---- */
 const _fin=fin;
-window.fin=function(o){const fail=o.sc<=0,st0=S.streak,sh=fail&&S.inv.shield>0,kp=fail&&S.inv.keep>0;if(sh){S.inv.shield--;S.hp++}if(kp)S.inv.keep--;const l0=LV(),x0=S.xp,m=S.ms[CUR]=S.ms[CUR]||{p:0,w:0};m.p++;const ok=o.sc>=1;if(ok)m.w++;_fin(o);post(o,sh,kp,st0,x0);
+window.fin=function(o){const fail=o.sc<=0,st0=S.streak,sh=fail&&S.ar.shield&&S.inv.shield>0,kp=fail&&S.ar.keep&&S.inv.keep>0;if(sh){S.inv.shield--;S.ar.shield=0;S.hp++}if(kp){S.inv.keep--;S.ar.keep=0}const l0=LV(),x0=S.xp,m=S.ms[CUR]=S.ms[CUR]||{p:0,w:0};m.p++;const ok=o.sc>=1;if(ok)m.w++;_fin(o);post(o,sh,kp,st0,x0);
  S.wk.xp+=Math.max(0,S.xp-x0);save();
  try{navigator.vibrate&&navigator.vibrate(ok?18:[40,30,40])}catch(e){}
  if(ok){confetti(S.streak>=5?130:60);if(S.streak>=3)toast('Chuỗi '+S.streak+' – điểm thưởng x'+(1+Math.min(S.streak,6)/10).toFixed(1))}
@@ -3094,7 +3095,7 @@ function up(){paint();const h=$('.hero');if(!h)return;document.querySelectorAll(
  <div class="hs"><div class="hero-stat"><b>${S.lg.n} ngày</b><span>Chuyên cần liên tục</span></div>
  <div class="hero-stat"><b>${S.wk.xp}/${GOAL} XP</b><span>Mục tiêu tuần này</span><div class="xb"><i style="width:${w}%"></i></div></div>
  <div class="hero-stat"><b>${S.streak} / ${CH.find(c=>c>S.streak)||S.streak+5}</b><span>Chuỗi thắng tới rương kế tiếp</span></div></div>`;
- const lb=$('button.s[onclick="showLB()"]');if(lb)lb.insertAdjacentHTML('beforebegin','<button class="s" data-shopbtn="1" style="width:100%;margin:0 0 10px" onclick="shop()">Quầy vật tư · '+f(S.coin)+' xu</button>');const q=$('.quest-icon');if(q)q.innerHTML='<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-3-5 0M12 8c2-4 6-3 5 0" fill="none"/></svg>';
+ const lb=$('button.s[onclick="showLB()"]');if(lb)lb.insertAdjacentHTML('beforebegin','<button class="s" data-shopbtn="1" style="width:100%;margin:0 0 10px" onclick="shop()">Quầy vật tư · '+f(S.coin)+' xu</button><button class="s" data-shopbtn="1" style="width:100%;margin:0 0 10px" onclick="bag()">Túi đồ</button>');const q=$('.quest-icon');if(q)q.innerHTML='<svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-3-5 0M12 8c2-4 6-3 5 0" fill="none"/></svg>';
  const rows=Object.entries(S.ms).filter(([,v])=>v.p>=2).sort((a,b)=>a[1].w/a[1].p-b[1].w/b[1].p),ft=$('.featured');if(!ft)return;
  let i,t,d;if(rows.length&&rows[0][1].w/rows[0][1].p<.7){i=+rows[0][0];const v=rows[0][1];t='Ôn điểm yếu: '+MODES[i][1];d='Bạn đúng '+v.w+'/'+v.p+' ván. Luyện thêm để nâng tỉ lệ.'}else{i=MODES.findIndex((m,k)=>!S.st[k]);if(i<0)return;t='Thử chế độ mới: '+MODES[i][1];d=MODES[i][2]}
  ft.insertAdjacentHTML('afterend',`<button class="focus" onclick="go(${i})">${med(i)}<div><b>${t}</b><span>${d}</span></div></button>`)}
@@ -3117,15 +3118,15 @@ new MutationObserver(floatNpc).observe($('#app'),{childList:true});floatNpc();
 /* ---- vật phẩm: xu & chuỗi thắng ---- */
 const CH=[3,5,8,12];
 const IT=[
- ['help','Gói gợi ý +2','Thêm 2 lượt hỏi trưởng phòng ở màn có gợi ý (dùng trong phiên này).',60,ic('<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.500c.6.6 1 1.300 1 2.500h6c0-1.200.4-1.900 1-2.500A6 6 0 0 0 12 3z"/>')],
+ ['help','Gói gợi ý +2','Thêm 2 lượt hỏi trưởng phòng ở màn có nút gợi ý (dùng trong phiên này). Dùng ngay ở màn đó hoặc từ Túi đồ.',60,ic('<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.500c.6.6 1 1.300 1 2.500h6c0-1.200.4-1.900 1-2.500A6 6 0 0 0 12 3z"/>')],
  ['time','Đồng hồ cát +20 giây','Thêm 20 giây cho màn đang tính giờ. Bấm nút ở góc dưới khi cần.',40,ic('<path d="M6 3h12M6 21h12M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9"/>')],
- ['x2','Thẻ nhân đôi XP','Ván đúng kế tiếp được gấp đôi XP và xu. Tự dùng.',120,ic('<path d="M4 6h9M4 12h6M4 18h9M16 9l5 6M21 9l-5 6"/>')],
- ['keep','Bảo hiểm chuỗi','Sai một lần vẫn giữ nguyên chuỗi thắng. Tự dùng.',90,ic('<path d="M12 3 4 6v6c0 5 3.500 8 8 9 4.500-1 8-4 8-9V6z"/><path d="M9 12l2 2 4-4"/>')],
- ['shield','Khiên uy tín','Chặn 1 lần bị trừ uy tín và bị xử phạt. Tự dùng.',150,ic('<path d="M12 3 4 6v6c0 5 3.500 8 8 9 4.500-1 8-4 8-9V6z"/><path d="M12 8v5M12 16v.5"/>')],
+ ['x2','Thẻ nhân đôi XP','Ván đúng kế tiếp được gấp đôi XP và xu. Mua xong vào Túi đồ bấm Dùng để bật.',120,ic('<path d="M4 6h9M4 12h6M4 18h9M16 9l5 6M21 9l-5 6"/>')],
+ ['keep','Bảo hiểm chuỗi','Sai một lần vẫn giữ nguyên chuỗi thắng. Mua xong vào Túi đồ bấm Dùng để bật.',90,ic('<path d="M12 3 4 6v6c0 5 3.500 8 8 9 4.500-1 8-4 8-9V6z"/><path d="M9 12l2 2 4-4"/>')],
+ ['shield','Khiên uy tín','Chặn 1 lần bị trừ uy tín và bị xử phạt (cả ở tình huống bất ngờ). Mua xong vào Túi đồ bấm Dùng để bật.',150,ic('<path d="M12 3 4 6v6c0 5 3.500 8 8 9 4.500-1 8-4 8-9V6z"/><path d="M12 8v5M12 16v.5"/>')],
  ['heal','Hồi uy tín +1','Hồi ngay 1 trái tim uy tín.',100,ic('<path d="M12 21s-8-5.200-8-11a4.500 4.500 0 0 1 8-2.800A4.500 4.500 0 0 1 20 10c0 5.800-8 11-8 11z"/><path d="M12 9v5M9.500 11.500h5"/>')]];
 const NM={time:'Đồng hồ cát',x2:'Nhân đôi XP',keep:'Giữ chuỗi',shield:'Khiên'};
-function shop(){let m=$('.mdl.shop');if(!m){m=document.createElement('div');m.className='mdl shop';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');document.body.append(m);m.onclick=e=>{const b=e.target.closest('[data-b]');if(b)buy(b.dataset.b);else if(e.target===m||e.target.closest('.x'))m.remove()};addEventListener('keydown',e=>{if(e.key==='Escape')m.remove()})}
- m.innerHTML=`<div><h2>Quầy vật tư</h2><p style="text-align:center">Bạn có <b style="color:var(--gd)">${f(S.coin)} xu</b>. Chuỗi thắng hiện tại: ${S.streak}. Đạt chuỗi ${CH.join(', ')} để mở rương vật phẩm.</p>${IT.map(([id,n,d,c,i])=>`<div class="it"><span class="ico">${i}</span><div><b>${n}${S.inv[id]?' · đang có '+S.inv[id]:''}</b><span>${d}</span></div><button data-b="${id}" ${S.coin<c?'disabled':''}>${c} xu</button></div>`).join('')}<button class="x">Đóng</button></div>`}
+function shop(){let m=$('.mdl.shop:not(.bagm)');if(!m){m=document.createElement('div');m.className='mdl shop';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');document.body.append(m);m.onclick=e=>{const b=e.target.closest('[data-b]');if(b)buy(b.dataset.b);else if(e.target===m||e.target.closest('.x'))m.remove()};addEventListener('keydown',e=>{if(e.key==='Escape')m.remove()})}
+ m.innerHTML=`<div><h2>Quầy vật tư</h2><p style="text-align:center">Bạn có <b style="color:var(--gd)">${f(S.coin)} xu</b>. Chuỗi thắng hiện tại: ${S.streak}. Đạt chuỗi ${CH.join(', ')} để mở rương vật phẩm.</p>${IT.map(([id,n,d,c,i])=>`<div class="it"><span class="ico">${i}</span><div><b>${n}${S.inv[id]?' · đang có '+S.inv[id]:''}</b><span>${d}</span></div><button data-b="${id}" ${S.coin<c?'disabled':''}>${c} xu</button></div>`).join('')}<button class="go2" onclick="bag()" style="display:block;width:100%;margin-top:12px;padding:11px;border:0;border-radius:12px;background:var(--jd);color:#fff;font-weight:800">Mở Túi đồ</button><button class="x">Đóng</button></div>`}
 function buy(id){const it=IT.find(x=>x[0]===id);if(!it||S.coin<it[3])return;if(id==='heal'&&S.hp>=5){toast('Uy tín đang đầy');return}
  S.coin-=it[3];if(id==='help')S.help+=2;else if(id==='heal')S.hp=Math.min(5,S.hp+1);else S.inv[id]++;
  const h=$('#hb2');if(h&&id==='help')h.textContent='💡 Hỏi trưởng phòng ('+S.help+' lượt)';
@@ -3136,13 +3137,30 @@ function chest(n){const t=CH.indexOf(n),c=[30,60,100,200][t]||100,g=[null,'time'
 function post(o,sh,kp,st0,x0){const ok=o.sc>=1;
  if(kp){S.streak=st0;toast('Bảo hiểm chuỗi đã giữ chuỗi '+st0)}
  if(sh){const n=document.querySelector('.note.r');if(n)n.outerHTML='<div class="note g"><div class="ic">🛡️</div><div><b>Khiên uy tín đã cản hình phạt</b><br>Sai sót được ghi nhận nhưng uy tín và tiền phạt không bị tính.</div></div>'}
- if(ok&&S.inv.x2>0){const d=S.xp-x0;S.inv.x2--;S.xp+=d;S.coin+=Math.round(d/10);toast('Thẻ nhân đôi XP: thêm '+d+' XP')}
+ if(ok&&S.ar.x2&&S.inv.x2>0){const d=S.xp-x0;S.inv.x2--;S.ar.x2=0;S.xp+=d;S.coin+=Math.round(d/10);toast('Thẻ nhân đôi XP: thêm '+d+' XP')}
  if(ok&&(CH.includes(S.streak)||(S.streak>12&&S.streak%5===2)))chest(S.streak);
  hud()}
 window.shop=shop;window.buy=buy;window.useTime=useTime;
+
+/* ---- Túi đồ: bấm để dùng vật phẩm đã mua ---- */
+const BD={help:'Thêm lượt hỏi trưởng phòng ở màn Tờ khai GTGT.',time:'Cộng 20 giây cho màn đang tính giờ.',x2:'Ván đúng kế tiếp nhận gấp đôi XP và xu.',keep:'Nếu sai ván kế tiếp, chuỗi thắng vẫn được giữ.',shield:'Chặn 1 lần bị trừ uy tín và bị phạt (ván sai, tình huống bất ngờ, phòng hỏi cung).'};
+function bag(){let m=$('.mdl.bagm');if(!m){m=document.createElement('div');m.className='mdl shop bagm';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');document.body.append(m);
+  m.onclick=e=>{const b=e.target.closest('[data-u]');if(b)useItem(b.dataset.u);else if(e.target===m||e.target.closest('.x'))m.remove()};addEventListener('keydown',e=>{if(e.key==='Escape')m.remove()})}
+ const own=id=>id==='help'?S.help:(S.inv[id]||0);
+ const rows=IT.filter(x=>x[0]!=='heal').map(([id,n,d,c,i])=>{const k=own(id),on=!!(S.ar[id]&&k>0);
+  return `<div class="it"><span class="ico">${i}</span><div><b>${n.replace(/ \+.*$/,'')} · đang có ${k}</b><span>${BD[id]}${on?' <b style="display:inline;color:var(--jd)">Đang bật</b>':''}</span></div><button data-u="${id}" ${(!k||on)?'disabled':''}>${on?'Đã bật':'Dùng'}</button></div>`}).join('');
+ m.innerHTML=`<div><h2>Túi đồ</h2><p style="text-align:center">Nhân đôi XP, Giữ chuỗi và Khiên cần bấm Dùng để bật trước; chúng tự phát huy đúng lúc rồi mất đi. Cần thêm vật phẩm thì vào Quầy vật tư.</p>${rows}<button class="x">Đóng</button></div>`}
+function useItem(id){const rf=()=>{if($('.mdl.bagm'))bag();try{dock()}catch(e){}};
+ if(id==='time'){if(!S.inv.time){toast('Bạn chưa có Đồng hồ cát');return}useTime();rf();return}
+ if(id==='help'){if(S.help<=0){toast('Đã hết lượt gợi ý');return}
+  if($('#hb2')&&G&&!G.done){const bm=$('.mdl.bagm');bm&&bm.remove();hint()}else toast('Gợi ý dùng được ở màn Tờ khai GTGT: bấm nút 💡 Hỏi trưởng phòng');return}
+ if(!S.inv[id]){toast('Bạn chưa có vật phẩm này');return}
+ if(S.ar[id]){toast(NM[id]+' đang bật rồi');return}
+ S.ar[id]=1;save();toast('Đã bật '+NM[id]+': tự phát huy đúng lúc');hud();rf()}
+window.bag=bag;window.useItem=useItem;
 function dock(){let d=$('.dk-w');const on=G&&G.k;if(!on){if(d)d.remove();return}
  if(!d){d=document.createElement('div');d.className='dk-w';document.body.append(d)}
- d.innerHTML=`<button class="dk" onclick="shop()" aria-label="Mở quầy vật tư">${ic('<path d="M5 8h14l-1 12H6zM9 8a3 3 0 0 1 6 0"/>')}${f(S.coin)} xu</button>`+(S.inv.time?`<button class="dk" onclick="useTime()">${ic('<path d="M6 3h12M6 21h12M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9"/>')}+20 giây · ${S.inv.time}</button>`:'')+['x2','keep','shield'].filter(k=>S.inv[k]).map(k=>`<span class="dk p" title="Tự động dùng khi cần">${NM[k]} · ${S.inv[k]}</span>`).join('')}
+ d.innerHTML=`<button class="dk" onclick="shop()" aria-label="Mở quầy vật tư">${ic('<path d="M5 8h14l-1 12H6zM9 8a3 3 0 0 1 6 0"/>')}${f(S.coin)} xu</button><button class="dk" onclick="bag()" aria-label="Mở Túi đồ">🎒 Túi đồ</button>`+(S.inv.time?`<button class="dk" onclick="useTime()">${ic('<path d="M6 3h12M6 21h12M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9"/>')}+20 giây · ${S.inv.time}</button>`:'')+['x2','keep','shield'].filter(k=>S.inv[k]).map(k=>`<button class="dk${S.ar[k]?' p':''}" onclick="useItem('${k}')" ${S.ar[k]?'disabled':''}>${NM[k]} · ${S.inv[k]}${S.ar[k]?' · đang bật':' · Dùng'}</button>`).join('')}
 const _h2=window.hud;window.hud=function(){_h2();try{dock()}catch(e){}};
 new MutationObserver(dock).observe($('#app'),{childList:true});
 const cd=$('#co').closest('.st>div');if(cd){cd.style.cursor='pointer';cd.tabIndex=0;cd.setAttribute('role','button');cd.setAttribute('aria-label','Mở quầy vật tư');cd.onclick=shop;cd.onkeydown=e=>{if(e.key==='Enter')shop()}}
@@ -3471,16 +3489,16 @@ const EV=[
 let used=[],idle=0,gap=R(20,35),cnt=0,busy=0,tk,bt;
 const st=document.createElement('style');st.textContent=`#evn{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translate(-50%,-140%);width:min(94vw,460px);z-index:80;display:flex;gap:12px;align-items:center;background:var(--pn);color:var(--tx);border:1px solid var(--ln);border-left:6px solid var(--rd);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow-lg);transition:transform .35s;overflow:hidden}
 #evn.on{transform:translate(-50%,0)}#evn>i{font-style:normal;font-size:28px;animation:evr .5s 3}@keyframes evr{25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
-#evn div{flex:1;min-width:0;font-size:13px}#evn b{display:block}#evn span{color:var(--mu);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#evn div{flex:1;min-width:0;font-size:13px;line-height:1.4;overflow-wrap:anywhere}#evn b{display:block}#evn span{color:var(--mu);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;white-space:normal}#evn>button{flex:none}#evn>i{flex:none}
 #evn button,.evc button.o{cursor:pointer;border:0;border-radius:99px;background:var(--rd);color:#fff;font-weight:800;padding:8px 16px}
 #evn em{position:absolute;left:0;bottom:0;height:3px;background:var(--rd);width:100%;transition:width 15s linear}
 #evm{position:fixed;inset:0;z-index:85;background:rgba(5,12,10,.6);display:grid;place-items:center;padding:14px}
-.evc{width:min(100%,480px);background:var(--pn);color:var(--tx);border-radius:22px;padding:20px;box-shadow:var(--shadow-lg);max-height:92vh;overflow:auto}
-.evc h3{margin:0 0 2px;font-size:18px}.evc small{color:var(--mu)}.evc .bb{background:var(--bg);border:1px solid var(--ln);border-radius:14px;padding:12px;margin:10px 0;line-height:1.5}
+.evc{width:min(100%,480px);min-width:0;background:var(--pn);color:var(--tx);border-radius:22px;padding:20px;box-shadow:var(--shadow-lg);max-height:calc(100vh - 28px);max-height:calc(100dvh - 28px);overflow:auto;overflow-wrap:break-word;line-height:1.5}.evc *{min-width:0}
+.evc h3{margin:2px 0 2px;font-size:18px;line-height:1.3;overflow-wrap:anywhere}.evc small{color:var(--mu)}.evc .bb{height:auto;min-height:0;overflow:visible;background:var(--bg);border:1px solid var(--ln);border-radius:14px;padding:12px;margin:10px 0;line-height:1.55;font-size:14.5px}
 .evc .tb{height:6px;border-radius:9px;background:var(--ln);overflow:hidden;margin-bottom:10px}.evc .tb i{display:block;height:100%;background:var(--gd);width:100%;transition:width 1s linear}
-.evc button.o{display:block;width:100%;text-align:left;margin:7px 0;background:var(--bg);color:var(--tx);border:1px solid var(--ln);font-weight:600;border-radius:12px;padding:11px 14px}
-.evc button.o:hover{border-color:var(--jd)}.evc .law{display:inline-block;background:var(--bg);border:1px solid var(--ln);border-radius:99px;padding:2px 10px;font-size:12px;color:var(--mu)}
-.evc .go{width:100%;margin-top:12px;padding:12px;border:0;border-radius:12px;background:var(--jd);color:#fff;font-weight:800;cursor:pointer}`;document.head.append(st);
+.evc button.o{display:block;width:100%;height:auto;text-align:left;white-space:normal;overflow-wrap:anywhere;font-size:14px;line-height:1.45;margin:7px 0;background:var(--bg);color:var(--tx);border:1px solid var(--ln);font-weight:600;border-radius:12px;padding:11px 14px}
+.evc button.o:hover{border-color:var(--jd)}.evc .law{display:inline-block;max-width:100%;white-space:normal;background:var(--bg);border:1px solid var(--ln);border-radius:12px;padding:3px 10px;font-size:12px;line-height:1.4;color:var(--mu)}
+.evc .go{display:block;width:100%;margin-top:12px;padding:12px;border:0;border-radius:12px;background:var(--jd);color:#fff;font-weight:800;line-height:1.35;white-space:normal;cursor:pointer}`;document.head.append(st);
 const rm=()=>{['evn','evm'].forEach(i=>{const e=document.getElementById(i);e&&e.remove()})},end=()=>{clearTimeout(bt);clearInterval(tk);busy=0;idle=0;gap=R(60,110);cnt++};
 function pick(){used.length>=EV.length&&(used=[]);let k;do k=R(0,EV.length-1);while(used.includes(k));used.push(k);return EV[k]}
 function notify(e){busy=1;rm();const n=document.createElement('div');n.id='evn';n.innerHTML=`<i>${e[0]}</i><div><b>${e[1]}</b><span>${e[2]}</span></div><button>Xem</button><em></em>`;document.body.append(n);
@@ -3492,6 +3510,7 @@ function open(e){const m=document.createElement('div');m.id='evm';let t=30;const
  const c=m.querySelector('.evc'),bar=c.querySelector('.tb i');
  const done=(res,sel)=>{clearInterval(tk);let h;const x=Math.max(10,LV()*5+10);
   if(res==1){S.xp+=x;S.coin+=5;h=`<h3>✅ Xử lý đúng!</h3><p>+${x} XP · +5 🪙</p>`;S.ev=S.ev||{ok:0,bad:0};S.ev.ok++}
+  else if(res==0&&S.ar&&S.ar.shield&&S.inv.shield>0){S.inv.shield--;S.ar.shield=0;h=`<h3>🛡️ Khiên uy tín đã cản hình phạt</h3><p>Xử lý sai nhưng không bị trừ uy tín hay bị phạt.</p>`;S.ev=S.ev||{ok:0,bad:0};S.ev.bad++}
   else if(res==0){S.hp>1&&S.hp--;S.fined=(S.fined||0)+2e6;h=`<h3>❌ Xử lý sai</h3><p>Uy tín −1 · bị phạt/thiệt hại tạm tính 2.000.000 đ</p>`;S.ev=S.ev||{ok:0,bad:0};S.ev.bad++}
   else h=`<h3>⏳ Không kịp phản hồi</h3><p>Ngoài đời, chần chừ cũng là một quyết định.</p>`;
   c.innerHTML=`${h}<div class="bb"><b>Cách xử lý đúng:</b> ${ok}<br><br>${e[4]}</div><span class="law">${e[5]}</span><button class="go">Tiếp tục chơi</button>`;
@@ -3529,26 +3548,27 @@ const Q=[
 let B=null,BUSY=0,ST=null;
 const $$=s=>document.getElementById(s);
 const css=document.createElement('style');css.textContent=`
-#bsm{position:fixed;inset:0;z-index:95;background:radial-gradient(ellipse at 50% -10%,#22305a,#070b16 68%);color:#e9eef9;overflow:auto;padding:14px;display:flex;justify-content:center}
-#bsm *{box-sizing:border-box}.bw{width:min(100%,580px);padding-bottom:30px}
-.bt{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;color:#ffb3b6;font-weight:800;margin:4px 0 10px}.bt i{width:9px;height:9px;border-radius:50%;background:#ff4b55;animation:bblink 1.2s infinite}
+#bsm{position:fixed;inset:0;z-index:95;background:radial-gradient(ellipse at 50% -10%,#22305a,#070b16 68%);color:#e9eef9;overflow:auto;padding:14px;display:flex;justify-content:center;overflow-wrap:break-word}
+#bsm *{box-sizing:border-box}#bsm .bw{width:min(100%,580px);min-width:0;padding-bottom:30px}
+#bsm .bt{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.4;letter-spacing:.08em;color:#ffb3b6;font-weight:800;margin:4px 0 10px}#bsm .bt i{width:9px;height:9px;flex:none;border-radius:50%;background:#ff4b55;animation:bblink 1.2s infinite}
 @keyframes bblink{50%{opacity:.2}}
-.bh{display:flex;gap:12px;align-items:center;background:#131b33;border:1px solid #2b3a66;border-radius:18px;padding:12px}
-.bf{width:66px;height:66px;flex:none;border-radius:18px;display:grid;place-items:center;font-size:38px;background:#1f2b4d;border:2px solid #ff5d63;animation:bpu 2.4s infinite}
+#bsm .bh{display:flex;gap:12px;align-items:center;background:#131b33;border:1px solid #2b3a66;border-radius:18px;padding:12px}
+#bsm .bh>div:not(.bf){min-width:0}
+#bsm .bf{width:66px;height:66px;flex:none;border-radius:18px;display:grid;place-items:center;font-size:38px;background:#1f2b4d;border:2px solid #ff5d63;animation:bpu 2.4s infinite}
 @keyframes bpu{50%{box-shadow:0 0 0 8px rgba(255,93,99,.12)}}
-.bh b{display:block;font-size:15px}.bh small{color:#9fb0d6}
-.bm{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin:10px 0}
-.bb{height:11px;border-radius:9px;background:#26304a;overflow:hidden}.bb i{display:block;height:100%;background:linear-gradient(90deg,#ffb35c,#ff4b55);transition:width .6s}
-.bs{font-size:12px;color:#9fb0d6;margin-bottom:4px}
-.bp{display:inline-block;background:#2a2452;color:#cfc6ff;border-radius:99px;padding:3px 12px;font-size:12px;font-weight:800;margin:6px 0}
-.bd{background:#0f1730;border:1px dashed #3c4d80;border-radius:14px;padding:12px;margin:10px 0;line-height:1.55;font-size:14px}
-.bq{background:#1a2445;border:1px solid #33437a;border-left:5px solid #ff5d63;border-radius:14px;padding:14px;margin:10px 0;line-height:1.55;font-size:15px}
-.btm{height:6px;border-radius:9px;background:#26304a;overflow:hidden;margin:8px 0}.btm i{display:block;height:100%;background:#3fe0aa;width:100%;transition:width 1s linear}
-.bo{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 14px;border-radius:12px;border:1px solid #33437a;background:#121a35;color:#e9eef9;font:inherit;font-size:14px;line-height:1.45;cursor:pointer}
-.bo:hover:not(:disabled){border-color:#8fa4ff}.bo:focus-visible{outline:3px solid #8fa4ff}.bo.y{border-color:#3fe0aa;background:#0f3a2e}.bo.n{border-color:#ff5d63;background:#3d1620}.bo:disabled{cursor:default;opacity:.95}
-.bg{display:block;width:100%;margin-top:12px;padding:13px;border:0;border-radius:12px;background:#ff5d63;color:#fff;font:inherit;font-weight:800;cursor:pointer}.bg.s{background:#2b3a66}
-.bfb{background:#101830;border:1px solid #33437a;border-radius:14px;padding:13px;margin-top:10px;line-height:1.55;font-size:14px}
-.bl{display:inline-block;background:#1c2748;border:1px solid #33437a;border-radius:99px;padding:2px 10px;font-size:12px;color:#9fb0d6;margin-top:6px}
+#bsm .bh b{display:block;font-size:15px}#bsm .bh small{color:#9fb0d6;display:block;line-height:1.45}
+#bsm .bm{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;margin:10px 0}
+#bsm .bb{height:11px;border-radius:9px;background:#26304a;overflow:hidden}#bsm .bb i{display:block;height:100%;background:linear-gradient(90deg,#ffb35c,#ff4b55);transition:width .6s}
+#bsm .bs{font-size:12px;line-height:1.4;color:#9fb0d6;margin-bottom:4px}
+#bsm .bp{display:inline-block;max-width:100%;background:#2a2452;color:#cfc6ff;border-radius:14px;padding:3px 12px;font-size:12px;line-height:1.4;font-weight:800;margin:6px 0}
+#bsm .bd{background:#0f1730;border:1px dashed #3c4d80;border-radius:14px;padding:12px;margin:10px 0;line-height:1.55;font-size:14px}
+#bsm .bq{background:#1a2445;border:1px solid #33437a;border-left:5px solid #ff5d63;border-radius:14px;padding:14px;margin:10px 0;line-height:1.55;font-size:15px}
+#bsm .btm{height:6px;border-radius:9px;background:#26304a;overflow:hidden;margin:8px 0}#bsm .btm i{display:block;height:100%;background:#3fe0aa;width:100%;transition:width 1s linear}
+#bsm .bo{display:block;width:100%;height:auto;text-align:left;white-space:normal;margin:8px 0;padding:12px 14px;border-radius:12px;border:1px solid #33437a;background:#121a35;color:#e9eef9;font:inherit;font-size:14px;line-height:1.45;cursor:pointer}
+#bsm .bo:hover:not(:disabled){border-color:#8fa4ff}#bsm .bo:focus-visible{outline:3px solid #8fa4ff}#bsm .bo.y{border-color:#3fe0aa;background:#0f3a2e}#bsm .bo.n{border-color:#ff5d63;background:#3d1620}#bsm .bo:disabled{cursor:default;opacity:.95}
+#bsm .bg{display:block;width:100%;margin-top:12px;padding:13px;border:0;border-radius:12px;background:#ff5d63;color:#fff;font:inherit;font-weight:800;line-height:1.35;white-space:normal;cursor:pointer}#bsm .bg.s{background:#2b3a66}
+#bsm .bfb{background:#101830;border:1px solid #33437a;border-radius:14px;padding:13px;margin-top:10px;line-height:1.55;font-size:14px}
+#bsm .bl{display:inline-block;max-width:100%;background:#1c2748;border:1px solid #33437a;border-radius:12px;padding:2px 10px;font-size:12px;line-height:1.4;color:#9fb0d6;margin-top:6px}
 #bsm.sk .bw{animation:bsk .4s}@keyframes bsk{20%{transform:translateX(-8px)}60%{transform:translateX(8px)}}
 @media(prefers-reduced-motion:reduce){#bsm *{animation:none!important;transition:none!important}}
 .bsc{border:2px solid var(--vt,#8b7cff)}.bsc h2{margin:0 0 4px}`;document.head.append(css);
@@ -3586,7 +3606,7 @@ function end(){clearInterval(ST);const lose=B.calm<=0,full=!lose&&B.wr<=1;let ti
  let g='';const xp=[0,80+LV()*10,150+LV()*30][tier];
  if(tier>0){S.xp+=xp;S.coin+=[0,40,120][tier];if(tier===2)badge('cs');S.boss=S.boss||{w:0,l:0};S.boss.w++;g=`<div class="bd">🎁 +${xp} XP · +${[0,40,120][tier]} 🪙${B.dead?` · Hồi uy tín còn ${tier===2?3:2} ❤️`:''}</div>`;
   if(B.dead){S.hp=tier===2?3:2;S.help=Math.max(S.help||0,1);if(tier===1)S.fined=(S.fined||0)+50e6}else if(tier===2&&S.hp<5)S.hp++}
- else{S.boss=S.boss||{w:0,l:0};S.boss.l++;if(!B.dead)S.hp=Math.max(1,S.hp-1)}
+ else{S.boss=S.boss||{w:0,l:0};S.boss.l++;if(!B.dead){if(S.ar&&S.ar.shield&&S.inv.shield>0){S.inv.shield--;S.ar.shield=0;toast('🛡️ Khiên uy tín đã chặn việc mất uy tín')}else S.hp=Math.max(1,S.hp-1)}}
  shell(head().replace(/Mức nghi vấn[^<]*<b>\d+%<\/b>/,`Mức nghi vấn cuối: <b>${B.sus}%</b>`)+`<div class="bfb"><h2 style="margin:0 0 6px">${h}</h2>${body}<br><br>Bạn trả lời đúng ${B.ok}/8 câu.</div>${g}<button class="bg" id="bfin">${btn}</button>`);
  $$('bfin').onclick=()=>{const dead=B.dead&&lose;$$('bsm').remove();document.body.style.overflow='';const mn=document.querySelector('main');mn&&(mn.inert=false);BUSY=0;
   if(dead){S.hp=5;S.help=3;S.streak=0;S.fined=0}
