@@ -3981,6 +3981,58 @@ bt();hud();
 const fb=q('#v7fab'),st=q('.hud .st');if(fb&&st)st.prepend(fb);
 })();
 </script>
+<style id="v13">
+#v7b{padding:3px 10px!important;margin:0 0 6px!important;border-radius:12px!important}
+#v7b .v7h{gap:8px}#v7b .v7e,#v7b .swd{font-size:22px}#v7b .v7h b{font-size:12px}#v7b small{font-size:10.5px}#v7b .v7hp{height:6px;margin:2px 0}
+@media(max-height:480px){#v7b{position:static!important}}
+#evn{top:calc(var(--sk,64px) + 8px);opacity:0;transform:translate(-50%,-14px);transition:transform .35s,opacity .35s}#evn.on{opacity:1;transform:translate(-50%,0)}
+.tkp .tkh{display:flex;justify-content:space-between;align-items:center}.tkp h2{margin:0;font-size:17px}.tkp .tkh span{color:var(--mu);font-size:13px}
+.tkd{font-size:12.5px;color:var(--mu);margin:6px 0 2px}.tkd b{color:var(--gd)}
+.tki{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;margin-top:8px;padding:9px 12px;background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:12px;box-shadow:none!important;font:inherit;cursor:pointer}
+.tki i{font-style:normal;flex:none}.tki div{flex:1;min-width:0}.tki b{display:block;font-size:14px}.tki small{display:block;color:var(--mu);font-size:12px;line-height:1.4;margin-top:2px}
+.tki em{font-style:normal;flex:none;font-size:11px;font-weight:800;color:var(--gd)}.tki.on{opacity:.55}.tki.on b{text-decoration:line-through}
+#v7fab{min-height:28px!important;padding:1px 8px!important;font-size:12px!important;gap:4px}#v7fab .ic{width:15px!important;height:15px!important}
+#mbtn{width:40px!important;height:40px!important;font-size:19px!important}#mbtn u{min-width:16px;height:16px;font-size:10px;line-height:16px;top:-3px;right:-3px}
+.npc.fl{top:calc(var(--sk,64px) + 6px)!important;z-index:36;transition:top .25s}
+.tki u{text-decoration:none;display:block;font-size:11px;color:var(--jd);margin-top:3px;font-weight:700}
+@media(max-width:560px){#v7b{top:auto}.npc.fl{width:calc(100% - 16px)!important}.tki{padding:10px}}
+</style>
+<script id="v13-js">
+/* v13: ô quái gọn + thông báo không bị đè; Sổ việc hằng ngày của kế toán thuế */
+(()=>{
+let TK=null;const MP={nop:12,q:13,qt:14,kh:12,cs:0,tt:2,dc:6,hd:0,bk:6,tb:11};
+const plan=()=>{const D=new Date(),t0=new Date(D.getFullYear(),D.getMonth(),D.getDate()),dom=D.getDate(),mo=D.getMonth()+1,end=new Date(D.getFullYear(),mo,0).getDate(),
+sp=[
+['nop','💳','Khai và nộp thuế kỳ tháng trước','Hạn ngày 20. Nộp tờ khai và tiền thuế vào NSNN, lưu thông báo tiếp nhận cùng chứng từ nộp tiền.',dom>=14&&dom<=20],
+['q','📅','Khai GTGT, TNCN quý và tạm nộp TNDN quý trước','Hạn cuối tháng đầu quý (tạm nộp TNDN: ngày 30). Đối chiếu doanh thu, chi phí quý với sổ sách.',mo%3==1&&dom>=20],
+['qt','📑','Chuẩn bị quyết toán TNDN, TNCN năm','Hạn cuối tháng 3 (cá nhân tự quyết toán: 30/4). Chốt sổ năm, đối chiếu chứng từ khấu trừ và bảng lương.',mo>=2&&mo<=4],
+['kh','🧮','Lập và rà soát tờ khai GTGT, TNCN','Đối chiếu bảng kê mua vào, bán ra với sổ sách; kiểm tra giảm trừ gia cảnh trước khi nộp.',dom>=5&&dom<14],
+['cs','📚','Chốt sổ tháng trước, đối chiếu công nợ và tồn kho','Khớp số dư TK 133, 333 với tờ khai; báo chênh lệch cho kế toán trưởng.',dom<=10],
+['tt','🔎','Rà soát chi phí được trừ và hóa đơn đầu vào rủi ro','Loại chi phí thiếu chứng từ; kiểm tra MST nhà cung cấp còn hoạt động; chi từ 5 triệu phải chuyển khoản.',dom>=21],
+['dc','🏛️','Đối chiếu nghĩa vụ thuế trên eTax','Khớp số phải nộp, đã nộp, còn nợ với TK 333; xử lý sớm để tránh tiền chậm nộp 0,03%/ngày.',dom>end-4]
+].filter(x=>x[4]).slice(0,2),
+rt=[['hd','🧾','Kiểm tra hóa đơn điện tử trong ngày','Soát MST, tên, thuế suất, ngày lập; hóa đơn sai thì điều chỉnh hoặc thay thế đúng quy định, lập biên bản.'],['bk','🏦','Hạch toán chứng từ, đối chiếu sao kê ngân hàng và quỹ','Hóa đơn từ 5 triệu thanh toán không dùng tiền mặt mới được khấu trừ GTGT.'],['tb','📬','Xem thông báo của cơ quan thuế','Mở hộp thư eTax và email đăng ký; ghi hạn trả lời của từng thông báo vào lịch.']],c=[];
+for(let i=0;i<15;i++){const a=new Date(D.getFullYear(),D.getMonth()+i,1),y=a.getFullYear(),m=a.getMonth();
+ c.push([new Date(y,m,20),'Khai và nộp thuế tháng (GTGT, TNCN)']);
+ m%3==0&&c.push([new Date(y,m,30),'Tạm nộp TNDN quý trước'],[new Date(y,m+1,0),'Khai GTGT, TNCN quý trước']);
+ m==2&&c.push([new Date(y,0,90),'Quyết toán TNDN, TNCN năm']);m==3&&c.push([new Date(y,m,30),'Cá nhân tự quyết toán TNCN'])}
+const nx=c.filter(x=>x[0]>=t0).sort((a,b)=>a[0]-b[0])[0];
+return{tk:[...sp,...rt].slice(0,5),nx,ds:Math.round((nx[0]-t0)/864e5),t:D.toDateString()}},
+st=t=>S.tk&&S.tk.d===t?S.tk:(S.tk={d:t,done:{}}),
+html=(p,s)=>`<div class="card tkp"><div class="tkh"><h2>📋 Sổ việc hôm nay · Kế toán thuế</h2><span>${p.tk.filter(x=>s.done[x[0]]).length}/${p.tk.length}</span></div><div class="tkd">⏰ Hạn gần nhất: <b>${p.nx[0].getDate()}/${p.nx[0].getMonth()+1}</b> · ${p.nx[1]} · <b>${p.ds?'còn '+p.ds+' ngày':'hôm nay'}</b></div>${p.tk.map(x=>`<button class="tki ${s.done[x[0]]?'on':''}" data-id="${x[0]}" ${s.done[x[0]]?'disabled':''}><i>${s.done[x[0]]?'✅':'⬜'}</i><div><b>${x[1]} ${x[2]}</b><small>${x[3]}</small><u>⚔️ Thử thách: ${MODES[MP[x[0]]][1]} · thắng để nhận +20 XP</u></div><em>${s.done[x[0]]?'Xong':'Làm ngay'}</em></button>`).join('')}</div>`,
+ins=()=>{const a=$('#app'),q=a&&a.querySelector('.quest');if(q&&!a.querySelector('.tkp')){const p=plan();q.insertAdjacentHTML('afterend',html(p,st(p.t)))}};
+document.addEventListener('click',e=>{const b=e.target.closest('.tki');if(!b||b.disabled)return;const id=b.dataset.id;TK={id,m:MP[id]};toast('⚔️ Vượt thử thách để hoàn thành việc này');window.xTabs.free(TK.m)});
+const _f=fin;fin=function(o){_f(o);if(!TK||CUR!==TK.m||SH)return;const p=plan(),s=st(p.t),id=TK.id;
+ if(o.sc<1){toast('Chưa đạt, hãy vào lại việc này để thử lại');return}
+ TK=null;if(s.done[id])return;s.done[id]=1;S.xp+=20;S.coin+=8;S.wk&&(S.wk.xp+=20);
+ if(p.tk.every(x=>s.done[x[0]])&&!s.bonus){s.bonus=1;S.coin+=30;toast('🎁 Xong sổ việc hôm nay: +30 xu');typeof confetti=='function'&&confetti(50)}else toast('✅ Hoàn thành việc: +20 XP · +8 xu');save();hud()};
+const _h=hub;hub=function(){TK=null;_h();ins()};ins();
+/* --sk = mép dưới của thanh HUD/ô quái, để thông báo #evn nằm dưới, không đè */
+const sk=()=>{const h=$('.hud'),b=$('#v7b');let s=h?h.getBoundingClientRect().bottom:0;b&&(s=Math.max(s,b.getBoundingClientRect().bottom));document.documentElement.style.setProperty('--sk',Math.min(s,innerHeight*.4)+'px')};
+setInterval(sk,300);sk();
+})();
+</script>
+
 </body>
 
 </html>
