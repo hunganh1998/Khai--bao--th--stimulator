@@ -2199,14 +2199,60 @@ body:after{background-image:linear-gradient(#ffffff09 1px,transparent 1px),linea
 .swd{position:absolute;right:-30%;top:-40%;font-size:34px;color:#fff;filter:drop-shadow(0 0 8px var(--gd));animation:v7w .35s ease-out both;pointer-events:none}.swd .ic{width:1em;height:1em}
 @keyframes v7w{from{transform:translate(30px,-30px) rotate(40deg);opacity:0}40%{opacity:1}to{transform:translate(-30px,30px) rotate(-50deg);opacity:0}}
 .v7e.hit{animation:v7x .45s}@keyframes v7x{25%{transform:translateX(-9px) rotate(-6deg);filter:brightness(2.5) saturate(0)}55%{transform:translateX(9px) rotate(5deg);filter:sepia(1) saturate(6) hue-rotate(-40deg)}}
-</style><style id="v12">#v7b{position:sticky;z-index:35}.v7e.die{animation:v7d .6s forwards}@keyframes v7d{to{transform:scale(.2) rotate(200deg);opacity:0}}</style></head>
+</style><style id="v12">#v7b{position:sticky;z-index:35}.v7e.die{animation:v7d .6s forwards}@keyframes v7d{to{transform:scale(.2) rotate(200deg);opacity:0}}</style>
+<!-- ===== v10 stability + responsive patch ===== -->
+<style id="v10-stability">
+html,body{overflow-x:hidden}
+*,*::before,*::after{min-width:0}
+img,svg,video,canvas{max-width:100%;height:auto}
+:root{--hud-h:64px}
+#tm{top:calc(var(--hud-h) + 8px)!important}
+#tab button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+@media(min-width:761px){
+  #tab{display:none!important}
+  main{padding-bottom:80px!important}
+  #mbtn{bottom:20px!important}
+}
+@media(max-width:760px){
+  .hi{padding-left:10px!important;padding-right:10px!important}
+  .hud .lv{min-width:120px!important;gap:7px!important}
+  .hud .st{gap:4px!important;flex-wrap:nowrap!important}
+  .hud .st>div{min-width:36px!important}
+  .user-chip{padding:4px!important;max-width:40px!important}
+  .user-chip>span:last-child{display:none!important}
+  .badge{width:38px!important;height:38px!important;border-radius:11px!important;font-size:17px!important}
+}
+@media(max-width:390px){
+  .hud .hi{gap:4px!important}
+  .hud .hi>button{width:34px!important;height:34px!important}
+  .hud .lv{min-width:108px!important}
+  .hud .st>div{min-width:31px!important}
+  .hud .st b{font-size:12px!important}
+  .hud .lv small{font-size:10px!important}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+</style>
+<script id="v10-stability-js">
+(()=>{
+  const syncHudHeight=()=>{
+    const h=document.querySelector('.hud');
+    if(h) document.documentElement.style.setProperty('--hud-h',Math.ceil(h.getBoundingClientRect().height)+'px');
+  };
+  syncHudHeight();
+  window.addEventListener('resize',syncHudHeight,{passive:true});
+  if(window.ResizeObserver){const h=document.querySelector('.hud');if(h)new ResizeObserver(syncHudHeight).observe(h)}
+})();
+</script>
+
+</head>
 
 <body>
-    <div id="landing" role="dialog" aria-label="Giới thiệu Tax Shield"><button id="lpgo" hidden>Bắt đầu chơi</button></div>
+    <div id="landing" role="dialog" aria-label="Giới thiệu Tax Shield"></div>
     <div class="hud">
         <div class="hi"><button id="home" title="Về sảnh" aria-label="Về sảnh" onclick="hub()">🏠</button>
             <button id="snd" title="Bật/tắt âm thanh" aria-label="Bật/tắt âm thanh" onclick="toggleSnd()">🔊</button>
             <button id="mus" title="Bật/tắt nhạc nền" aria-label="Bật/tắt nhạc nền" aria-pressed="true" onclick="toggleMus()">🎵</button>
+            <button id="themeToggle" class="theme-switch" title="Đổi chế độ sáng/tối" aria-label="Đổi chế độ sáng/tối" aria-pressed="false" onclick="toggleTheme()">☀️</button>
             <div class="lv">
                 <div class="badge" id="lv">1</div>
                 <div style="flex:1"><small id="lt"></small><b><span id="xp">0</span> XP</b>
@@ -2760,7 +2806,7 @@ function xA(i){const g=G;if(g.ans)return;g.ans=1;clearInterval(TI);const q=g.c.q
 function xNx(){const g=G;g.qi++;g.qi<g.c.qs.length?xQ():g.tr<=0?xEnd(0):xCalc()}
 function xCalc(){const g=G,c=g.c,tot=xTot(g),hard=c.lv>2,w=[g.T+Math.round(g.T*c.p),c.p?tot-Math.round(g.T*c.p):tot+Math.round(g.T*.2)];
  $('#ex').innerHTML=`<div class="card"><span class="pill">🧮 Kết luận buổi làm việc</span><p>${c.k(g.A,g.T)}</p><p>Chậm nộp <b>${g.d} ngày</b>, tiền chậm nộp = thuế thiếu × 0,03% × số ngày. Tổng số tiền phải nộp là bao nhiêu?</p>${hard?'<input id="xt" type="text" inputmode="numeric" placeholder="Tổng số tiền (đ)"><button onclick="xEnd(Math.abs(num(\'#xt\')-'+tot+')<=1000)">Chốt số liệu</button>':sh([tot,...w]).map(v=>`<button class="opt" onclick="xEnd(${v===tot})">${f(v)} đ</button>`).join('')}</div>`;timer(hard?120:60,()=>xEnd(0))}
-function xEnd(ok){const g=G,c=g.c;if(g.done)return;if(!ok&&isNaN(ok))return;xEndUI();const tot=xTot(g),pass=g.tr>=2,
+function xEnd(ok){const g=G,c=g.c;if(g.done)return;if(typeof ok!=='boolean'&&typeof ok!=='number')return;xEndUI();const tot=xTot(g),pass=g.tr>=2,
  ex=`<div class="card"><b>Đáp án:</b> ${f(tot)} đ = thuế thiếu ${f(g.T)} + chậm nộp ${f(xLate(g))} + phạt ${f(Math.round(g.T*c.p))}.<br><span class="mu">Căn cứ: ${c.law} Mức phạt là mô phỏng, hãy đối chiếu văn bản hiện hành.</span></div>`;
  if(pass&&ok)fin({sc:1,pts:c.lv>2?130:80,title:'✅ Giải trình thành công, cơ quan thuế chấp nhận',lines:['Hồ sơ đủ, trả lời có căn cứ và tính đúng số phải nộp.','Thiện chí còn '+g.tr+'/3.'],extra:ex,bd:'exp'});
  else if(pass)fin({sc:.5,pts:30,title:'⚠️ Giải trình được nhưng tính sai số phải nộp',lines:['Cơ quan thuế chấp nhận giải trình, nhưng số liệu của bạn phải làm lại.'],extra:ex});
@@ -2769,7 +2815,7 @@ MODES.push(['🏛️','Giải trình với cơ quan thuế','Chuẩn bị hồ s
 
 /* ---------- Boot ---------- */
 $('#snd').textContent=SND?'🔊':'🔇';musUI();
-document.querySelectorAll('.hud,main').forEach(e=>e.inert=true);$('#lpgo').textContent=USER?'Tiếp tục chơi':'Bắt đầu chơi';
+document.querySelectorAll('.hud,main').forEach(e=>e.inert=true);
 if(USER)hub();else showAuth();
     
 ;(()=>{
@@ -4030,6 +4076,297 @@ const _h=hub;hub=function(){TK=null;_h();ins()};ins();
 /* --sk = mép dưới của thanh HUD/ô quái, để thông báo #evn nằm dưới, không đè */
 const sk=()=>{const h=$('.hud'),b=$('#v7b');let s=h?h.getBoundingClientRect().bottom:0;b&&(s=Math.max(s,b.getBoundingClientRect().bottom));document.documentElement.style.setProperty('--sk',Math.min(s,innerHeight*.4)+'px')};
 setInterval(sk,300);sk();
+})();
+</script>
+
+
+<style id="ux3-theme-mobile">
+/* ===== UX3: nền gradient dịu mắt + Light/Dark + mobile dock ===== */
+:root[data-theme="light"]{
+  --bg:#edf6f2;
+  --pn:rgba(255,255,255,.88);
+  --tx:#16352d;
+  --mu:#607a72;
+  --ln:#d6e6df;
+  --jd:#159d73;
+  --jd2:#0d7f5c;
+  --gd:#d99a14;
+  --rd:#d94b5b;
+  --vt:#6659d9;
+  --vt2:#5146bd;
+  --shadow:0 1px 2px rgba(22,53,45,.06),0 7px 24px rgba(56,90,82,.08);
+  --shadow-lg:0 14px 40px rgba(56,90,82,.12);
+  --game-bg:
+    radial-gradient(900px 560px at -5% -10%, rgba(102,89,217,.10), transparent 62%),
+    radial-gradient(800px 520px at 105% 0%, rgba(21,157,115,.11), transparent 60%),
+    linear-gradient(135deg,#edf7f2 0%,#eef6f8 52%,#f5f1f9 100%);
+}
+:root[data-theme="dark"]{
+  --bg:#101b20;
+  --pn:rgba(25,38,45,.90);
+  --tx:#e8f4f1;
+  --mu:#9ab5ad;
+  --ln:#2a4146;
+  --jd:#31d9a0;
+  --jd2:#1db986;
+  --gd:#f6c545;
+  --rd:#ff7382;
+  --vt:#a59bff;
+  --vt2:#8175ef;
+  --shadow:0 2px 4px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.18);
+  --shadow-lg:0 18px 44px rgba(0,0,0,.30);
+  --game-bg:
+    radial-gradient(900px 560px at -10% -10%, rgba(121,112,232,.18), transparent 60%),
+    radial-gradient(900px 540px at 110% 0%, rgba(33,184,135,.14), transparent 58%),
+    linear-gradient(135deg,#111d23 0%,#16242a 50%,#201d30 100%);
+}
+html{background:var(--bg)}
+body{
+  min-height:100dvh;
+  background:var(--game-bg)!important;
+  background-attachment:fixed;
+  color:var(--tx);
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 28%,rgba(255,255,255,.02));
+}
+.theme-switch{
+  width:42px;height:42px;min-width:42px;padding:0;margin:0;
+  display:grid;place-items:center;
+  border:1.5px solid var(--ln);
+  border-radius:12px;
+  background:color-mix(in srgb,var(--pn) 86%,transparent);
+  color:var(--tx);
+  box-shadow:none;
+  font-size:19px;
+  cursor:pointer;
+}
+.theme-switch:hover{border-color:var(--vt);filter:none;transform:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--vt) 12%,transparent)}
+.theme-switch:active{transform:scale(.95)!important}
+:root[data-theme="dark"] .theme-switch{background:color-mix(in srgb,var(--pn) 92%,transparent)}
+.hud{
+  background:color-mix(in srgb,var(--pn) 76%,transparent)!important;
+}
+.card,.mode,.hero,.opt,.quest,.auth-card,.lp-form{
+  background:color-mix(in srgb,var(--pn) 84%,transparent)!important;
+}
+main{padding-bottom:max(80px,calc(90px + env(safe-area-inset-bottom,0px)))}
+button,.opt,.mode,.rp,.bo{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.opt,.bo,.rp{min-height:46px}
+
+/* Floating mascot becomes a dockable mobile notification */
+#mas{transition:left .28s ease,transform .28s ease;z-index:40}
+#mas.mobile-docked{
+  left:-42px;
+}
+#mas.mobile-docked #mb{
+  opacity:0!important;
+  pointer-events:none!important;
+  transform:translateX(-12px) scale(.85);
+}
+#mas.mobile-docked svg{
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.28));
+}
+#mas.mobile-docked::after{
+  content:"";
+  position:absolute;
+  left:42px;top:50%;
+  width:4px;height:36px;
+  transform:translateY(-50%);
+  border-radius:99px;
+  background:color-mix(in srgb,var(--vt) 75%,transparent);
+}
+#mas:not(.mobile-docked) svg{cursor:pointer}
+
+/* Event notification: compact and dockable to the right on mobile */
+#evn{
+  top:calc(var(--hud-h,64px) + 8px)!important;
+  width:min(92vw,460px);
+}
+#evn .ev-dock{
+  width:32px!important;height:32px!important;
+  min-width:32px!important;padding:0!important;margin:0!important;
+  display:grid!important;place-items:center;
+  border-radius:10px!important;
+  background:color-mix(in srgb,var(--pn) 92%,transparent)!important;
+  color:var(--tx)!important;
+  border:1px solid var(--ln)!important;
+  box-shadow:none!important;
+  font-size:16px!important;
+  line-height:1!important;
+}
+#evn.mobile-docked{
+  transform:translate(calc(100vw - 48px),-120%)!important;
+  pointer-events:none;
+}
+#evn.mobile-docked .ev-dock{
+  pointer-events:auto;
+}
+#ev-dock-tab{
+  position:fixed;
+  right:8px;
+  top:calc(var(--hud-h,64px) + 8px);
+  z-index:81;
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  border:1.5px solid var(--ln);
+  border-radius:13px;
+  background:color-mix(in srgb,var(--pn) 92%,transparent);
+  color:var(--tx);
+  box-shadow:var(--shadow);
+  font-size:18px;
+  cursor:pointer;
+  backdrop-filter:blur(12px);
+}
+#ev-dock-tab[hidden]{display:none}
+
+/* Prevent long game text from causing horizontal scroll on phones */
+body,main,.card,.hero,.quest,.mode,.opt,.res,.note,.evc{max-width:100%;overflow-wrap:anywhere}
+@media(max-width:700px){
+  .hi{gap:7px;padding:8px 10px}
+  #home,#snd,#mus,.theme-switch{width:40px;height:40px;min-width:40px;padding:0}
+  .lv{min-width:140px!important}
+  .st{gap:8px!important}
+  .st div{min-width:42px!important}
+  #mas{
+    left:7px;
+    bottom:calc(8px + env(safe-area-inset-bottom,0px));
+  }
+  #mas svg{width:58px!important;height:64px!important}
+  #mb{
+    max-width:min(60vw,210px)!important;
+    margin-bottom:30px!important;
+    font-size:12px!important;
+    line-height:1.4!important;
+  }
+  #evn{
+    left:auto!important;
+    right:8px!important;
+    transform:translateY(-140%)!important;
+    width:min(82vw,330px)!important;
+    gap:8px!important;
+    padding:9px 10px!important;
+    border-left-width:4px!important;
+  }
+  #evn>i{font-size:23px!important}
+  #evn div{font-size:12px!important}
+  #evn span{-webkit-line-clamp:2!important;line-clamp:2!important}
+  #evn>button:not(.ev-dock){padding:7px 10px!important;font-size:12px!important}
+  #ev-dock-tab{top:calc(var(--hud-h,64px) + 8px);right:6px}
+}
+@media(max-width:460px){
+  .hi{align-items:center}
+  .hud .lv{order:5;flex:1 1 100%;min-width:0!important}
+  .st{margin-left:auto}
+  main{padding-left:10px;padding-right:10px}
+  #evn{width:min(78vw,300px)!important}
+  .hero-title{font-size:27px!important}
+  .card{padding:15px!important}
+  .opt,.bo{font-size:15px!important;padding:11px 12px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #mas,#evn{transition:none!important}
+}
+</style>
+
+
+<script id="ux3-theme-mobile-js">
+(()=>{'use strict';
+const root=document.documentElement;
+const themeBtn=()=>document.getElementById('themeToggle');
+function applyTheme(mode,saveIt=true){
+  mode=mode==='dark'?'dark':'light';
+  root.setAttribute('data-theme',mode);
+  const b=themeBtn();
+  if(b){
+    b.textContent=mode==='dark'?'🌙':'☀️';
+    b.title=mode==='dark'?'Chuyển sang chế độ sáng':'Chuyển sang chế độ tối';
+    b.setAttribute('aria-label',b.title);
+    b.setAttribute('aria-pressed',mode==='dark'?'true':'false');
+  }
+  if(saveIt)try{localStorage.setItem('ts_theme',mode)}catch(e){}
+}
+let saved=null;try{saved=localStorage.getItem('ts_theme')}catch(e){}
+applyTheme(saved==='dark'?'dark':'light',false);
+window.toggleTheme=()=>applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');
+
+/* Mobile dock state for mascot notification */
+const mas=()=>document.getElementById('mas');
+function isMobile(){return window.matchMedia&&window.matchMedia('(max-width:700px)').matches}
+function dockMascot(force){
+  const m=mas(); if(!m||!isMobile()) return;
+  m.classList.toggle('mobile-docked',force===undefined?!m.classList.contains('mobile-docked'):force);
+  try{localStorage.setItem('ts_mascot_dock',m.classList.contains('mobile-docked')?'1':'0')}catch(e){}
+}
+function wireMascot(){
+  const m=mas(); if(!m||m.dataset.ux3==='1') return;
+  m.dataset.ux3='1';
+  m.addEventListener('click',(e)=>{
+    if(!isMobile()) return;
+    if(e.target.closest('svg')){
+      e.preventDefault(); e.stopImmediatePropagation();
+      dockMascot();
+    }
+  },true);
+  let d=null;try{d=localStorage.getItem('ts_mascot_dock')}catch(e){}
+  if(isMobile()&&d==='1')m.classList.add('mobile-docked');
+}
+wireMascot();
+window.addEventListener('resize',()=>{if(!isMobile()){mas()?.classList.remove('mobile-docked')}}, {passive:true});
+
+/* Mobile dock for the "tình huống bất ngờ" notification */
+let tab=null;
+function ensureEventDock(n){
+  if(!n||n.dataset.ux3==='1')return;
+  n.dataset.ux3='1';
+  const btn=document.createElement('button');
+  btn.className='ev-dock';
+  btn.type='button';
+  btn.title='Ẩn thông báo sang cạnh màn hình';
+  btn.setAttribute('aria-label','Ẩn thông báo sang cạnh màn hình');
+  btn.textContent='↔';
+  btn.onclick=(e)=>{
+    e.preventDefault();e.stopPropagation();
+    if(!isMobile())return;
+    n.classList.add('mobile-docked');
+    if(!tab){
+      tab=document.createElement('button');
+      tab.id='ev-dock-tab';
+      tab.type='button';
+      tab.textContent=n.querySelector('i')?.textContent||'📣';
+      tab.title='Mở lại thông báo';
+      tab.setAttribute('aria-label','Mở lại thông báo');
+      tab.onclick=()=>{
+        n.classList.remove('mobile-docked');
+        tab.hidden=true;
+      };
+      document.body.append(tab);
+    }else{
+      tab.textContent=n.querySelector('i')?.textContent||'📣';
+    }
+    tab.hidden=false;
+  };
+  const closeBtn=n.querySelector('button:not(.ev-dock)');
+  n.insertBefore(btn,closeBtn||null);
+}
+function observeEvent(){
+  document.querySelectorAll('#evn').forEach(ensureEventDock);
+}
+new MutationObserver(observeEvent).observe(document.body,{childList:true,subtree:false});
+observeEvent();
+
+/* Keep the mobile HUD height variable correct after orientation changes */
+const sync=()=>{
+  const h=document.querySelector('.hud');
+  if(h)root.style.setProperty('--hud-h',Math.ceil(h.getBoundingClientRect().height)+'px');
+};
+sync();window.addEventListener('resize',sync,{passive:true});
+if(window.ResizeObserver){const h=document.querySelector('.hud');if(h)new ResizeObserver(sync).observe(h)}
 })();
 </script>
 
