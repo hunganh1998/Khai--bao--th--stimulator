@@ -3921,7 +3921,16 @@ const sched=d=>setTimeout(()=>{spawn();sched((170+Math.random()*20)*1e3)},d);sch
 window.__mail={spawn};
 })();
 </script>
-<script id="time-fix">window.CALC_TIME_X=2;(()=>{const o=window.timer;if(typeof o!=="function")return;window.timer=function(sec,end){return o.call(this,sec>=60?Math.round(sec*window.CALC_TIME_X):sec,end)}})();</script>
+<script id="time-fix">window.CALC_TIME_X=2.4;(()=>{const o=window.timer;if(typeof o!=="function")return;window.timer=function(sec,end){return o.call(this,sec>=60?Math.round(sec*window.CALC_TIME_X):sec,end)}})();
+/* Nhắc dùng trợ giúp khi bài tính toán còn ≤25% thời gian */
+(()=>{const st=document.createElement('style');st.textContent='@keyframes hlp{50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--gd) 55%,transparent)}}.hlp{animation:hlp 1s ease-in-out 8;outline:2px solid var(--gd)}';document.head.append(st);
+const d0=window.draw;if(typeof d0!=="function")return;
+window.draw=function(){d0.apply(this,arguments);try{if(!G||G.done||G.hl||!(G.sec>=60)||!(G.left>0)||G.left/G.sec>.25)return;G.hl=1;
+const q=s=>document.querySelector(s),h=q('#hb2'),t=q('.dk-w .dk[onclick="useTime()"]'),c=q('#cfab');let m,e;
+if(h&&S.help>0){m='💡 Sắp hết giờ! Bấm "Hỏi trưởng phòng" để được gợi ý ('+S.help+' lượt).';e=h}
+else if(t&&S.inv.time>0){m='⏳ Sắp hết giờ! Dùng Đồng hồ cát để cộng thêm 20 giây ('+S.inv.time+' cái).';e=t}
+else{m='⏳ Sắp hết giờ! Dùng 🧮 máy tính (có chip thuế suất) hoặc mua Đồng hồ cát trong Quầy vật tư.';e=c&&c.offsetParent?c:q('.dk-w .dk')}
+toast(m);e&&e.classList.add('hlp');setTimeout(()=>e&&e.classList.remove('hlp'),9000)}catch(x){}}})();</script>
 <style id="ext-css">
 #cfx{position:fixed;inset:0;pointer-events:none;z-index:60}
 .xbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:0 0 12px}.xbar button{width:100%;margin:0}
