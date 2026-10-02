@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f3f6fb"><meta name="color-scheme" content="light dark">
     <title>Tax Shield – Phiêu lưu săn quái thuế 2026 · v12</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -4348,7 +4349,7 @@ function applyTheme(mode,saveIt=true){
   if(saveIt)try{localStorage.setItem('ts_theme',mode)}catch(e){}
 }
 let saved=null;try{saved=localStorage.getItem('ts_theme')}catch(e){}
-applyTheme(saved==='dark'?'dark':'light',false);
+applyTheme(saved||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'),false);
 window.toggleTheme=()=>applyTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');
 
 /* Mobile dock state for mascot notification */
@@ -4496,90 +4497,84 @@ body.challenge-tools-collapsed #toolReveal{display:block}
 </script>
 
 
-<style id="colleague-toggle-v15">
-/* Đồng nghiệp: bấm vào ô thoại để thu gọn thành logo; bấm logo để mở lại */
-#app > .npc.fl {
-  cursor: pointer;
-  transition: width .22s ease, height .22s ease, transform .22s ease,
-              opacity .18s ease, border-radius .22s ease, padding .22s ease;
+<style id="mobile-opt">
+/* ===== Palette (calm teal/indigo, readable in both themes) ===== */
+:root[data-theme="light"]{--bg:#f3f6fb;--pn:rgba(255,255,255,.95);--tx:#1b2740;--mu:#5b6b86;--ln:#d8e0ee;--jd:#0e9484;--jd2:#0a7a6d;--gd:#c98a00;--rd:#d6455d;--vt:#4f6bed;--vt2:#3d56d6;--a1:#0e9484;--a2:#6c7bf0;--a3:#f0b429;
+--game-bg:radial-gradient(800px 480px at 0 -10%,rgba(79,107,237,.12),transparent 62%),radial-gradient(700px 440px at 100% 0,rgba(14,148,132,.10),transparent 60%),linear-gradient(160deg,#f7f9fe,#eef3fb 55%,#f3f6fb)}
+:root[data-theme="dark"]{--bg:#0e1424;--pn:rgba(23,31,52,.95);--tx:#eaf0ff;--mu:#9fb0d0;--ln:#2b3858;--jd:#12a58a;--jd2:#0b8570;--gd:#ffc94d;--rd:#ff7a8a;--vt:#8fa2ff;--vt2:#6f84f5;--a1:#3ddbb5;--a2:#8fa2ff;--a3:#ffc94d;
+--game-bg:radial-gradient(800px 480px at 0 -10%,rgba(111,132,245,.16),transparent 62%),radial-gradient(700px 440px at 100% 0,rgba(18,165,138,.12),transparent 60%),linear-gradient(160deg,#0b1020,#0e1424 55%,#111a30)}
+html{background:var(--bg);-webkit-text-size-adjust:100%;touch-action:manipulation}
+html,body{overflow-x:clip!important;overflow-y:visible!important}
+body{background:var(--game-bg)!important;-webkit-tap-highlight-color:transparent}
+body,main,#app,.card{touch-action:pan-y pinch-zoom}
+button,.opt,.mode,input{touch-action:manipulation}
+.npc.fl,.dk,#toolReveal{background:var(--pn)!important;color:var(--tx)}
+#mbtn{background:linear-gradient(135deg,var(--jd),var(--vt2))}
+.auth-wrap{min-height:calc(100dvh - 80px)}
+/* ===== Layout fixes (all sizes) ===== */
+#mbtn{bottom:calc(var(--tb,64px) + 64px)!important}#cfab{bottom:calc(var(--tb,64px) + 12px)!important}
+@media(min-width:761px){#toolReveal{display:none!important}#mbtn{bottom:70px!important}#cfab{bottom:14px!important}}
+/* ===== Mobile ===== */
+@media(max-width:760px){
+body.challenge-tools-collapsed{--tb:calc(48px + env(safe-area-inset-bottom,0px))}
+#mbtn{right:12px}#cfab{right:12px}
+#cpn{bottom:calc(var(--tb,64px) + 62px)!important}
+.dk-w{bottom:calc(var(--tb,64px) + 6px)}
+body:has(.dk-w) #mas{bottom:calc(var(--tb,64px) + 50px)!important}
+input,select,textarea{font-size:16px!important}
+.opt,.mode,button,#tab button,.dk{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.hi,main{padding-left:max(10px,env(safe-area-inset-left));padding-right:max(10px,env(safe-area-inset-right))}
+.mdl,#evm,#mbox{overflow-y:auto;-webkit-overflow-scrolling:touch}
+.evc{max-height:calc(100dvh - 24px);overflow-y:auto}
 }
-#app > .npc.fl.colleague-collapsed {
-  width: 54px !important;
-  height: 54px !important;
-  min-height: 54px !important;
-  padding: 0 !important;
-  right: 14px !important;
-  left: auto !important;
-  top: calc(var(--hud-h,64px) + 10px) !important;
-  transform: none !important;
-  border-radius: 50% !important;
-  display: grid !important;
-  place-items: center !important;
-  overflow: hidden !important;
-  cursor: pointer;
-}
-#app > .npc.fl.colleague-collapsed .bub,
-#app > .npc.fl.colleague-collapsed .npc-text,
-#app > .npc.fl.colleague-collapsed .npc-name,
-#app > .npc.fl.colleague-collapsed .npc-role,
-#app > .npc.fl.colleague-collapsed p,
-#app > .npc.fl.colleague-collapsed button {
-  display: none !important;
-}
-#app > .npc.fl.colleague-collapsed::before {
-  content: "👨‍💼";
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  font-size: 28px;
-  line-height: 1;
-}
-#app > .npc.fl.colleague-collapsed:hover {
-  transform: scale(1.06) !important;
-}
-@media (max-width: 700px) {
-  #app > .npc.fl.colleague-collapsed {
-    width: 50px !important;
-    height: 50px !important;
-    min-height: 50px !important;
-    right: 10px !important;
-  }
-}
+@media(max-width:460px){#home,#snd,#mus,.theme-switch{width:36px!important;height:36px!important;min-width:36px!important;font-size:17px}.hi{gap:5px!important}}
+/* ===== Focus mode: hide mascot / chat / logos on phones ===== */
+body:is(.zen,.zl) :is(#mas,.npc,#mbtn,#evn,#ev-dock-tab,#ch svg,.cast,#ldc){display:none!important}
+#zenToggle[aria-pressed=true]{border-color:var(--vt);background:color-mix(in srgb,var(--vt) 16%,var(--pn))}
+@media(min-width:761px){#zenToggle{display:none}body.zen:not(.zl) :is(#mas,.npc,#mbtn,#evn,#ev-dock-tab,#ch svg,.cast,#ldc){display:revert!important}}
+/* ===== Landscape phones ===== */
+@media(max-height:480px) and (pointer:coarse){.hud{position:static!important}main{padding-bottom:72px!important}#tab button{min-height:44px}.hero-title{font-size:22px!important}}
 </style>
-<script>
-(function(){
-  function isColleague(el){
-    if(!el || !el.classList.contains('npc') || !el.classList.contains('fl')) return false;
-    const s=(el.textContent||'').toLowerCase();
-    return s.includes('đồng nghiệp') || s.includes('minh') || s.includes('em tin anh');
-  }
 
-  function bindColleague(el){
-    if(!isColleague(el) || el.dataset.colleagueToggleBound) return;
-    el.dataset.colleagueToggleBound='1';
-
-    el.addEventListener('click', function(e){
-      if(e.target.closest('button,a,input,select,textarea')) return;
-      this.classList.toggle('colleague-collapsed');
-      this.setAttribute(
-        'aria-label',
-        this.classList.contains('colleague-collapsed')
-          ? 'Mở lại thoại đồng nghiệp'
-          : 'Thu nhỏ thoại đồng nghiệp'
-      );
-    });
-  }
-
-  function scan(){
-    document.querySelectorAll('#app > .npc.fl').forEach(bindColleague);
-  }
-
-  new MutationObserver(scan).observe(document.body,{childList:true,subtree:true});
-  scan();
+<script id="remedy-js">
+(()=>{'use strict';
+/* Thử thách giảm tiền phạt: trả lời đúng -> trừ % khoản phạt đã bị xử lý (tối đa 3 lượt/ngày, không mất uy tín) */
+const CH=[['🛠️','Khắc phục vi phạm','Trả lời đúng 4 câu để giảm tiền phạt đã bị xử lý.',[4,20,8,15]],
+['📝','Tự khai bổ sung','Nộp hồ sơ khai bổ sung đúng hạn: 3 câu, mỗi câu đúng giảm 12% khoản phạt.',[3,25,12,15]],
+['🤝','Hòa giải giảm phạt','5 câu khó hơn, 10 giây/câu. Đúng đủ 5/5 được giảm thêm 15%.',[5,10,8,15]]];
+const card=(h,b)=>$('#app').innerHTML=`<div class="card">${h}<button onclick="hub()">${b||'Về sảnh'}</button></div>`;
+function rRem(c){const [n,sec,pc,bo]=c,d=new Date().toDateString();
+ if(!(S.fined>0))return card('<h2>✅ Chưa có khoản phạt</h2><p class="mu">Bạn chưa bị phạt khoản nào. Quay lại khi cần khắc phục vi phạm.</p>');
+ S.rm=S.rm&&S.rm.d===d?S.rm:{d,n:0};
+ if(S.rm.n>=3)return card('<h2>⏳ Hết lượt hôm nay</h2><p class="mu">Mỗi ngày được khắc phục tối đa 3 lần. Quay lại vào ngày mai nhé.</p>');
+ G={k:'rem',qs:sh(QB).slice(0,n).map(x=>({q:x[0],o:sh([x[1],...x[2]]),a:x[1],w:x[3]})),i:0,ok:0,done:0,n,pc,bo,base:S.fined};rmShow(sec)}
+function rmShow(sec){const q=G.qs[G.i];G.ans=0;G.done=0;G.sec0=sec;
+ $('#app').innerHTML=`<div class="card"><span class="pill">Giảm phạt · câu ${G.i+1}/${G.n} · còn ${f(S.fined)} đ</span><h3>${q.q}</h3>${q.o.map((o,i)=>`<button class="opt" onclick="rmAns(${i})">${o}</button>`).join('')}<div id="fb"></div></div><div id="res"></div>`;
+ timer(sec,()=>rmAns(-1))}
+function rmAns(i){if(G.ans)return;G.ans=1;clearInterval(TI);const q=G.qs[G.i],c=i>=0&&q.o[i]===q.a,last=G.i>=G.n-1;if(c)G.ok++;
+ document.querySelectorAll('.opt').forEach((b,k)=>{b.disabled=true;if(q.o[k]===q.a)b.classList.add('c');else if(k===i)b.classList.add('w')});
+ $('#fb').innerHTML=`<p><b class="${c?'ok':'lo'}">${c?'✔ Chính xác':i<0?'⌛ Hết giờ':'✘ Chưa đúng'}</b> — ${q.w}</p><button onclick="${last?'rmEnd()':'G.i++;rmShow(G.sec0)'}">${last?'Xem kết quả':'Câu tiếp ▶'}</button>`}
+function rmEnd(){G.done=1;$('#tm').innerHTML='';const k=G.ok,pct=k*G.pc+(k===G.n?G.bo:0),red=Math.min(S.fined,Math.round(G.base*pct/100/1e5)*1e5);
+ S.fined-=red;S.rm.n++;S.coin+=k*5;save();hud();
+ card(`<h2>${red>0?'💸 Đã giảm phạt':'😬 Chưa giảm được'}</h2><p>Đúng <b>${k}/${G.n}</b> câu → giảm <b>${f(red)} đ</b> (${pct}%) · +${k*5} 🪙.</p><p class="mu">Còn phải nộp: <b>${f(S.fined)} đ</b> · Lượt hôm nay: ${S.rm.n}/3. Trả lời sai không bị trừ uy tín.</p>`)}
+window.rRem=rRem;window.rmAns=rmAns;window.rmEnd=rmEnd;window.rmShow=rmShow;
+CH.forEach(m=>MODES.push([m[0],m[1],m[2],()=>rRem(m[3]),'MỚI']));
+if(document.querySelector('#app .modes')&&typeof hub==='function')hub();
 })();
 </script>
-
+<script id="mobile-opt-js">
+(()=>{'use strict';
+const B=document.body,R=document.documentElement,mm=q=>matchMedia(q).matches,$=s=>document.querySelector(s);
+let z=null;try{z=localStorage.getItem('ts_zen')}catch(e){}
+const setZen=(v,save)=>{B.classList.toggle('zen',!!v);const b=$('#zenToggle');if(b){b.textContent=v?'🙈':'👁️';b.setAttribute('aria-pressed',v?'true':'false');b.title=v?'Hiện linh vật & hội thoại':'Ẩn linh vật & hội thoại (chơi gọn)';b.setAttribute('aria-label',b.title)}if(save)try{localStorage.setItem('ts_zen',v?'1':'0')}catch(e){}};
+const t=$('#themeToggle');
+if(t&&!$('#zenToggle')){const b=document.createElement('button');b.id='zenToggle';b.type='button';b.className='theme-switch';b.onclick=()=>setZen(!B.classList.contains('zen'),1);t.after(b)}
+setZen(z===null?mm('(max-width:760px)'):z==='1');
+const L=matchMedia('(max-height:480px) and (pointer:coarse)'),sl=()=>B.classList.toggle('zl',L.matches);sl();L.addEventListener&&L.addEventListener('change',sl);
+const mc=$('meta[name=theme-color]'),sc=()=>{if(mc)mc.content=R.getAttribute('data-theme')==='dark'?'#0e1424':'#f3f6fb'};sc();
+new MutationObserver(sc).observe(R,{attributes:true,attributeFilter:['data-theme']});
+})();
+</script>
 </body>
 
 </html>
