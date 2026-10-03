@@ -5309,7 +5309,7 @@
             </ul>
         </details>
     </main>
-    <audio id="bgm" loop preload="none" src="tax-shield-bg.mp3"></audio>
+    <audio id="bgm" loop playsinline></audio>
     <div id="toast" aria-live="polite"></div>
     <script>
         const $ = s => document.querySelector(s),
@@ -9807,7 +9807,7 @@ new MutationObserver(skSchedule).observe($('#app'),{childList:true});
             wireMascot();
             window.addEventListener('resize', () => {
                 if (!isMobile()) {
-                    mas() ? .classList.remove('mobile-docked')
+                    {const m0=mas();m0&&m0.classList.remove('mobile-docked')}
                 }
             }, {
                 passive: true
@@ -9834,7 +9834,7 @@ new MutationObserver(skSchedule).observe($('#app'),{childList:true});
                         tab = document.createElement('button');
                         tab.id = 'ev-dock-tab';
                         tab.type = 'button';
-                        tab.textContent = n.querySelector('i') ? .textContent || '📣';
+                        tab.textContent = (n.querySelector('i')||{}).textContent || '📣';
                         tab.title = 'Mở lại thông báo';
                         tab.setAttribute('aria-label', 'Mở lại thông báo');
                         tab.onclick = () => {
@@ -9843,7 +9843,7 @@ new MutationObserver(skSchedule).observe($('#app'),{childList:true});
                         };
                         document.body.append(tab);
                     } else {
-                        tab.textContent = n.querySelector('i') ? .textContent || '📣';
+                        tab.textContent = (n.querySelector('i')||{}).textContent || '📣';
                     }
                     tab.hidden = false;
                 };
@@ -10136,7 +10136,7 @@ new MutationObserver(skSchedule).observe($('#app'),{childList:true});
         }
         /* ===== Focus mode: hide mascot / chat / logos on phones ===== */
         
-        body:is(.zen, .zl) :is(#mas, .npc, #mbtn, #evn, #ev-dock-tab, #ch svg, .cast, #ldc) {
+        body:is(.zen, .zl) :is(#mas, .npc, #ch svg, .cast, #ldc) {
             display: none!important
         }
         
@@ -10149,7 +10149,7 @@ new MutationObserver(skSchedule).observe($('#app'),{childList:true});
             #zenToggle {
                 display: none
             }
-            body.zen:not(.zl) :is(#mas, .npc, #mbtn, #evn, #ev-dock-tab, #ch svg, .cast, #ldc) {
+            body.zen:not(.zl) :is(#mas, .npc, #ch svg, .cast, #ldc) {
                 display: revert!important
             }
         }
@@ -10414,6 +10414,27 @@ $('#bn').insertAdjacentHTML('afterend','<button id="fmb" class="s" onclick="fmOp
 const _hud=hud;hud=function(){_hud();const b=$('#fmb');if(b)b.style.display=G&&G.k?'block':'none'};
 if($('#app .hero'))hub();
 })();
+</script>
+<script id="bgm-js">
+/* Nhạc nền lofi tự tổng hợp: 8 ô nhịp, 80 BPM, chỉ vài KB mã, không tải file */
+(()=>{const a=document.getElementById('bgm');if(!a)return;
+const SR=16000,BT=.75,N=SR*BT*32,D=new Float32Array(N),M=Math,
+C=[[261.6,329.6,392,493.9],[196,246.9,293.7,392],[220,261.6,329.6,392],[174.6,220,261.6,329.6]],
+PR=[0,1,2,1,0,1,3,2],PN=[523.3,587.3,659.3,784,880,1046.5];
+let sd=11;const rnd=()=>(sd=sd*16807%2147483647)/2147483647,
+nt=(f,t,d,v,h,k)=>{const s=M.round(t*SR),n=M.round(d*SR);for(let i=0;i<n;i++){const x=i/SR;D[(s+i)%N]+=v*M.min(x/.03,1)*M.exp(-k*x/d)*(M.sin(6.2832*f*x)+h*M.sin(12.566*f*x))}},
+kick=t=>{const s=M.round(t*SR);for(let i=0;i<4800;i++){const x=i/SR;D[(s+i)%N]+=.5*M.exp(-14*x)*M.sin(6.2832*(48*x+95*(1-M.exp(-30*x))/30))}},
+hat=(t,v)=>{const s=M.round(t*SR);for(let i=0;i<640;i++)D[(s+i)%N]+=v*(rnd()-.5)*M.exp(-i/130)};
+for(let b=0;b<32;b++){const bar=b>>2,c=C[PR[bar]],t=b*BT;
+ if(b%4==0){c.forEach((f,q)=>nt(f,t+q*.02,3.1,.05,.35,2.6));nt(c[0]/2,t,2.9,.13,.25,2.2)}
+ if(b%2==0)kick(t);hat(t+BT/2,.05);if(b%4==2)hat(t,.03);
+ if(rnd()<.75)nt(PN[rnd()*6|0],t+(rnd()<.5?0:BT/2),1.2,.05,.2,3.5)}
+let pk=0;for(let i=0;i<N;i++)pk=M.max(pk,M.abs(D[i]));
+const B=new ArrayBuffer(44+N*2),V=new DataView(B),w=(o,s)=>{for(let i=0;i<s.length;i++)V.setUint8(o+i,s.charCodeAt(i))};
+w(0,'RIFF');V.setUint32(4,36+N*2,true);w(8,'WAVEfmt ');V.setUint32(16,16,true);V.setUint16(20,1,true);V.setUint16(22,1,true);V.setUint32(24,SR,true);V.setUint32(28,SR*2,true);V.setUint16(32,2,true);V.setUint16(34,16,true);w(36,'data');V.setUint32(40,N*2,true);
+for(let i=0;i<N;i++)V.setInt16(44+i*2,D[i]/pk*.5*32767,true);
+a.preload='auto';a.src=URL.createObjectURL(new Blob([B],{type:'audio/wav'}));a.load();
+const m=document.getElementById('mus');m&&m.classList.toggle('off',!MUS)})();
 </script>
 </body>
 
