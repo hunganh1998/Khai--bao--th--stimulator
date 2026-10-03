@@ -10289,6 +10289,132 @@ if(document.querySelector('#app .modes')&&typeof hub==='function')hub();
             });
         })();
     </script>
+<script id="dis-js">
+/* v15: Giải trình giải thể doanh nghiệp + công thức cho mọi thử thách */
+(()=>{
+const $=s=>document.querySelector(s),Z8=.08,B=A=>Math.round(A);
+const LAW='Luật QLT 108/2025 (từ 1/7/2026); Luật DN 2020 sđ 2025 (Điều 207–208); NĐ 125/2020 sđ NĐ 310/2025.';
+const D5=(a,b,c,d,e)=>[[a,1],[b,1],[c,1],[d,0],[e,-1]];
+const PT=11.35e6; /* TN tính thuế lương tháng cuối: 30tr − BH 3,15tr − 15,5tr */
+const DIS=[
+{t:'Còn nợ thuế GTGT kỳ cuối khi quyết toán giải thể',lv:1,a:()=>R(50,300)*1e6,T:A=>A,p:0,
+ n:A=>`Công ty đã có quyết định giải thể nhưng còn thuế GTGT kỳ cuối ${f(A)} đ chưa nộp. Cơ quan thuế mời làm việc trước khi xác nhận hoàn thành nghĩa vụ để chấm dứt mã số thuế.`,
+ k:A=>`Thuế GTGT kỳ cuối còn nợ: <b>${f(A)} đ</b>. Công ty tự nộp bổ sung nên không bị phạt khai sai; tiền chậm nộp = nợ × 0,03% × số ngày.`,
+ docs:D5('Quyết định giải thể và tờ khai GTGT kỳ cuối','Chứng từ nộp tiền vào ngân sách (nếu đã nộp một phần)','Sổ sách, báo cáo tài chính đến ngày có quyết định giải thể','Danh sách khách hàng thân thiết','Giấy xác nhận hết nợ thuế do công ty tự soạn'),
+ qs:[['Hạn nộp hồ sơ khai quyết toán thuế khi giải thể tính thế nào?','Chậm nhất ngày thứ 45 kể từ ngày có quyết định giải thể',['45 ngày kể từ ngày cơ quan đăng ký kinh doanh xóa tên','90 ngày kể từ ngày kết thúc năm dương lịch','30 ngày kể từ ngày bán hết tài sản'],'Hạn 45 ngày tính từ ngày có quyết định giải thể, không chờ cơ quan đăng ký kinh doanh công bố hay xóa tên.'],
+ ['Tài sản không đủ trả hết nợ, khoản nào được thanh toán trước?','Chi phí giải thể; rồi lương, trợ cấp, BHXH; rồi nợ thuế; rồi nợ khác',['Nợ thuế trước, vì là nghĩa vụ với Nhà nước','Chủ nợ nào ký hợp đồng sớm hơn được trả trước','Chia cho thành viên trước nếu có biên bản họp'],'Luật Doanh nghiệp quy định thứ tự: chi phí giải thể; lương, trợ cấp thôi việc, BHXH; nợ thuế; nợ khác; phần còn lại mới chia cho chủ sở hữu.'],
+ ['Thời hạn thanh toán nợ, thanh lý hợp đồng kể từ ngày thông qua quyết định giải thể?','Tối đa 6 tháng',['Tối đa 12 tháng','Tối đa 3 tháng','Không giới hạn nếu đã thông báo cho chủ nợ'],'Quyết định giải thể phải nêu thời hạn thanh toán nợ, thanh lý hợp đồng không quá 6 tháng.']],
+ ex:'Chuyên gia thuế: phải nộp đủ thuế còn nợ cùng tiền chậm nộp (0,03%/ngày) thì cơ quan thuế mới xác nhận hoàn thành nghĩa vụ, chấm dứt mã số thuế.',
+ fm:'Tiền chậm nộp = Thuế nợ × 0,03% × số ngày chậm<br>Tổng phải nộp = Thuế nợ + Tiền chậm nộp<br>Tự nộp bổ sung trước khi có biên bản: không phạt 20%',law:LAW},
+{t:'Bán thanh lý máy móc trước giải thể, không xuất hóa đơn',lv:2,a:()=>R(400,1500)*1e6,T:A=>B(A*Z8+(A-B(A*.4))*.2),p:.2,
+ n:A=>`Công ty bán thanh lý dây chuyền máy móc, thu ${f(A)} đ (chưa thuế GTGT), giá trị còn lại trên sổ ${f(B(A*.4))} đ, không xuất hóa đơn, không kê khai. Doanh thu năm trên 50 tỷ, TNDN 20%.`,
+ k:A=>`GTGT đầu ra 8% × ${f(A)} = <b>${f(A*Z8)}</b>. Thu nhập khác = ${f(A)} − ${f(B(A*.4))} = ${f(A-B(A*.4))}, TNDN 20% = <b>${f((A-B(A*.4))*.2)}</b>. Tự tính thuế thiếu rồi cộng phạt 20% và tiền chậm nộp.`,
+ docs:D5('Biên bản thanh lý, hợp đồng bán, biên bản giao nhận tài sản','Sổ tài sản cố định, bảng tính giá trị còn lại','Chứng từ thu tiền qua ngân hàng','Ảnh chụp dây chuyền trước khi bán','Hóa đơn thanh lý lập bổ sung, ghi lùi ngày'),
+ qs:[['Bán thanh lý tài sản cố định khi giải thể, phải làm gì về hóa đơn và GTGT?','Lập hóa đơn, kê khai GTGT đầu ra như bán tài sản thông thường',['Không cần hóa đơn vì doanh nghiệp đang giải thể','Chỉ lập biên bản thanh lý, không tính GTGT','Khai GTGT sau khi đã đóng mã số thuế'],'Thanh lý tài sản vẫn là giao dịch bán hàng: phải lập hóa đơn và kê khai thuế đầu ra.'],
+ ['Thu nhập chịu thuế TNDN từ thanh lý được tính thế nào?','Giá bán − giá trị còn lại − chi phí thanh lý, cộng vào thu nhập khác kỳ cuối',['Toàn bộ giá bán là thu nhập chịu thuế','Chỉ tính khi bán lãi trên 1 tỷ','Không tính vì tài sản đã khấu hao'],'Thu nhập khác từ thanh lý được cộng vào kỳ tính thuế đến thời điểm giải thể.'],
+ ['Hóa đơn thanh lý lập bổ sung ghi lùi ngày thì sao?','Là gian dối; phải lập hóa đơn đúng thời điểm thực tế và khai bổ sung',['Chấp nhận vì thuế đã nộp đủ','Chỉ bị nhắc nhở bằng văn bản','Được phép nếu giám đốc ký xác nhận'],'Ghi lùi ngày hóa đơn là sai phạm về hóa đơn.']],
+ ex:'Chuyên gia thuế: thanh lý TSCĐ là bán hàng. GTGT tính trên giá bán chưa thuế; phần lãi thanh lý cộng vào thu nhập khác của kỳ tính thuế cuối.',
+ fm:'GTGT đầu ra = Giá bán chưa thuế × 8% (đến 31/12/2026)<br>Thu nhập khác = Giá bán − Giá trị còn lại − Chi phí thanh lý<br>TNDN = Thu nhập khác × 20%<br>Thuế thiếu = GTGT + TNDN; Phạt = 20% × thuế thiếu',law:LAW+' Luật GTGT 48/2024; Luật TNDN 67/2025.'},
+{t:'Trừ lỗ năm 2020 vào kỳ quyết toán giải thể 2026',lv:2,a:()=>R(500,3000)*1e6,T:A=>B(A*.2),p:.2,
+ n:A=>`Tờ khai quyết toán TNDN kỳ cuối (đến ngày có quyết định giải thể năm 2026) trừ khoản lỗ phát sinh năm 2020 là ${f(A)} đ. Kỳ cuối có thu nhập trước khi trừ lỗ lớn hơn khoản này; TNDN 20%.`,
+ k:A=>`Lỗ 2020 chỉ chuyển được 5 năm liên tục (2021–2025), khoản <b>${f(A)} đ</b> không được trừ ở kỳ 2026. Thuế TNDN thiếu = ${f(A)} × 20% = <b>${f(A*.2)} đ</b>. Tự tính thuế thiếu rồi cộng phạt 20% và tiền chậm nộp.`,
+ docs:D5('Bảng theo dõi lỗ và hồ sơ quyết toán TNDN các năm 2020–2025','Tờ khai quyết toán TNDN kỳ cuối, phụ lục chuyển lỗ 03-2/TNDN','Báo cáo tài chính đến ngày có quyết định giải thể','Thư cảm ơn khách hàng cuối năm','Bảng chuyển lỗ sửa lại, đẩy năm phát sinh lỗ về 2021'),
+ qs:[['Lỗ phát sinh năm 2020 có được trừ vào thu nhập kỳ quyết toán 2026 không?','Không, vì chỉ được chuyển lỗ 5 năm liên tục kể từ năm sau năm phát sinh lỗ',['Có, vì kỳ cuối của doanh nghiệp giải thể được ưu tiên','Có, nếu hội đồng thành viên phê duyệt','Chỉ được trừ tối đa 50% khoản lỗ'],'Lỗ 2020 chỉ chuyển được đến hết 2025. Giải thể không kéo dài thời hạn chuyển lỗ.'],
+ ['Kỳ tính thuế TNDN cuối cùng khi giải thể xác định đến lúc nào?','Từ đầu năm đến thời điểm có quyết định giải thể (kỳ ngắn hơn 12 tháng)',['Cả năm dương lịch, bất kể ngày giải thể','Từ ngày thanh lý tài sản đầu tiên','Đến ngày cơ quan đăng ký kinh doanh xóa tên'],'Khai quyết toán TNDN đến thời điểm có quyết định giải thể.'],
+ ['Phát hiện đã trừ lỗ quá hạn, xử lý đúng là gì?','Khai bổ sung giảm lỗ chuyển, nộp thuế thiếu và tiền chậm nộp',['Giữ nguyên vì giải thể xong cơ quan thuế không truy thu','Chuyển phần lỗ sang công ty liên kết','Ghi khoản lỗ vào chi phí khác'],'Sai kỳ nào sửa kỳ đó: khai bổ sung, nộp thuế thiếu và tiền chậm nộp.']],
+ ex:'Chuyên gia thuế: lỗ chuyển tối đa 5 năm liên tục, đếm từ năm sau năm phát sinh. Lỗ 2020 chỉ trừ được trong 2021–2025.',
+ fm:'Thu nhập tính thuế = Thu nhập trước khi trừ lỗ − Lỗ được chuyển (≤ 5 năm)<br>Thuế TNDN thiếu = Lỗ trừ sai × 20%<br>Phạt = 20% × thuế thiếu',law:LAW+' Luật TNDN 67/2025.'},
+{t:'Chuyển tài sản còn lại cho thành viên, không lập hóa đơn',lv:3,a:()=>R(300,1200)*1e6,T:A=>B(A*Z8+(A-B(A*.7))*.2),p:.2,
+ n:A=>`Trước khi xóa tên, công ty chuyển xe tải và hàng tồn còn lại cho các thành viên theo tỷ lệ vốn, không lập hóa đơn. Giá thị trường chưa thuế ${f(A)} đ, giá trị còn lại trên sổ ${f(B(A*.7))} đ. Doanh thu năm trên 50 tỷ, TNDN 20%.`,
+ k:A=>`Tài sản bàn giao cho thành viên xử lý như bán theo giá thị trường: GTGT 8% × ${f(A)} = <b>${f(A*Z8)}</b>; thu nhập = ${f(A)} − ${f(B(A*.7))} = ${f(A-B(A*.7))}, TNDN 20% = <b>${f((A-B(A*.7))*.2)}</b>. Tự tính thuế thiếu rồi cộng phạt 20% và tiền chậm nộp.`,
+ docs:D5('Biên bản họp hội đồng thành viên về việc chia tài sản','Biên bản định giá, bảng giá thị trường cùng loại','Hóa đơn xuất cho từng thành viên, biên bản bàn giao','Điều lệ công ty','Biên bản định giá lập lại với giá thấp để giảm thuế'),
+ qs:[['Giải thể còn tài sản chưa thanh lý, chuyển cho thành viên góp vốn thì GTGT, TNDN xử lý thế nào?','Lập hóa đơn, tính thuế như bán theo giá thị trường tại thời điểm bàn giao',['Không phát sinh thuế vì không thu tiền','Tính theo giá trị còn lại trên sổ sách','Miễn thuế nếu thành viên là cá nhân'],'Hướng dẫn của cơ quan thuế: tài sản bàn giao cho thành viên phải lập hóa đơn, tính GTGT và TNDN như bán, theo giá thị trường (đối chiếu văn bản hiện hành).'],
+ ['Khi nào được chia tài sản còn lại cho thành viên?','Sau khi thanh toán chi phí giải thể, lương, bảo hiểm, nợ thuế và nợ khác',['Trước khi trả nợ thuế để tránh bị cưỡng chế','Cùng lúc trả nợ, theo tỷ lệ vốn','Bất kỳ lúc nào có biên bản họp'],'Phần còn lại chỉ chia sau khi hoàn thành các nghĩa vụ ưu tiên, trong đó có nợ thuế.'],
+ ['Cố ý định giá thấp tài sản bàn giao để giảm thuế, hậu quả?','Cơ quan thuế ấn định lại giá thị trường, truy thu và xử phạt',['Hợp lệ nếu có biên bản định giá nội bộ','Chỉ bị nhắc nhở','Bị phạt nhưng không phải nộp thêm thuế'],'Giá tính thuế là giá thị trường; cơ quan thuế có quyền ấn định lại.']],
+ ex:'Chuyên gia thuế: chuyển tài sản cho chủ sở hữu khi giải thể không phải quà tặng nội bộ. Xuất hóa đơn theo giá thị trường, tính cả GTGT và TNDN.',
+ fm:'GTGT = Giá thị trường chưa thuế × 8%<br>Thu nhập = Giá thị trường − Giá trị còn lại<br>TNDN = Thu nhập × 20%<br>Thuế thiếu = GTGT + TNDN; Phạt = 20%',law:LAW+' CV 2790/CT-TTHT.'},
+{t:'Trợ cấp thôi việc vượt mức luật, chưa khấu trừ TNCN',lv:3,a:()=>R(40,200)*1e6,T:A=>pit(PT+A).t-pit(PT).t,p:.2,
+ n:A=>`Công ty chi cho một lao động (không người phụ thuộc) lương tháng cuối chịu thuế 30.000.000 đ, đóng BH bắt buộc 3.150.000 đ, và trợ cấp thôi việc trong đó phần vượt mức luật định là ${f(A)} đ. Công ty chỉ khấu trừ thuế trên lương, bỏ sót phần vượt.`,
+ k:A=>`TN tính thuế lương = 30.000.000 − 3.150.000 − 15.500.000 = 11.350.000 đ → thuế ${f(pit(PT).t)}. Cộng phần vượt: ${f(PT+A)} đ → thuế ${f(pit(PT+A).t)}. Thuế khấu trừ thiếu = <b>${f(pit(PT+A).t-pit(PT).t)} đ</b>. Cộng phạt 20% và tiền chậm nộp.`,
+ docs:D5('Bảng thanh toán trợ cấp, hợp đồng lao động','Bảng tính thâm niên và mức trợ cấp theo Bộ luật Lao động','Tờ khai quyết toán TNCN, chứng từ khấu trừ','Nội quy lao động','Quyết định trợ cấp lập lại, ghi lùi ngày'),
+ qs:[['Trợ cấp thôi việc khi doanh nghiệp giải thể, phần nào chịu thuế TNCN?','Chỉ phần vượt mức quy định của pháp luật lao động',['Toàn bộ khoản trợ cấp','Không chịu thuế phần nào dù chi vượt mức','Chỉ chịu thuế nếu trả bằng tiền mặt'],'Phần trợ cấp theo luật lao động được miễn thuế; phần chi vượt mức là thu nhập từ tiền lương, tiền công.'],
+ ['Giải thể có chi trả thu nhập nhưng không phát sinh khấu trừ TNCN thì nghĩa vụ hồ sơ là gì?','Gửi danh sách cá nhân đã chi trả (mẫu 05/DS-TNCN), không quyết toán thay',['Không phải nộp hồ sơ nào','Quyết toán thay toàn bộ cá nhân','Chỉ báo cáo cho cơ quan bảo hiểm xã hội'],'Có khấu trừ thì quyết toán; chỉ chi trả không khấu trừ thì gửi danh sách 05/DS-TNCN.'],
+ ['Hợp đồng lao động từ 3 tháng trở lên, khấu trừ TNCN theo cách nào?','Biểu lũy tiến từng phần, có xét giảm trừ gia cảnh',['10% trên tổng thu nhập','Không khấu trừ, người lao động tự quyết toán','5% cố định'],'Hợp đồng từ 3 tháng: biểu lũy tiến 5 bậc; 10% chỉ áp dụng khi hợp đồng dưới 3 tháng hoặc không có hợp đồng.']],
+ ex:'Chuyên gia thuế: tính lại cả tháng nhận trợ cấp, cộng phần vượt vào thu nhập tính thuế rồi áp biểu 5 bậc; thuế thiếu là chênh lệch hai lần tính.',
+ fm:'TN tính thuế = Lương − BH bắt buộc − 15,5tr − 6,2tr × NPT + Trợ cấp vượt mức<br>Thuế = biểu 5 bậc (5% · 10% · 20% · 30% · 35%)<br>Thuế thiếu = Thuế (có phần vượt) − Thuế đã khấu trừ',law:'Luật TNCN 109/2025 (từ 1/7/2026); '+LAW},
+{t:'Hoàn thuế GTGT khi giải thể có đầu vào không đủ điều kiện',lv:3,a:()=>R(200,900)*1e6,T:A=>B(A*.3),p:.2,
+ n:A=>`Khi giải thể, công ty đã được hoàn thuế GTGT đầu vào chưa khấu trừ hết ${f(A)} đ. Kiểm tra sau hoàn cho thấy 30% số này thuộc các hóa đơn từ 5 triệu (đã gồm thuế) trả tiền mặt.`,
+ k:A=>`Thuế đầu vào không đủ điều kiện = ${f(A)} × 30% = <b>${f(A*.3)} đ</b> bị loại khỏi số được hoàn. Khai sai làm tăng số thuế được hoàn bị phạt 20%, cộng tiền chậm nộp.`,
+ docs:D5('Hồ sơ hoàn: quyết định giải thể, tờ khai GTGT kỳ cuối','Bảng kê hóa đơn đầu vào kèm chứng từ thanh toán không dùng tiền mặt','Bảng loại trừ hóa đơn không đủ điều kiện, tờ khai điều chỉnh','Danh mục tài sản cố định','Chứng từ chuyển khoản làm sau, ghi lùi ngày'),
+ qs:[['Doanh nghiệp giải thể còn thuế GTGT đầu vào chưa khấu trừ hết thì xử lý thế nào?','Được đề nghị hoàn nếu đủ điều kiện và chứng minh đầu vào hợp lệ',['Đương nhiên hoàn toàn bộ, không kiểm tra','Không được hoàn, mất khoản thuế này','Chuyển cho thành viên góp vốn khấu trừ'],'Cơ sở kinh doanh giải thể được hoàn thuế đầu vào chưa khấu trừ hết nếu đủ điều kiện (Luật GTGT 48/2024).'],
+ ['Bán tài sản chịu GTGT khi giải thể, có phải điều chỉnh lại thuế đầu vào của tài sản đã bán?','Không phải điều chỉnh lại thuế đầu vào của tài sản bán ra',['Phải điều chỉnh giảm toàn bộ','Phải điều chỉnh một nửa','Phải nộp lại thuế đã khấu trừ'],'Trường hợp bán tài sản chịu GTGT khi giải thể thì không điều chỉnh lại thuế đầu vào của tài sản bán ra.'],
+ ['Hóa đơn từ 5 triệu trả tiền mặt có được tính vào thuế đề nghị hoàn không?','Không, thiếu chứng từ thanh toán không dùng tiền mặt',['Có, vì hóa đơn hợp lệ','Có, nếu người bán xác nhận đã nhận tiền','Có, nếu trả thành nhiều lần dưới 5 triệu'],'Điều kiện tính theo giá trị hóa đơn; chia nhỏ lần trả không đổi kết quả.']],
+ ex:'Chuyên gia thuế: hoàn thuế khi giải thể phải khớp từng hóa đơn đầu vào với chứng từ thanh toán không dùng tiền mặt; phần không đủ điều kiện bị loại và bị phạt 20%.',
+ fm:'Thuế hoàn sai = Thuế đầu vào đã hoàn × tỷ lệ hóa đơn tiền mặt ≥ 5tr<br>Phạt = 20% × thuế hoàn sai<br>Chậm nộp = Thuế hoàn sai × 0,03% × số ngày',law:'Luật GTGT 48/2024; '+LAW},
+{t:'Chia lợi nhuận cho thành viên cá nhân, không khấu trừ TNCN',lv:3,a:()=>R(500,3000)*1e6,T:A=>B(A*.05),p:.2,
+ n:A=>`Trước khi giải thể, công ty chia ${f(A)} đ lợi nhuận sau thuế chưa phân phối cho các thành viên là cá nhân cư trú, không khấu trừ thuế TNCN.`,
+ k:A=>`Lợi tức là thu nhập từ đầu tư vốn, thuế suất 5%: ${f(A)} × 5% = <b>${f(A*.05)} đ</b> phải khấu trừ khi chi trả. Khấu trừ thiếu bị phạt 20% và tính tiền chậm nộp.`,
+ docs:D5('Nghị quyết chia lợi nhuận, báo cáo tài chính có lợi nhuận chưa phân phối','Danh sách thành viên, tỷ lệ vốn góp, chứng từ chi trả','Tờ khai TNCN và chứng từ nộp thuế thay','Biên bản họp thường niên năm trước','Văn bản thành viên cam kết tự nộp thuế, ký sau ngày chi'),
+ qs:[['Chia lợi nhuận sau thuế cho thành viên là cá nhân, thuế TNCN tính thế nào?','Thu nhập từ đầu tư vốn, thuế suất toàn phần 5% trên số được chia',['Biểu lũy tiến từng phần 5 bậc','Miễn thuế vì công ty đã nộp TNDN','2% trên giá trị vốn góp'],'Lợi tức, cổ tức là thu nhập từ đầu tư vốn, thuế suất 5% (Điều 12 Luật TNCN 109/2025).'],
+ ['Công ty chi trả khoản này có trách nhiệm gì?','Khấu trừ thuế TNCN khi chi trả và khai, nộp thay cho cá nhân',['Để cá nhân tự khai sau khi công ty giải thể','Không khấu trừ vì sắp giải thể','Chỉ khấu trừ nếu số tiền trên 10 triệu'],'Tổ chức trả thu nhập từ đầu tư vốn phải khấu trừ, không được bỏ qua vì sắp giải thể.'],
+ ['Phần tài sản còn lại được chia cho chủ sở hữu khi nào?','Chỉ sau khi trả hết chi phí giải thể, lương, bảo hiểm, nợ thuế và nợ khác',['Có thể chia trước, nợ thuế trả sau','Chia theo biên bản họp, không cần xét nợ','Chia ngay khi ra quyết định giải thể'],'Chủ sở hữu chỉ nhận phần còn lại sau khi trả hết nợ theo thứ tự ưu tiên.']],
+ ex:'Chuyên gia thuế: lợi nhuận, cổ tức chia cho cá nhân là thu nhập đầu tư vốn, 5% toàn phần, công ty khấu trừ tại thời điểm chi trả.',
+ fm:'Thuế TNCN phải khấu trừ = Số lợi nhuận chia × 5%<br>Phạt = 20% × thuế khấu trừ thiếu<br>Chậm nộp = Thuế thiếu × 0,03% × số ngày',law:'Luật TNCN 109/2025 (Điều 12); '+LAW}
+];
+window.DIS=DIS;
+const ROAD=['Ra quyết định giải thể, thông báo cơ quan đăng ký kinh doanh trong 7 ngày làm việc','Thanh lý tài sản, trả nợ theo thứ tự ưu tiên, tối đa 6 tháng','Nộp hồ sơ quyết toán thuế chậm nhất ngày thứ 45 kể từ ngày có quyết định','Nộp đủ thuế, chấm dứt hiệu lực mã số thuế','Nộp hồ sơ giải thể, xóa tên doanh nghiệp'];
+window.rDis=()=>{const c=U('dis',DIS),A=c.a();G={k:'exp',c,A,T:c.T(A),d:R(20,120),tr:3,pick:{},qi:0,done:0,docs:sh([0,1,2,3,4]),dis:1};
+ $('#app').innerHTML='<div id="ex"></div><div id="res"></div>';
+ $('#ex').innerHTML=`<div class="card"><span class="pill">🏁 Giải thể · ${c.lv>2?'Khó':c.lv>1?'Trung bình':'Dễ'}</span><h3>${c.t}</h3><p>${c.n(A)}</p><p class="mu">Hạn giải trình: <b>10 ngày làm việc</b>. Không đến, cơ quan thuế ấn định thuế và chưa xác nhận hoàn thành nghĩa vụ để chấm dứt mã số thuế.</p><details><summary><b>Lộ trình giải thể 2026</b></summary><ol>${ROAD.map(x=>`<li>${x}</li>`).join('')}</ol></details><button onclick="xDocs()">🏛️ Đi giải trình</button><button class="s" onclick="xSkip()">Để đó, lúc nào rảnh tính</button></div>`};
+/* Hỏi chuyên gia thuế: tốn 1 lượt, giảm tối đa còn 2 sao */
+window.xHint=()=>{const g=G;if(!g.dis||g.hx)return;if(S.help<=0)return toast('Hết lượt hỏi chuyên gia');S.help--;g.hx=g.hints=1;$('#xh').remove();$('#ex .card').insertAdjacentHTML('beforeend',`<div class="note g"><div class="ic">💬</div><div>${g.c.ex}</div></div>`);hud()};
+const hb=()=>{const c=$('#ex .card');if(G.dis&&c&&!$('#xh')&&!G.hx)c.insertAdjacentHTML('beforeend',`<button class="s" id="xh" onclick="xHint()">💬 Hỏi chuyên gia thuế (${S.help} lượt)</button>`)};
+const _q=xQ;xQ=function(){_q();hb()};const _c=xCalc;xCalc=function(){_c();hb()};
+const _a=xA;xA=function(i){_a(i);const b=$('#xh');b&&b.remove()};
+const _f=fin;fin=function(o){if(G.dis&&o.bd)o.bd='dis';_f(o)};
+BADGES.dis=['🏁','Giải thể an toàn'];
+MODES.push(['🏁','Giải trình giải thể doanh nghiệp','Quyết toán đến ngày giải thể, thanh lý tài sản, hoàn thuế, tính tiền phải nộp.',rDis,'MỚI']);
+
+/* ---------- Công thức cho mọi thử thách ---------- */
+const RATE='GTGT: 8% hàng hóa, dịch vụ thông thường đến 31/12/2026 (NQ 204/2025) · 10% nhóm loại trừ · 0% xuất khẩu.<br>TNDN: 20% · 17% (doanh thu 3–50 tỷ) · 15% (doanh thu ≤ 3 tỷ).<br>TNCN lương: giảm trừ 15,5tr + 6,2tr/người phụ thuộc, biểu 5 bậc 5–35%; đầu tư vốn 5%.<br>Chậm nộp 0,03%/ngày · Phạt khai sai 20% thuế thiếu.';
+const PEN='Tiền chậm nộp = Thuế thiếu × 0,03% × số ngày<br>Phạt khai sai = Thuế thiếu × 20%<br>Tổng phải nộp = Thuế thiếu + Chậm nộp + Phạt';
+const FMS=[
+[/bỏ trốn/,'Thuế GTGT bị loại = Thuế trên hóa đơn của NCC bị loại khấu trừ<br>Tự khắc phục trước khi lập biên bản: không phạt 20%<br>Chậm nộp = Thuế × 0,03% × số ngày'],
+[/lệch với tờ khai GTGT/,'Thuế GTGT đầu ra thiếu = Doanh thu chênh × thuế suất<br>'+PEN],
+[/tiền mặt bị loại/,'Thuế TNDN thiếu = Chi phí bị loại × 20%<br>'+PEN],
+[/sàn thương mại/,'GTGT = Doanh thu × tỷ lệ × 80% (đến 31/12/2026)<br>TNCN = (Doanh thu − 1 tỷ) × tỷ lệ TNCN<br>'+PEN],
+[/khấu hao ô tô/,'Khấu hao vượt trần/năm = (Nguyên giá − 1,6 tỷ) ÷ số năm<br>Thuế TNDN thiếu = Khấu hao vượt trần × 20%<br>'+PEN],
+[/lãi vay/,'Lãi vay được trừ tối đa = 30% × EBITDA<br>EBITDA = Lợi nhuận thuần + Lãi vay + Khấu hao − Lãi tiền gửi<br>Thuế thiếu = (Lãi vay − 30% × EBITDA) × 20%<br>'+PEN],
+[/thời vụ/,'Khấu trừ thiếu = Thuế biểu lũy tiến (HĐ ≥ 3 tháng) − 10% đã khấu trừ<br>'+PEN],
+[/dự phòng/,'Mức trích lập: 30% (6 tháng–dưới 1 năm) · 50% (1–2 năm) · 70% (2–3 năm) · 100% (≥ 3 năm)<br>Thuế TNDN thiếu = Dự phòng bị loại × 20%<br>'+PEN],
+[/^exp/,PEN],
+[/phân bổ/,'Thuế đầu vào dùng chung được khấu trừ = Thuế đầu vào chung × (Doanh thu chịu thuế ÷ Tổng doanh thu)<br>GTGT phải nộp = Đầu ra [35] − Đầu vào được khấu trừ [25]'],
+[/TTĐB/,'Giá tính TTĐB = Giá bán (đã có TTĐB, chưa GTGT) ÷ (1 + thuế suất TTĐB)<br>TTĐB = Giá tính × thuế suất<br>GTGT = Giá bán đã có TTĐB × thuế suất GTGT'],
+[/nhà thầu/,'GTGT nộp thay = Giá trị hợp đồng × tỷ lệ % GTGT<br>TNDN nộp thay = Giá trị hợp đồng × tỷ lệ % TNDN<br>Tổng = GTGT + TNDN'],
+[/Hộ kinh doanh/,'Doanh thu ≤ 1 tỷ: miễn GTGT, TNCN<br>GTGT = Doanh thu (toàn bộ) × tỷ lệ × 80% (đến 31/12/2026)<br>TNCN = (Doanh thu − 1 tỷ) × tỷ lệ TNCN'],
+[/xuất nhập khẩu/,'Thuế NK = CIF × thuế suất NK<br>TTĐB = (CIF + NK) × thuế suất TTĐB<br>GTGT = (CIF + NK + TTĐB) × thuế suất GTGT'],
+[/trước bạ/,'Lệ phí trước bạ = Giá tính lệ phí × mức %<br>Nhà đất 0,5% · xe máy 2% · ô tô con 10%<br>Nhà đất: Giá tính = Diện tích × giá đất bảng giá'],
+[/đặc thù/,'BĐS: 2% × giá chuyển nhượng<br>Chứng khoán: 0,1% × giá bán<br>Vốn góp: 20% × (Giá bán − Giá vốn − Chi phí), hoặc 2% × giá bán nếu không xác định được giá vốn<br>Thừa kế cha mẹ, con: miễn · Tặng cho BĐS: 10% × (Giá trị − 10tr)'],
+[/05\/KK|lương|TNCN|^pit/,'TN tính thuế = Thu nhập chịu thuế − BH bắt buộc − 15,5tr − 6,2tr × NPT<br>Thuế = Σ phần TN mỗi bậc × thuế suất: ≤10tr 5% · 10–30tr 10% · 30–60tr 20% · 60–100tr 30% · >100tr 35%<br>Ăn giữa ca: phần vượt 1,2tr chịu thuế · Tăng ca đúng luật: miễn (từ 1/7/2026)'],
+[/03\/TNDN|sổ sách|TNDN|^cit/,'Thu nhập tính thuế = Doanh thu − Chi phí được trừ + Thu nhập khác − Lỗ chuyển (≤ 5 năm)<br>Thuế TNDN = Thu nhập tính thuế × thuế suất (20% · 17% · 15% theo doanh thu)<br>Ô tô ≤ 9 chỗ: nguyên giá khấu hao tối đa 1,6 tỷ'],
+[/Truy thu|^insp/,'Thuế thiếu = Số đúng − Số đã khai<br>'+PEN+'<br>Trốn thuế: phạt 1–3 lần số thuế trốn'],
+[/GTGT|^vat/,'GTGT phải nộp [40] = Thuế đầu ra [35] − Thuế đầu vào được khấu trừ [25]<br>Đầu ra = Doanh thu × thuế suất (8% · 10% · 0%)<br>Đầu vào: hóa đơn hợp lệ, đúng MST, phục vụ SXKD; từ 5tr (đã gồm thuế) phải chuyển khoản; ô tô ≤ 9 chỗ: tối đa trên giá 1,6 tỷ'],
+[/^(chk|rec)/,'Đầu vào được khấu trừ = Σ thuế trên hóa đơn hợp pháp, đúng MST, phục vụ SXKD, thanh toán không dùng tiền mặt nếu ≥ 5tr<br>Chênh lệch đối chiếu = Số trên bảng kê − Số trên cổng thuế'],
+[/^quick/,'Ôn nhanh: GTGT 8% (đến 31/12/2026) · TNDN 20% / 17% / 15% · TNCN biểu 5 bậc · giảm trừ 15,5tr + 6,2tr · HKD miễn đến 1 tỷ · chậm nộp 0,03%/ngày · phạt 20%'],
+[/^rem/,'Giảm phạt = Tiền phạt còn lại × tỷ lệ giảm (theo số câu đúng)<br>Đúng hết: thưởng thêm']
+];
+const fmOf=()=>{if(G.c&&G.c.fm)return G.c.fm;const k=G.k==='frm'?(G.t.pill+' '+G.t.title):G.k==='exp'?'exp '+G.c.t:G.k,m=FMS.find(x=>x[0].test(k));return m?m[1]:PEN};
+window.fmOpen=()=>{if(!(G&&G.k))return;if(!G.done){if(LV()>=4)return toast('Cấp 4+: công thức chỉ mở sau khi nộp bài');G.hints=1}
+ const m=document.createElement('div');m.className='mdl fm';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
+ m.innerHTML=`<div class="fmx"><h2>📐 Công thức tính thuế</h2><p>${fmOf()}</p>${G.done?'':'<p class="mu">Xem khi đang làm bài: tối đa 2 ⭐.</p>'}<details><summary><b>Mức thuế hiện hành 2026</b></summary><p>${RATE}</p></details><button>Đóng</button></div>`;
+ m.onclick=e=>{if(e.target===m||e.target.tagName==='BUTTON')m.remove()};document.body.append(m)};
+addEventListener('keydown',e=>{if(e.key==='Escape')(x=>x&&x.remove())(document.querySelector('.mdl.fm'))});
+document.head.insertAdjacentHTML('beforeend','<style>#fmb{display:none;margin:0 auto 8px;min-height:44px;width:auto;padding:8px 18px;font-size:14px}.mdl>div.fmx{text-align:left;max-height:86vh;overflow:auto;padding:18px}.fmx h2{font-size:19px;text-align:center}.fmx p{color:var(--tx);font-size:14.5px;line-height:1.75}.fmx p.mu{color:var(--mu);font-size:13px}.fmx details{margin:0 0 12px;font-size:13px}.fmx button{width:100%;min-height:46px}</style>');
+$('#bn').insertAdjacentHTML('afterend','<button id="fmb" class="s" onclick="fmOpen()">📐 Công thức tính thuế</button>');
+const _hud=hud;hud=function(){_hud();const b=$('#fmb');if(b)b.style.display=G&&G.k?'block':'none'};
+if($('#app .hero'))hub();
+})();
+</script>
 </body>
 
 </html>
